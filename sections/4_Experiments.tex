@@ -1,0 +1,63 @@
+\section{Experiments}
+\label{sec:experiments}
+
+% ============================================================
+% OUTLINE -- Experiments          target: ~1.1-1.25 pages
+% Claims to land, in order:
+%   (1) fine-tuning with the scaffolding helps (vs un-finetuned);
+%   (2) small / open models become competitive with GPT Codex
+%       5.3 under the SAME scaffolding;
+%   (3) Qwen-30B is competitive with open-ended OpenHands at a
+%       fraction of the token cost;
+%   (4) the coverage term helps (lambda = 0 vs lambda > 0);
+%   (5) the margin widens as the gold set grows / disperses.
+% RESULTS ARE PARTIAL / IN PROGRESS -- scaffold the tables with
+% placeholders and fill exact numbers before submission.
+% ============================================================
+
+\subsection{Setup}
+\label{sec:setup-exp}
+% - Benchmarks: SWE-Bench Lite, SWE-Bench Verified, and the
+%   multilingual SWE-PolyBench (Python / Java / JS / TS).
+% - Models: Qwen2.5-Coder 7B / 14B (32K context); a Qwen-30B
+%   Coder model for the OpenHands comparison.
+% - Baselines: the un-finetuned Qwen scorer; GPT Codex 5.3 on
+%   our scaffolding; open-ended OpenHands agents.
+% - Metric: recall@L at file and function granularity.
+% - Training: LoRA (r = 32), weighted BCE + coverage. Keep brief.
+%   (~0.25 page)
+
+\subsection{Main Results}
+\label{sec:main-results}
+% - TABLE 1: recall@L (file + function) across the three
+%   benchmarks. Rows: un-finetuned Qwen 7B/14B; ours 7B/14B;
+%   GPT Codex 5.3 (our scaffolding); OpenHands (Qwen-30B).
+%   RECOMMEND folding the ablation rows (lambda = 0 vs
+%   lambda = 0.2) into Table 1 -- one table for the short paper.
+% - Narrate claims (1)-(3): fine-tuning beats un-finetuned;
+%   small open models close the gap to GPT Codex 5.3 on the
+%   same scaffolding; Qwen-30B matches OpenHands.
+%   (~0.4 page)
+
+\subsection{Does the Coverage Term Help?}
+\label{sec:ablation}
+% - The key ablation: lambda = 0 (BCE only) vs lambda = 0.2
+%   (BCE + coverage). Report the recall@L delta -- this is THE
+%   objective-paper result.
+% - Diagnostics (one line here, rest -> appendix): mean p on
+%   gold vs non-gold; fraction of golds landing in the top-L.
+%   (~0.2 page)
+
+\subsection{Efficiency and Scaling}
+\label{sec:efficiency}
+% - FIGURE 2: token cost. Per-call and total tokens vs
+%   OpenHands; bounded vs unbounded trajectory length; wall-
+%   clock saved. Plot with SciencePlots (project .venv, PDF).
+% - Scaling: recall@L vs number-of-gold-nodes and vs gold
+%   graph-spread -- a widening margin over a ranking baseline
+%   (SweRank). This is the make-or-break analysis.
+% - TRIAGE: 4 pages cannot comfortably hold both an efficiency
+%   figure and a scaling figure. Put ONE in the body (the
+%   scaling figure is the stronger novelty signal) and move the
+%   other to Appendix C, or render efficiency as a small table.
+%   (~0.25-0.3 page)

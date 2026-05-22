@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: acl_latex.aux
+The style file: acl_natbib.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: custom.bib
+Warning--empty booktitle in guo2016deeprelevancematching
+Warning--empty journal in vero2025baxbenchllmsgeneratecorrect
+You've used 94 entries,
+            3764 wiz_defined-function locations,
+            1229 strings with 32402 characters,
+and the built_in function-call counts, 91114 in all, are:
+= -- 7030
+> -- 6935
+< -- 48
++ -- 2928
+- -- 2190
+* -- 6801
+:= -- 13605
+add.period$ -- 391
+call.type$ -- 94
+change.case$ -- 1269
+chr.to.int$ -- 115
+cite$ -- 96
+duplicate$ -- 4851
+empty$ -- 5148
+format.name$ -- 2454
+if$ -- 19035
+int.to.chr$ -- 13
+int.to.str$ -- 12
+missing$ -- 1246
+newline$ -- 475
+num.names$ -- 376
+pop$ -- 3442
+preamble$ -- 1
+purify$ -- 1107
+quote$ -- 0
+skip$ -- 4483
+stack$ -- 0
+substring$ -- 1741
+swap$ -- 2831
+text.length$ -- 29
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 840
+warning$ -- 2
+while$ -- 330
+width$ -- 0
+write$ -- 1196
+(There were 2 warnings)

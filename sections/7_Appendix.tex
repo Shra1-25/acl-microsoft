@@ -1,0 +1,43 @@
+% ============================================================
+% OUTLINE -- Appendix     unlimited pages; supplementary only.
+% Nothing here is required to follow the 4-page main text.
+% Sections become A, B, C, ... under \appendix (set in
+% acl_latex.tex).
+% ============================================================
+
+\section{Proof of the Telescoping Identity}
+\label{app:proof}
+% - Full statement and proof that sum_r r_r = recall@L(L_R) -
+%   recall@L(L_0) under equal add/drop weights, and that
+%   potential-based shaping \citep{ng1999policy} leaves the
+%   optimal policy invariant -- so the dense objective and the
+%   recall@L optimum coincide.
+% - Regret view: Case 1 (a gold-for-gold swap) has regret 0;
+%   Case 2 (a non-gold kept over a gold) has regret 1.
+
+\section{Scaffolding and Training Details}
+\label{app:details}
+% - Algorithm 1: the full per-round procedure (window, seed
+%   selection, neighborhood BFS, list refinement, stop).
+% - Hyperparameters: K, N, C, max-rounds, list length L.
+% - LoRA config (q,k,v,o,gate,up,down; r = 32, alpha = 32;
+%   lm_head frozen; bf16). The staged-curriculum schedule.
+% - Prompt formats. CAVEAT to document: the training-time
+%   prompt format must match the recall@L scorer's format
+%   exactly -- the most likely silent bug.
+
+\section{Additional Results}
+\label{app:results}
+% - Full per-benchmark and per-language (SWE-PolyBench)
+%   breakdown.
+% - w+ / w- and lambda sweeps.
+% - Diagnostics: gold vs non-gold score separation; the top-L
+%   hit fraction per epoch.
+% - Whichever of the efficiency / scaling figures did not make
+%   the main body (see Sec. 4.4 triage).
+
+\section{AI Disclosure}
+\label{app:ai}
+% - The ACL-required statement of AI-tool usage. Generate it
+%   with the academic-paper `disclosure` mode once drafting is
+%   complete.

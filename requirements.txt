@@ -1,0 +1,6 @@
+# Python environment for generating result plots (ACL paper figures).
+# Recreate with:  python3.13 -m venv .venv && .venv/bin/pip install -r requirements.txt
+matplotlib==3.10.9
+SciencePlots==2.2.1
+numpy==2.4.6
+pandas==3.0.3

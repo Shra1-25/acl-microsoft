@@ -1,0 +1,81 @@
+\section{Introduction}
+\label{sec:intro}
+
+LLM coding agents increasingly resolve real GitHub issues by
+editing a repository directly, and benchmarks such as SWE-Bench
+now track how often they succeed \citep{jimenez2024swebench}. A
+patch can only be correct, however, if it changes the right
+code. Before any edit, the agent must identify the files and
+functions an issue actually touches, the step known as
+\emph{code localization}. This step is decisive and largely
+unrecoverable: once a wrong location enters the agent's editable
+context, the repair stage reasons over the wrong code, and no
+later reasoning recovers the correct patch
+\citep{jimenez2024swebench, yang2024sweagent}. The strongest
+systems are built around this fact. \citet{xia2024agentless}
+drop agentic interaction and resolve issues with a fixed
+localize-then-repair pipeline, crediting much of their accuracy
+to a hierarchical localization phase, and methods that improve
+the localization stage report corresponding gains in end-to-end
+resolution \citep{sohrabizadeh2025nemotroncortexa}. Localization
+is therefore not a preprocessing convenience but the step that
+determines how well downstream repair can perform.
+
+Yet localizing well is hard: a real repository holds thousands
+of files joined by tangled import, call, and inheritance edges,
+while an issue report describes symptoms in natural language
+that can sit far from the code that must change. Current systems
+close this gap in four ways. Reinforcement learning methods
+train the search policy itself: RepoSearcher pairs
+tool-integrated RL with rejection-sampled supervised
+fine-tuning \citep{ma2025tooltrain}, and SWE-RL scales RL over
+open software-evolution data \citep{wei2025swerl}.
+General-purpose agent scaffoldings give a capable LLM an
+open-ended action space with shell access, as in SWE-Agent and
+OpenHands \citep{yang2024sweagent, wang2025openhands}.
+Graph-exploration agents such as LocAgent let an LLM traverse a
+repository code graph, hopping freely between related code units
+\citep{chen2025locagent}. Dense retrieval methods skip the agent
+altogether: SWERank scores code units with a bi-encoder
+retriever and a listwise LLM reranker
+\citep{reddy2025sweranksoftwareissuelocalization}.
+
+The first three families pay for accuracy in tokens, and none of
+them bounds the cost. An RL agent, an open-ended scaffold, and a
+graph explorer all keep issuing tool calls and appending
+observations until they choose to stop, so a localization
+trajectory grows without a predictable ceiling. Under an
+OpenHands-style scaffolding, a single localization run can
+exceed 131K tokens (Section~\ref{sec:efficiency}). A model with a
+long context window and ample compute absorbs that cost; the
+open 7--14B code models most teams can realistically run do not.
+A Qwen-class coder with a 32K-token window overflows before the
+search terminates. Reinforcement learning compounds the problem:
+a multi-step episode returns only a sparse terminal reward, so
+adapting a small model to it takes many long and expensive
+rollouts. Dense retrieval is the one cheap option, but a
+single-step, order-centric ranker cannot revisit a discarded
+candidate or follow a structural edge, so it leaves the
+sequential, graph-structured side of the problem untouched. No
+existing method is at once bounded in token cost at inference
+and cheap enough to train on a small open model.
+
+% ============================================================
+% OUTLINE -- Introduction paragraph 4 (CONTRIBUTIONS) -- TO WRITE
+% Close on explicit contributions + a one-line results preview,
+% then transition to Sec. 2. Draft pending user decision on the
+% contribution list.
+%   C1  a multi-round, bounded-context localization scaffolding
+%       for small code LLMs;
+%   C2  a telescoping result: the dense per-round target shares
+%       its optimum with end-to-end recall@L (no myopia gap),
+%       converting a sparse-reward multi-step RL problem into
+%       supervised learning;
+%   C3  a supervised objective -- weighted BCE + a differentiable
+%       coverage term -- provably co-optimal with recall@L, and
+%       the set-coverage reframing it rests on;
+%   C4  results: small open models competitive with GPT Codex
+%       5.3 under the same scaffolding; Qwen-30B competitive
+%       with OpenHands at a fraction of the token cost; on
+%       SWE-Bench Lite, SWE-Bench Verified, and SWE-PolyBench.
+% ============================================================

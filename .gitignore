@@ -1,0 +1,11 @@
+# Python plotting environment (recreate from requirements.txt)
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Claude Code local config
+.claude/
+
+# macOS
+.DS_Store

@@ -1,70 +1,978 @@
-% Use this file for citations not found in the ACL Anthology (contained in "anthology.bib").
+% Citations for the paper. Entries ported from the project's
+% tech report (Tech-report/iclr2026). Several entries are
+% placeholders carried over from the tech report and must be
+% verified before submission -- see the % TODO markers.
 
-@book{Aho:72,
-    author  = {Alfred V. Aho and Jeffrey D. Ullman},
-    title   = {The Theory of Parsing, Translation and Compiling},
-    year    = "1972",
-    volume  = "1",
-    publisher = {Prentice-Hall},
-    address = {Englewood Cliffs, NJ}
+% jimenez2024swebench is defined in the DL4C_SpIDER import below.
+
+@article{yang2024sweagent,
+  title={{SWE}-agent: Agent-Computer Interfaces Enable Automated Software Engineering},
+  author={Yang, John and Jimenez, Carlos E and Wettig, Alexander and Lieret, Kilian and Yao, Shunyu and Narasimhan, Karthik and Press, Ofir},
+  journal={arXiv preprint arXiv:2405.15793},
+  year={2024}
 }
 
-@book{APA:83,
-    author  = {{American Psychological Association}},
-    title   = {Publications Manual},
-    year    = "1983",
-    publisher = {American Psychological Association},
-    address = {Washington, DC}
+@article{ma2025tooltrain,
+  title={Tool-integrated Reinforcement Learning for Repo Deep Search},
+  author={Ma, Zexiong and Peng, Chao and Zeng, Qunhong and Gao, Pengfei and Zou, Yanzhen and Xie, Bing},
+  journal={arXiv preprint arXiv:2508.03012},
+  year={2025}
 }
 
-@article{Chandra:81,
-	author = {Ashok K. Chandra and Dexter C. Kozen and Larry J. Stockmeyer},
-	year = "1981",
-	title = {Alternation},
-	journal = {Journal of the Association for Computing Machinery},
-	volume = "28",
-	number = "1",
-	pages = "114--133",
-	doi = "10.1145/322234.322243",
+% Verified: arXiv:2502.18449 (OpenReview ULblO61XZ0). Author list
+% confirmed against the arXiv abstract page.
+@article{wei2025swerl,
+  title={{SWE}-{RL}: Advancing {LLM} Reasoning via Reinforcement Learning on Open Software Evolution},
+  author={Wei, Yuxiang and Duchenne, Olivier and Copet, Jade and Carbonneaux, Quentin and Zhang, Lingming and Fried, Daniel and Synnaeve, Gabriel and Singh, Rishabh and Wang, Sida I.},
+  journal={arXiv preprint arXiv:2502.18449},
+  year={2025}
 }
 
-@inproceedings{andrew2007scalable,
-  title={Scalable training of {L1}-regularized log-linear models},
-  author={Andrew, Galen and Gao, Jianfeng},
-  booktitle={Proceedings of the 24th International Conference on Machine Learning},
-  pages={33--40},
+@article{zhang2025reponavigator,
+  title={One Tool Is Enough: Reinforcement Learning for Repository-Level {LLM} Agents},
+  author={Zhang, Zhaoxi and Duan, Yitong and Zhang, Yanzhi and Xu, Yiming and Wang, Zhixiang and Liang, Kun and Li, Yang and Liang, Jiahui and Xia, Deguo and Huang, Jizhou and He, Jiyan and Wu, Yunfang},
+  journal={arXiv preprint arXiv:2512.20957},
+  year={2025}
+}
+
+@article{chaudhari2025spider,
+  title={{SpIDER}: Spatially Informed Dense Embedding Retrieval for Software Issue Localization},
+  author={Chaudhari, Shravan and Jacob, Rahul Thomas and Goswami, Mononito and Cao, Jiajun and Rashid, Shihab and Bock, Christian},
+  journal={arXiv preprint arXiv:2512.16956},
+  year={2025}
+}
+
+@article{wang2024openhands,
+  title={{OpenHands}: An Open Platform for {AI} Software Developers as Generalist Agents},
+  author={Wang, Xingyao and others},
+  journal={arXiv preprint arXiv:2407.16741},
+  year={2024}
+}
+
+@article{xia2024agentless,
+  title={Agentless: Demystifying {LLM}-based Software Engineering Agents},
+  author={Xia, Chunqiu Steven and Deng, Yinlin and Dunn, Soren and Zhang, Lingming},
+  journal={arXiv preprint arXiv:2407.01489},
+  year={2024}
+}
+
+@article{orcaloca2025,
+  title={{OrcaLoca}: An {LLM} Agent Framework for Software Issue Localization},
+  author={{OrcaLoca Team}},
+  journal={arXiv preprint},
+  year={2025},
+  note={TODO: verify authors and arXiv id}
+}
+
+% TODO: verify -- real title is "LocAgent: Graph-Guided LLM
+% Agents for Code Localization"; arXiv:2503.09089.
+@article{locagent2025,
+  title={{LocAgent}: Graph-Guided {LLM} Agents for Code Localization},
+  author={{LocAgent Team}},
+  journal={arXiv preprint arXiv:2503.09089},
+  year={2025},
+  note={TODO: verify author list}
+}
+
+% TODO: verify -- SweRank, arXiv:2505.07849.
+@article{swerank2025,
+  title={{SweRank}: Software Issue Localization with Code Ranking},
+  author={{SweRank Team}},
+  journal={arXiv preprint arXiv:2505.07849},
+  year={2025},
+  note={TODO: verify author list and title}
+}
+
+% Verified: arXiv:2512.20482. Title and author list confirmed
+% against the arXiv abstract page.
+@article{swerankplus2025,
+  title={{SweRank}+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization},
+  author={Reddy, Revanth Gangi and Liu, Ye and Zhao, Wenting and Doo, JaeHyeok and Suresh, Tarun and Lee, Daniel and Xiong, Caiming and Zhou, Yingbo and Yavuz, Semih and Joty, Shafiq},
+  journal={arXiv preprint arXiv:2512.20482},
+  year={2025}
+}
+
+@inproceedings{ng1999policy,
+  title={Policy Invariance Under Reward Transformations: Theory and Application to Reward Shaping},
+  author={Ng, Andrew Y and Harada, Daishi and Russell, Stuart},
+  booktitle={International Conference on Machine Learning},
+  pages={278--287},
+  year={1999}
+}
+
+@article{shao2024deepseekmath,
+  title={{DeepSeekMath}: Pushing the Limits of Mathematical Reasoning in Open Language Models},
+  author={Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Zhang, Mingchuan and Li, Y.K. and Wu, Y. and Guo, Daya},
+  journal={arXiv preprint arXiv:2402.03300},
+  year={2024}
+}
+
+% hu2022lora is defined in the DL4C_SpIDER import below.
+
+@article{qin2024toolllm,
+  title={{ToolLLM}: Facilitating Large Language Models to Master 16000+ Real-World {APIs}},
+  author={Qin, Yujia and Liang, Shihao and Ye, Yining and Zhu, Kunlun and Yan, Lan and Lu, Yaxi and Lin, Yankai and Cong, Xin and Tang, Xiangru and Qian, Bill and others},
+  journal={arXiv preprint arXiv:2307.16789},
+  year={2024}
+}
+
+@article{chen2025swebench,
+  title={Training Software Engineering Agents and Verifiers with {SWE}-Gym},
+  author={Chen, Jiayi and others},
+  journal={arXiv preprint arXiv:2412.21139},
+  year={2025}
+}
+
+@article{husain2019codesearchnet,
+  title={{CodeSearchNet} Challenge: Evaluating the State of Semantic Code Search},
+  author={Husain, Hamel and Wu, Ho-Hsiang and Gazit, Tiferet and Allamanis, Miltiadis and Brockschmidt, Marc},
+  journal={arXiv preprint arXiv:1909.09436},
+  year={2019}
+}
+
+@inproceedings{jones2002visualization,
+  title={Visualization of Test Information to Assist Fault Localization},
+  author={Jones, James A and Harrold, Mary Jean and Stasko, John},
+  booktitle={International Conference on Software Engineering},
+  pages={467--477},
+  year={2002}
+}
+
+@article{papadakis2015metallaxis,
+  title={Metallaxis-{FL}: Mutation-based Fault Localization},
+  author={Papadakis, Mike and Le Traon, Yves},
+  journal={Software Testing, Verification and Reliability},
+  volume={25},
+  number={5-7},
+  pages={605--628},
+  year={2015}
+}
+
+@inproceedings{li2021fault,
+  title={Fault Localization with Code Coverage Representation Learning},
+  author={Li, Yi and Wang, Shaohua and Nguyen, Tien N.},
+  booktitle={International Conference on Software Engineering},
+  year={2021}
+}
+
+% TODO: add before submission -- SWE-PolyBench (multilingual
+% benchmark), SWE-bench Verified, the GPT Codex 5.3 model card,
+% and the Qwen2.5-Coder technical report.
+
+
+% ============================================================
+% References imported from DL4C_SpIDER_ICML (overleaf_projects/DL4C_SpIDER_ICML/custom.bib)
+% ============================================================
+
+@misc{reddy2025sweranksoftwareissuelocalization,
+      title={SweRank: Software Issue Localization with Code Ranking}, 
+      author={Revanth Gangi Reddy and Tarun Suresh and JaeHyeok Doo and Ye Liu and Xuan Phi Nguyen and Yingbo Zhou and Semih Yavuz and Caiming Xiong and Heng Ji and Shafiq Joty},
+      year={2025},
+      eprint={2505.07849},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2505.07849}, 
+}
+@inproceedings{chen2025locagent,
+    title = "{L}oc{A}gent: Graph-Guided {LLM} Agents for Code Localization",
+    author = "Chen, Zhaoling  and
+      Tang, Robert  and
+      Deng, Gangda  and
+      Wu, Fang  and
+      Wu, Jialong  and
+      Jiang, Zhiwei  and
+      Prasanna, Viktor  and
+      Cohan, Arman  and
+      Wang, Xingyao",
+    editor = "Che, Wanxiang  and
+      Nabende, Joyce  and
+      Shutova, Ekaterina  and
+      Pilehvar, Mohammad Taher",
+    booktitle = "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2025",
+    address = "Vienna, Austria",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.acl-long.426/",
+    doi = "10.18653/v1/2025.acl-long.426",
+    pages = "8697--8727",
+    ISBN = "979-8-89176-251-0",
+}
+@inproceedings{fehr-etal-2025-coret,
+    title = "{C}o{R}et: Improved Retriever for Code Editing",
+    author = "Fehr, Fabio James  and
+      Teja S, Prabhu  and
+      Franceschi, Luca  and
+      Zappella, Giovanni",
+    editor = "Che, Wanxiang  and
+      Nabende, Joyce  and
+      Shutova, Ekaterina  and
+      Pilehvar, Mohammad Taher",
+    booktitle = "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+    month = jul,
+    year = "2025",
+    address = "Vienna, Austria",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.acl-short.62/",
+    doi = "10.18653/v1/2025.acl-short.62",
+    pages = "775--789",
+    ISBN = "979-8-89176-252-7",
+}
+@inproceedings{
+zhang2024code,
+title={{CODE} {REPRESENTATION} {LEARNING} {AT} {SCALE}},
+author={Dejiao Zhang and Wasi Uddin Ahmad and Ming Tan and Hantian Ding and Ramesh Nallapati and Dan Roth and Xiaofei Ma and Bing Xiang},
+booktitle={The Twelfth International Conference on Learning Representations},
+year={2024},
+url={https://openreview.net/forum?id=vfzRRjumpX}
+}
+@inproceedings{
+suresh2025cornstack,
+title={Co{RNS}tack: High-Quality Contrastive Data for Better Code Retrieval and Reranking},
+author={Tarun Suresh and Revanth Gangi Reddy and Yifei Xu and Zach Nussbaum and Andriy Mulyar and Brandon Duderstadt and Heng Ji},
+booktitle={The Thirteenth International Conference on Learning Representations},
+year={2025},
+url={https://openreview.net/forum?id=iyJOUELYir}
+}
+@inproceedings{
+ouyang2025repograph,
+title={RepoGraph: Enhancing {AI} Software Engineering with Repository-level Code Graph},
+author={Siru Ouyang and Wenhao Yu and Kaixin Ma and Zilin Xiao and Zhihan Zhang and Mengzhao Jia and Jiawei Han and Hongming Zhang and Dong Yu},
+booktitle={The Thirteenth International Conference on Learning Representations},
+year={2025},
+url={https://openreview.net/forum?id=dw9VUsSHGB}
+}
+
+@inproceedings{jimenez2024swebench,
+  title     = {{SWE}-bench: Can Language Models Resolve Real-world Github Issues?},
+  author    = {Carlos E Jimenez and John Yang and Alexander Wettig and Shunyu Yao and Kexin Pei and Ofir Press and Karthik R Narasimhan},
+  booktitle = {The Twelfth International Conference on Learning Representations},
+  year      = {2024},
+  url       = {https://openreview.net/forum?id=VTF8yNQM66}
+}
+
+@inproceedings{deveval,
+  title     = {{D}ev{E}val: A Manually-Annotated Code Generation Benchmark Aligned with Real-World Code Repositories},
+  author    = {Li, Jia  and
+               Li, Ge  and
+               Zhao, Yunfei  and
+               Li, Yongmin  and
+               Liu, Huanyu  and
+               Zhu, Hao  and
+               Wang, Lecheng  and
+               Liu, Kaibo  and
+               Fang, Zheng  and
+               Wang, Lanshen  and
+               Ding, Jiazheng  and
+               Zhang, Xuanming  and
+               Zhu, Yuqi  and
+               Dong, Yihong  and
+               Jin, Zhi  and
+               Li, Binhua  and
+               Huang, Fei  and
+               Li, Yongbin  and
+               Gu, Bin  and
+               Yang, Mengfei},
+  editor    = {Ku, Lun-Wei  and
+               Martins, Andre  and
+               Srikumar, Vivek},
+  booktitle = {Findings of the Association for Computational Linguistics ACL 2024},
+  month     = aug,
+  year      = {2024},
+  address   = {Bangkok, Thailand and virtual meeting},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.findings-acl.214},
+  pages     = {3603--3614}
+}
+
+
+@inproceedings{CoderEval,
+  author    = {Yu, Hao and Shen, Bo and Ran, Dezhi and Zhang, Jiaxin and Zhang, Qi and Ma, Yuchi and Liang, Guangtai and Li, Ying and Wang, Qianxiang and Xie, Tao},
+  title     = {CoderEval: A Benchmark of Pragmatic Code Generation with Generative Pre-trained Models},
+  year      = {2024},
+  isbn      = {9798400702174},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3597503.3623316},
+  doi       = {10.1145/3597503.3623316},
+  abstract  = {Code generation models based on the pre-training and fine-tuning paradigm have been increasingly attempted by both academia and industry, resulting in well-known industrial models such as Codex, CodeGen, and PanGu-Coder. To evaluate the effectiveness of these models, multiple existing benchmarks (e.g., HumanEval and AiXBench) are proposed, including only cases of generating a standalone function, i.e., a function that may invoke or access only built-in functions and standard libraries. However, non-standalone functions, which typically are not included in the existing benchmarks, constitute more than 70\% of the functions in popular open-source projects, and evaluating models' effectiveness on standalone functions cannot reflect these models' effectiveness on pragmatic code generation scenarios (i.e., code generation for real settings of open source or proprietary code).To help bridge the preceding gap, in this paper, we propose a benchmark named CoderEval, consisting of 230 Python and 230 Java code generation tasks carefully curated from popular real-world open-source projects and a self-contained execution platform to automatically assess the functional correctness of generated code. CoderEval supports code generation tasks from six levels of context dependency, where context refers to code elements such as types, APIs, variables, and consts defined outside the function under generation but within the dependent third-party libraries, current class, file, or project. CoderEval can be used to evaluate the effectiveness of models in generating code beyond only standalone functions. By evaluating three state-of-the-art code generation models (CodeGen, PanGu-Coder, and ChatGPT) on CoderEval and HumanEval, we find that the effectiveness of these models in generating standalone functions is substantially higher than that in generating non-standalone functions. Our analysis highlights the current progress and pinpoints future directions to further improve a model's effectiveness by leveraging contextual information for pragmatic code generation.},
+  booktitle = {Proceedings of the IEEE/ACM 46th International Conference on Software Engineering},
+  articleno = {37},
+  numpages  = {12},
+  keywords  = {code generation, large language models, benchmark},
+  location  = {Lisbon, Portugal},
+  series    = {ICSE '24}
+}
+
+@article{chen2021evaluating,
+  title   = {Evaluating large language models trained on code},
+  author  = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde De Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and others},
+  journal = {arXiv preprint arXiv:2107.03374},
+  year    = {2021}
+}
+
+@inproceedings{hendrycks2021measuring,
+  title     = {Measuring Coding Challenge Competence With {APPS}},
+  author    = {Dan Hendrycks and Steven Basart and Saurav Kadavath and Mantas Mazeika and Akul Arora and Ethan Guo and Collin Burns and Samir Puranik and Horace He and Dawn Song and Jacob Steinhardt},
+  booktitle = {Thirty-fifth Conference on Neural Information Processing Systems Datasets and Benchmarks Track (Round 2)},
+  year      = {2021},
+  url       = {https://openreview.net/forum?id=sD93GOzH3i5}
+}
+
+@article{gulwani2017program,
+  title     = {Program synthesis},
+  author    = {Gulwani, Sumit and Polozov, Oleksandr and Singh, Rishabh and others},
+  journal   = {Foundations and Trends{\textregistered} in Programming Languages},
+  volume    = {4},
+  number    = {1-2},
+  pages     = {1--119},
+  year      = {2017},
+  publisher = {Now Publishers, Inc.}
+}
+
+@article{10.1145/362566.362568,
+  author     = {Manna, Zohar and Waldinger, Richard J.},
+  title      = {Toward automatic program synthesis},
+  year       = {1971},
+  issue_date = {March 1971},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {14},
+  number     = {3},
+  issn       = {0001-0782},
+  url        = {https://doi.org/10.1145/362566.362568},
+  doi        = {10.1145/362566.362568},
+  abstract   = {An elementary outline of the theorem-proving approach to automatic program synthesis is given, without dwelling on technical details. The method is illustrated by the automatic construction of both recursive and iterative programs operating on natural numbers, lists, and trees.In order to construct a program satisfying certain specifications, a theorem induced by those specifications is proved, and the desired program is extracted from the proof. The same technique is applied to transform recursively defined functions into iterative programs, frequently with a major gain in efficiency.It is emphasized that in order to construct a program with loops or with recursion, the principle of mathematical induction must be applied. The relation between the version of the induction rule used and the form of the program constructed is explored in some detail.},
+  journal    = {Commun. ACM},
+  month      = {mar},
+  pages      = {151–165},
+  numpages   = {15},
+  keywords   = {theorem proving, problem solving, mathematical induction principle, automatic program synthesis, artificial intelligence, answer extraction}
+}
+
+@inproceedings{clement-etal-2020-pymt5,
+  title     = {{P}y{MT}5: multi-mode translation of natural language and Python code with transformers},
+  author    = {Clement, Colin  and
+               Drain, Dawn  and
+               Timcheck, Jonathan  and
+               Svyatkovskiy, Alexey  and
+               Sundaresan, Neel},
+  editor    = {Webber, Bonnie  and
+               Cohn, Trevor  and
+               He, Yulan  and
+               Liu, Yang},
+  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  month     = nov,
+  year      = {2020},
+  address   = {Online},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2020.emnlp-main.728},
+  doi       = {10.18653/v1/2020.emnlp-main.728},
+  pages     = {9052--9065},
+  abstract  = {Simultaneously modeling source code and natural language has many exciting applications in automated software development and understanding. Pursuant to achieving such technology, we introduce PyMT5, the Python method text-to-text transfer transformer, which is trained to translate between all pairs of Python method feature combinations: a single model that can both predict whole methods from natural language documentation strings (docstrings) and summarize code into docstrings of any common style. We present an analysis and modeling effort of a large-scale parallel corpus of 26 million Python methods and 7.7 million method-docstring pairs, demonstrating that for docstring and method generation, PyMT5 outperforms similarly-sized auto-regressive language models (GPT2) which were English pre-trained or randomly initialized. On the CodeSearchNet test set, our best model predicts 92.1{\%} syntactically correct method bodies, achieved a BLEU score of 8.59 for method generation and 16.3 for docstring generation (summarization), and achieved a ROUGE-L F-score of 24.8 for method generation and 36.7 for docstring generation.}
+}
+
+
+@inproceedings{guo2023longcoder,
+  title        = {Longcoder: A long-range pre-trained language model for code completion},
+  author       = {Guo, Daya and Xu, Canwen and Duan, Nan and Yin, Jian and McAuley, Julian},
+  booktitle    = {International Conference on Machine Learning},
+  pages        = {12098--12107},
+  year         = {2023},
+  organization = {PMLR}
+}
+
+@inproceedings{ding-etal-2024-cocomic,
+  title     = {{C}o{C}o{MIC}: Code Completion by Jointly Modeling In-file and Cross-file Context},
+  author    = {Ding, Yangruibo  and
+               Wang, Zijian  and
+               Ahmad, Wasi  and
+               Ramanathan, Murali Krishna  and
+               Nallapati, Ramesh  and
+               Bhatia, Parminder  and
+               Roth, Dan  and
+               Xiang, Bing},
+  editor    = {Calzolari, Nicoletta  and
+               Kan, Min-Yen  and
+               Hoste, Veronique  and
+               Lenci, Alessandro  and
+               Sakti, Sakriani  and
+               Xue, Nianwen},
+  booktitle = {Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)},
+  month     = may,
+  year      = {2024},
+  address   = {Torino, Italia},
+  publisher = {ELRA and ICCL},
+  url       = {https://aclanthology.org/2024.lrec-main.305},
+  pages     = {3433--3445},
+  abstract  = {While pre-trained language models (LM) for code have achieved great success in code completion, they generate code conditioned only on the contents within the file, i.e., in-file context, but ignore the rich semantics in other files within the same project, i.e., project-level cross-file context, a critical source of information that is especially useful in modern modular software development. Such overlooking constrains code LMs{'} capacity in code completion, leading to unexpected behaviors such as generating hallucinated class member functions or function calls with unexpected arguments. In this work, we propose CoCoMIC, a novel framework that jointly learns the in-file and cross-file context on top of code LMs. To empower CoCoMIC, we develop CCFinder, a static-analysis-based tool that locates and retrieves the most relevant project-level cross-file context for code completion. CoCoMIC successfully improves the existing code LM with a 33.94{\%} relative increase in exact match and 28.69{\%} in identifier matching for code completion when the cross-file context is provided. Finally, we perform a series of ablation studies and share valuable insights for future research on integrating cross-file context into code LMs.}
+}
+
+@inproceedings{szafraniec2023code,
+  title     = {Code Translation with Compiler Representations},
+  author    = {Marc Szafraniec and Baptiste Roziere and Hugh James Leather and Patrick Labatut and Francois Charton and Gabriel Synnaeve},
+  booktitle = {The Eleventh International Conference on Learning Representations },
+  year      = {2023},
+  url       = {https://openreview.net/forum?id=XomEU3eNeSQ}
+}
+@misc{luo2024repoagent,
+  title         = {RepoAgent: An LLM-Powered Open-Source Framework for Repository-level Code Documentation Generation},
+  author        = {Qinyu Luo and Yining Ye and Shihao Liang and Zhong Zhang and Yujia Qin and Yaxi Lu and Yesai Wu and Xin Cong and Yankai Lin and Yingli Zhang and Xiaoyin Che and Zhiyuan Liu and Maosong Sun},
+  year          = {2024},
+  eprint        = {2402.16667},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL}
+}
+
+
+@inproceedings{alshahwan2024automated,
+  title     = {Automated unit test improvement using large language models at meta},
+  author    = {Alshahwan, Nadia and Chheda, Jubin and Finogenova, Anastasia and Gokkaya, Beliz and Harman, Mark and Harper, Inna and Marginean, Alexandru and Sengupta, Shubho and Wang, Eddy},
+  booktitle = {Companion Proceedings of the 32nd ACM International Conference on the Foundations of Software Engineering},
+  pages     = {185--196},
+  year      = {2024}
+}
+
+@article{austin2021program,
+  title   = {Program synthesis with large language models},
+  author  = {Austin, Jacob and Odena, Augustus and Nye, Maxwell and Bosma, Maarten and Michalewski, Henryk and Dohan, David and Jiang, Ellen and Cai, Carrie and Terry, Michael and Le, Quoc and others},
+  journal = {arXiv preprint arXiv:2108.07732},
+  year    = {2021}
+}
+
+@inproceedings{athiwaratkun2023multilingual,
+  title     = {Multi-lingual Evaluation of Code Generation Models},
+  author    = {Ben Athiwaratkun and Sanjay Krishna Gouda and Zijian Wang and Xiaopeng Li and Yuchen Tian and Ming Tan and Wasi Uddin Ahmad and Shiqi Wang and Qing Sun and Mingyue Shang and Sujan Kumar Gonugondla and Hantian Ding and Varun Kumar and Nathan Fulton and Arash Farahani and Siddhartha Jain and Robert Giaquinto and Haifeng Qian and Murali Krishna Ramanathan and Ramesh Nallapati and Baishakhi Ray and Parminder Bhatia and Sudipta Sengupta and Dan Roth and Bing Xiang},
+  booktitle = {The Eleventh International Conference on Learning Representations },
+  year      = {2023},
+  url       = {https://openreview.net/forum?id=Bo7eeXm6An8}
+}
+
+@inproceedings{10.1145/3510003.3510203,
+  author    = {Jain, Naman and Vaidyanath, Skanda and Iyer, Arun and Natarajan, Nagarajan and Parthasarathy, Suresh and Rajamani, Sriram and Sharma, Rahul},
+  title     = {Jigsaw: large language models meet program synthesis},
+  year      = {2022},
+  isbn      = {9781450392211},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3510003.3510203},
+  doi       = {10.1145/3510003.3510203},
+  abstract  = {Large pre-trained language models such as GPT-3 [10], Codex [11], and Google's language model [7] are now capable of generating code from natural language specifications of programmer intent. We view these developments with a mixture of optimism and caution. On the optimistic side, such large language models have the potential to improve productivity by providing an automated AI pair programmer for every programmer in the world. On the cautionary side, since these large language models do not understand program semantics, they offer no guarantees about quality of the suggested code. In this paper, we present an approach to augment these large language models with post-processing steps based on program analysis and synthesis techniques, that understand the syntax and semantics of programs. Further, we show that such techniques can make use of user feedback and improve with usage. We present our experiences from building and evaluating such a tool Jigsaw, targeted at synthesizing code for using Python Pandas API using multi-modal inputs. Our experience suggests that as these large language models evolve for synthesizing code from intent, Jigsaw has an important role to play in improving the accuracy of the systems.},
+  booktitle = {Proceedings of the 44th International Conference on Software Engineering},
+  pages     = {1219–1231},
+  numpages  = {13},
+  location  = {Pittsburgh, Pennsylvania},
+  series    = {ICSE '22}
+}
+
+@article{doi:10.1126/science.abq1158,
+  author   = {Yujia Li  and David Choi  and Junyoung Chung  and Nate Kushman  and Julian Schrittwieser  and R{\'e}mi Leblond  and Tom Eccles  and James Keeling  and Felix Gimeno  and Agustin Dal Lago  and Thomas Hubert  and Peter Choy  and Cyprien de Masson d’Autume  and Igor Babuschkin  and Xinyun Chen  and Po-Sen Huang  and Johannes Welbl  and Sven Gowal  and Alexey Cherepanov  and James Molloy  and Daniel J. Mankowitz  and Esme Sutherland Robson  and Pushmeet Kohli  and Nando de Freitas  and Koray Kavukcuoglu  and Oriol Vinyals },
+  title    = {Competition-level code generation with AlphaCode},
+  journal  = {Science},
+  volume   = {378},
+  number   = {6624},
+  pages    = {1092-1097},
+  year     = {2022},
+  doi      = {10.1126/science.abq1158},
+  url      = {https://www.science.org/doi/abs/10.1126/science.abq1158},
+  eprint   = {https://www.science.org/doi/pdf/10.1126/science.abq1158},
+  abstract = {Programming is a powerful and ubiquitous problem-solving tool. Systems that can assist programmers or even generate programs themselves could make programming more productive and accessible. Recent transformer-based neural network models show impressive code generation abilities yet still perform poorly on more complex tasks requiring problem-solving skills, such as competitive programming problems. Here, we introduce AlphaCode, a system for code generation that achieved an average ranking in the top 54.3\% in simulated evaluations on recent programming competitions on the Codeforces platform. AlphaCode solves problems by generating millions of diverse programs using specially trained transformer-based networks and then filtering and clustering those programs to a maximum of just 10 submissions. This result marks the first time an artificial intelligence system has performed competitively in programming competitions. Computer programming competitions are popular tests among programmers that require critical thinking informed by experience and creating solutions to unforeseen problems, both of which are key aspects of human intelligence but challenging to mimic by machine learning models. Using self-supervised learning and an encoder-decoder transformer architecture, Li et al. developed AlphaCode, a deep-learning model that can achieve approximately human-level performance on the Codeforces platform, which regularly hosts these competitions and attracts numerous participants worldwide (see the Perspective by Kolter). The development of such coding platforms could have a huge impact on programmers’ productivity. It may even change the culture of programming by shifting human work to formulating problems, with machine learning being the main one responsible for generating and executing codes. —YS Modern machine learning systems can achieve average human-level performance in popular competitive programming contests.}
+}
+
+@article{wang2022mconala,
+  title   = {Mconala: a benchmark for code generation from multiple natural languages},
+  author  = {Wang, Zhiruo and Cuenca, Grace and Zhou, Shuyan and Xu, Frank F and Neubig, Graham},
+  journal = {arXiv preprint arXiv:2203.08388},
+  year    = {2022}
+}
+
+@article{zan2022cert,
+  title   = {CERT: continual pre-training on sketches for library-oriented code generation},
+  author  = {Zan, Daoguang and Chen, Bei and Yang, Dejian and Lin, Zeqi and Kim, Minsu and Guan, Bei and Wang, Yongji and Chen, Weizhu and Lou, Jian-Guang},
+  journal = {arXiv preprint arXiv:2206.06888},
+  year    = {2022}
+}
+
+@misc{bigcode-evaluation-harness,
+  author       = {Ben Allal, Loubna and
+                  Muennighoff, Niklas and
+                  Kumar Umapathi, Logesh and
+                  Lipkin, Ben and
+                  von Werra, Leandro},
+  title        = {A framework for the evaluation of code generation models},
+  publisher    = {GitHub},
+  journal      = {GitHub repository},
+  howpublished = {\url{https://github.com/bigcode-project/bigcode-evaluation-harness}},
+  year         = 2022
+}
+@article{zhang2024codeagent,
+  title   = {Codeagent: Enhancing code generation with tool-integrated agent systems for real-world repo-level coding challenges},
+  author  = {Zhang, Kechi and Li, Jia and Li, Ge and Shi, Xianjie and Jin, Zhi},
+  journal = {arXiv preprint arXiv:2401.07339},
+  year    = {2024}
+}
+@article{li2024evocodebench,
+  title   = {EvoCodeBench: An Evolving Code Generation Benchmark Aligned with Real-World Code Repositories},
+  author  = {Li, Jia and Li, Ge and Zhang, Xuanming and Dong, Yihong and Jin, Zhi},
+  journal = {arXiv preprint arXiv:2404.00599},
+  year    = {2024}
+}
+
+@article{dai2024mhpp,
+  title   = {MHPP: Exploring the Capabilities and Limitations of Language Models Beyond Basic Code Generation},
+  author  = {Dai, Jianbo and Lu, Jianqiao and Feng, Yunlong and Ruan, Rongju and Cheng, Ming and Tan, Haochen and Guo, Zhijiang},
+  journal = {arXiv preprint arXiv:2405.11430},
+  year    = {2024}
+}
+
+@misc{xia2024agentlessdemystifyingllmbasedsoftware,
+  title         = {Agentless: Demystifying LLM-based Software Engineering Agents},
+  author        = {Chunqiu Steven Xia and Yinlin Deng and Soren Dunn and Lingming Zhang},
+  year          = {2024},
+  eprint        = {2407.01489},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.SE},
+  url           = {https://arxiv.org/abs/2407.01489}
+}
+
+
+@inproceedings{liu2024repobench,
+  title     = {RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems},
+  author    = {Tianyang Liu and Canwen Xu and Julian McAuley},
+  booktitle = {The Twelfth International Conference on Learning Representations},
+  year      = {2024},
+  url       = {https://openreview.net/forum?id=pPjZIOuQuF}
+}
+
+@inproceedings{ding2023crosscodeeval,
+  title     = {CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion},
+  author    = {Yangruibo Ding and Zijian Wang and Wasi Uddin Ahmad and Hantian Ding and Ming Tan and Nihal Jain and Murali Krishna Ramanathan and Ramesh Nallapati and Parminder Bhatia and Dan Roth and Bing Xiang},
+  booktitle = {Thirty-seventh Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
+  year      = {2023},
+  url       = {https://openreview.net/forum?id=wgDcbBMSfh}
+}
+
+@article{gu2024cruxeval,
+  title   = {Cruxeval: A benchmark for code reasoning, understanding and execution},
+  author  = {Gu, Alex and Rozi{\`e}re, Baptiste and Leather, Hugh and Solar-Lezama, Armando and Synnaeve, Gabriel and Wang, Sida I},
+  journal = {arXiv preprint arXiv:2401.03065},
+  year    = {2024}
+}
+
+@inproceedings{tian-etal-2024-debugbench,
+  title     = {{D}ebug{B}ench: Evaluating Debugging Capability of Large Language Models},
+  author    = {Tian, Runchu  and
+               Ye, Yining  and
+               Qin, Yujia  and
+               Cong, Xin  and
+               Lin, Yankai  and
+               Pan, Yinxu  and
+               Wu, Yesai  and
+               Haotian, Hui  and
+               Weichuan, Liu  and
+               Liu, Zhiyuan  and
+               Sun, Maosong},
+  editor    = {Ku, Lun-Wei  and
+               Martins, Andre  and
+               Srikumar, Vivek},
+  booktitle = {Findings of the Association for Computational Linguistics ACL 2024},
+  month     = aug,
+  year      = {2024},
+  address   = {Bangkok, Thailand and virtual meeting},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.findings-acl.247},
+  pages     = {4173--4198},
+  abstract  = {Large Language Models (LLMs) have demonstrated exceptional coding capability. However, as another critical component of programming proficiency, the debugging capability of LLMs remains relatively unexplored. Previous evaluations of LLMs{'} debugging ability are significantly limited by the risk of data leakage, the scale of the dataset, and the variety of tested bugs. To overcome these deficiencies, we introduce {`}DebugBench{'}, an LLM debugging benchmark consisting of 4,253 instances. It covers four major bug categories and 18 minor types in C++, Java, and Python. To construct DebugBench, we collect code snippets from the LeetCode community, implant bugs into source data with GPT-4, and assure rigorous quality checks. We evaluate two commercial and four open-source models in a zero-shot scenario. We find that (1) while closed-source models exhibit inferior debugging performance compared to humans, open-source models relatively lower pass rate scores; (2) the complexity of debugging notably fluctuates depending on the bug category; (3) incorporating runtime feedback has a clear impact on debugging performance which is not always helpful. As an extension, we also compare LLM debugging and code generation, revealing a strong correlation between them for closed-source models. These findings will benefit the development of LLMs in debugging.}
+}
+
+@article{jain2024livecodebench,
+  title   = {Livecodebench: Holistic and contamination free evaluation of large language models for code},
+  author  = {Jain, Naman and Han, King and Gu, Alex and Li, Wen-Ding and Yan, Fanjia and Zhang, Tianjun and Wang, Sida and Solar-Lezama, Armando and Sen, Koushik and Stoica, Ion},
+  journal = {arXiv preprint arXiv:2403.07974},
+  year    = {2024}
+}
+
+@article{xie2024codebenchgen,
+  title   = {CodeBenchGen: Creating Scalable Execution-based Code Generation Benchmarks},
+  author  = {Xie, Yiqing and Xie, Alex and Sheth, Divyanshu and Liu, Pengfei and Fried, Daniel and Rose, Carolyn},
+  journal = {arXiv preprint arXiv:2404.00566},
+  year    = {2024}
+}
+
+@inproceedings{nijkamp2023codegen,
+  title     = {CodeGen: An Open Large Language Model for Code with Multi-Turn Program Synthesis},
+  author    = {Erik Nijkamp and Bo Pang and Hiroaki Hayashi and Lifu Tu and Huan Wang and Yingbo Zhou and Silvio Savarese and Caiming Xiong},
+  booktitle = {The Eleventh International Conference on Learning Representations },
+  year      = {2023},
+  url       = {https://openreview.net/forum?id=iaYcJKpY2B_}
+}
+
+@article{zhuo2024bigcodebench,
+  title   = {BigCodeBench: Benchmarking Code Generation with Diverse Function Calls and Complex Instructions},
+  author  = {Zhuo, Terry Yue and Vu, Minh Chien and Chim, Jenny and Hu, Han and Yu, Wenhao and Widyasari, Ratnadira and Yusuf, Imam Nur Bani and Zhan, Haolan and He, Junda and Paul, Indraneil and others},
+  journal = {arXiv preprint arXiv:2406.15877},
+  year    = {2024}
+}
+
+@article{jiang2024survey,
+  title   = {A Survey on Large Language Models for Code Generation},
+  author  = {Jiang, Juyong and Wang, Fan and Shen, Jiasi and Kim, Sungju and Kim, Sunghun},
+  journal = {arXiv preprint arXiv:2406.00515},
+  year    = {2024}
+}
+
+@misc{stackoverflow2023,
+  author       = {{Stack Overflow}},
+  howpublished = {\url{https://survey.stackoverflow.co/2023/#most-popular-technologies-language-prof}},
+  title        = {Stack Overflow Developer Survey 2023},
+  year         = {2023}
+}
+@misc{aider,
+  author       = {Paul Gauthier},
+  howpublished = {\url{https://github.com/paul-gauthier/aider}},
+  title        = {Aider is AI pair programming in your terminal},
+  year         = {2024}
+}
+@article{yang2024swe,
+  title   = {Swe-agent: Agent-computer interfaces enable automated software engineering},
+  author  = {Yang, John and Jimenez, Carlos E and Wettig, Alexander and Lieret, Kilian and Yao, Shunyu and Narasimhan, Karthik and Press, Ofir},
+  journal = {arXiv preprint arXiv:2405.15793},
+  year    = {2024}
+}
+@misc{swe-leaderboard,
+  author       = {Carlos E Jimenez and John Yang and Alexander Wettig and Shunyu Yao and Kexin Pei and Ofir Press and Karthik R Narasimhan},
+  howpublished = {\url{https://www.swebench.com/}},
+  title        = {Can Language Models Resolve Real-World GitHub Issues?},
+  year         = {2024}
+}
+
+
+@inproceedings{pmlr-v202-lai23b,
+  title     = {{DS}-1000: A Natural and Reliable Benchmark for Data Science Code Generation},
+  author    = {Lai, Yuhang and Li, Chengxi and Wang, Yiming and Zhang, Tianyi and Zhong, Ruiqi and Zettlemoyer, Luke and Yih, Wen-Tau and Fried, Daniel and Wang, Sida and Yu, Tao},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+  pages     = {18319--18345},
+  year      = {2023},
+  editor    = {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
+  volume    = {202},
+  series    = {Proceedings of Machine Learning Research},
+  month     = {23--29 Jul},
+  publisher = {PMLR},
+  pdf       = {https://proceedings.mlr.press/v202/lai23b/lai23b.pdf},
+  url       = {https://proceedings.mlr.press/v202/lai23b.html},
+  abstract  = {We introduce DS-1000, a code generation benchmark with a thousand data science problems spanning seven Python libraries, such as Numpy and Pandas. Compared to prior works, DS-1000 incorporates three core features. First, our problems reflect diverse, realistic, and practical use cases since we collected them from StackOverflow. Second, our automatic evaluation is highly specific (reliable) – across all Codex-002-predicted solutions that our evaluation accepts, only 1.8% of them are incorrect; we achieve this with multi-criteria metrics, checking both functional correctness by running test cases and surface-form constraints by restricting API usages or keywords. Finally, we proactively defend against memorization by slightly modifying our problems to be different from the original StackOverflow source; consequently, models cannot answer them correctly by memorizing the solutions from pre-training. The current best public system (Codex-002) achieves 43.3% accuracy, leaving ample room for improvement. We release our benchmark at https://ds1000-code-gen.github.io.}
+}
+
+@misc{li2024sketch2codeevaluatingvisionlanguagemodels,
+  title         = {Sketch2Code: Evaluating Vision-Language Models for Interactive Web Design Prototyping},
+  author        = {Ryan Li and Yanzhe Zhang and Diyi Yang},
+  year          = {2024},
+  eprint        = {2410.16232},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2410.16232}
+}
+
+@misc{shortcutbench,
+  title         = {ShortcutsBench: A Large-Scale Real-world Benchmark for API-based Agents},
+  author        = {Haiyang Shen and Yue Li and Desong Meng and Dongqi Cai and Sheng Qi and Li Zhang and Mengwei Xu and Yun Ma},
+  year          = {2025},
+  eprint        = {2407.00132},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.SE},
+  url           = {https://arxiv.org/abs/2407.00132}
+}
+
+@misc{dsbench,
+  title         = {DSBench: How Far Are Data Science Agents to Becoming Data Science Experts?},
+  author        = {Liqiang Jing and Zhehui Huang and Xiaoyang Wang and Wenlin Yao and Wenhao Yu and Kaixin Ma and Hongming Zhang and Xinya Du and Dong Yu},
+  year          = {2024},
+  eprint        = {2409.07703},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.AI},
+  url           = {https://arxiv.org/abs/2409.07703}
+}
+
+@inproceedings{MLAgentBench,
+  author    = {Huang, Qian and Vora, Jian and Liang, Percy and Leskovec, Jure},
+  title     = {MLAgentBench: evaluating language agents on machine learning experimentation},
+  year      = {2024},
+  publisher = {JMLR.org},
+  abstract  = {A central aspect of machine learning research is experimentation, the process of designing and running experiments, analyzing the results, and iterating towards some positive outcome (e.g., improving accuracy). Could agents driven by powerful language models perform machine learning experimentation effectively? To answer this question, we introduce MLAgentBench, a suite of 13 tasks ranging from improving model performance on CIFAR-10 to recent research problems like BabyLM. For each task, an agent can perform actions like reading/writing files, executing code, and inspecting outputs. We then construct an agent that can perform ML experimentation based on ReAct framework. We benchmark agents based on Claude v1.0, Claude v2.1, Claude v3 Opus, GPT-4, GPT-4-turbo, Gemini-Pro, and Mixtral and find that a Claude v3 Opus agent is the best in terms of success rate. It can build compelling ML models over many tasks in MLA-gentBench with 37.5\% average success rate. Our agents also display highly interpretable plans and actions. However, the success rates vary considerably; they span from 100\% on well-established older datasets to as low as 0\% on recent Kaggle challenges created potentially after the underlying LM was trained. Finally, we identify several key challenges for LM-based agents such as long-term planning and reducing hallucination.},
+  booktitle = {Proceedings of the 41st International Conference on Machine Learning},
+  articleno = {814},
+  numpages  = {39},
+  location  = {Vienna, Austria},
+  series    = {ICML'24}
+}
+
+
+@inproceedings{zhang-etal-2024-benchmarking-data,
+  title     = {Benchmarking Data Science Agents},
+  author    = {Zhang, Yuge  and
+               Jiang, Qiyang  and
+               XingyuHan, XingyuHan  and
+               Chen, Nan  and
+               Yang, Yuqing  and
+               Ren, Kan},
+  editor    = {Ku, Lun-Wei  and
+               Martins, Andre  and
+               Srikumar, Vivek},
+  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  month     = aug,
+  year      = {2024},
+  address   = {Bangkok, Thailand},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.acl-long.308/},
+  doi       = {10.18653/v1/2024.acl-long.308},
+  pages     = {5677--5700},
+  abstract  = {In the era of data-driven decision-making, the complexity of data analysis necessitates advanced expertise and tools of data science, presenting significant challenges even for specialists. Large Language Models (LLMs) have emerged as promising aids as data science agents, assisting humans in data analysis and processing. Yet their practical efficacy remains constrained by the varied demands of real-world applications and complicated analytical process. In this paper, we introduce DSEval {--} a novel evaluation paradigm, as well as a series of innovative benchmarks tailored for assessing the performance of these agents throughout the entire data science lifecycle. Incorporating a novel bootstrapped annotation method, we streamline dataset preparation, improve the evaluation coverage, and expand benchmarking comprehensiveness. Our findings uncover prevalent obstacles and provide critical insights to inform future advancements in the field.}
+}
+
+@misc{sweverified,
+  title  = {Introducing {SWE}-bench {V}erified},
+  url    = {https://openai.com/index/introducing-swe-bench-verified/},
+  author = {Chowdhury, Neil and Aung, James and Shern, Chan Jun and Jaffe, Oliver and Sherburn, Dane and Starace, Giulio and Mays, Evan and Dias, Rachel and Aljubeh, Marwan and Glaese, Mia and Jimenez, Carlos E. and Yang, John and Ho, Leyton and Patwardhan, Tejal and Liu, Kevin and Madry, Aleksander},
+  year   = {2024},
+  note   = {Accessed on March 2, 2025}
+}
+
+@misc{yang2024swebenchmultimodalaisystems,
+  title         = {SWE-bench Multimodal: Do AI Systems Generalize to Visual Software Domains?},
+  author        = {John Yang and Carlos E. Jimenez and Alex L. Zhang and Kilian Lieret and Joyce Yang and Xindi Wu and Ori Press and Niklas Muennighoff and Gabriel Synnaeve and Karthik R. Narasimhan and Diyi Yang and Sida I. Wang and Ofir Press},
+  year          = {2024},
+  eprint        = {2410.03859},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2410.03859}
+}
+
+@article{miserendino2025swe,
+  title   = {SWE-Lancer: Can Frontier LLMs Earn 1 Million from Real-World Freelance Software Engineering?},
+  author  = {Miserendino, Samuel and Wang, Michele and Patwardhan, Tejal and Heidecke, Johannes},
+  journal = {arXiv preprint arXiv:2502.12115},
+  year    = {2025}
+}
+
+@article{vero2025baxbenchllmsgeneratecorrect,
+  title         = {BaxBench: Can LLMs Generate Correct and Secure Backends?},
+  author        = {Mark Vero and Niels Mündler and Victor Chibotaru and Veselin Raychev and Maximilian Baader and Nikola Jovanović and Jingxuan He and Martin Vechev},
+  year          = {2025},
+  eprint        = {2502.11844},
+  archiveprefix = {arXiv}
+}
+
+@article{zhuge2024agent,
+  title   = {Agent-as-a-judge: Evaluate agents with agents},
+  author  = {Zhuge, Mingchen and Zhao, Changsheng and Ashley, Dylan and Wang, Wenyi and Khizbullin, Dmitrii and Xiong, Yunyang and Liu, Zechun and Chang, Ernie and Krishnamoorthi, Raghuraman and Tian, Yuandong and others},
+  journal = {arXiv preprint arXiv:2410.10934},
+  year    = {2024}
+}
+
+@misc{zan2024swebenchjava,
+  title         = {SWE-bench-java: A GitHub Issue Resolving Benchmark for Java},
+  author        = {Daoguang Zan and Zhirong Huang and Ailun Yu and Shaoxin Lin and Yifan Shi and Wei Liu and Dong Chen and Zongshuai Qi and Hao Yu and Lei Yu and Dezhi Ran and Muhan Zeng and Bo Shen and Pan Bian and Guangtai Liang and Bei Guan and Pengjie Huang and Tao Xie and Yongji Wang and Qianxiang Wang},
+  year          = {2024},
+  eprint        = {2408.14354},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.SE},
+  url           = {https://arxiv.org/abs/2408.14354}
+}
+
+@book{goodhart1976monetary,
+  title={Monetary relationships: a view from Threadneedle Street},
+  author={Goodhart, Charles},
+  year={1976},
+  publisher={University of Warwick}
+}
+
+
+@article{ahmed2024can,
+  title={Can LLMs replace manual annotation of software engineering artifacts?},
+  author={Ahmed, Toufique and Devanbu, Premkumar and Treude, Christoph and Pradel, Michael},
+  journal={arXiv preprint arXiv:2408.05534},
+  year={2024}
+}
+
+@inproceedings{deng2023benchmark,
+  title={Benchmark probing: Investigating data leakage in large language models},
+  author={Deng, Chunyuan and Zhao, Yilun and Tang, Xiangru and Gerstein, Mark and Cohan, Arman},
+  booktitle={NeurIPS 2023 Workshop on Backdoors in Deep Learning-The Good, the Bad, and the Ugly},
+  year={2023}
+}
+@misc{rashid2025swepolybenchmultilanguagebenchmarkrepository,
+      title={SWE-PolyBench: A multi-language benchmark for repository level evaluation of coding agents}, 
+      author={Muhammad Shihab Rashid and Christian Bock and Yuan Zhuang and Alexander Buchholz and Tim Esler and Simon Valentin and Luca Franceschi and Martin Wistuba and Prabhu Teja Sivaprasad and Woo Jung Kim and Anoop Deoras and Giovanni Zappella and Laurent Callot},
+      year={2025},
+      eprint={2504.08703},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2504.08703}, 
+}
+@misc{zan2025multiswebenchmultilingualbenchmarkissue,
+      title={Multi-SWE-bench: A Multilingual Benchmark for Issue Resolving}, 
+      author={Daoguang Zan and Zhirong Huang and Wei Liu and Hanwu Chen and Linhao Zhang and Shulin Xin and Lu Chen and Qi Liu and Xiaojian Zhong and Aoyan Li and Siyao Liu and Yongsheng Xiao and Liangqiang Chen and Yuyu Zhang and Jing Su and Tianyu Liu and Rui Long and Kai Shen and Liang Xiang},
+      year={2025},
+      eprint={2504.02605},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2504.02605}, 
+}
+@inproceedings{guo2016deeprelevancematching,
+author = {Guo, Jiafeng and Fan, Yixing and Ai, Qingyao and Croft, W. Bruce},
+title = {A Deep Relevance Matching Model for Ad-hoc Retrieval},
+year = {2016},
+isbn = {9781450340731},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2983323.2983769},
+doi = {10.1145/2983323.2983769},
+pages = {55–64},
+numpages = {10},
+keywords = {ad-hoc retrieval, neural models, ranking models, relevance matching, semantic matching},
+location = {Indianapolis, Indiana, USA},
+series = {CIKM '16}
+}
+@article{GUO2020deeplookintoneuralranking,
+title = {A Deep Look into neural ranking models for information retrieval},
+journal = {Information Processing \& Management},
+volume = {57},
+number = {6},
+pages = {102067},
+year = {2020},
+issn = {0306-4573},
+doi = {https://doi.org/10.1016/j.ipm.2019.102067},
+url = {https://www.sciencedirect.com/science/article/pii/S0306457319302390},
+author = {Jiafeng Guo and Yixing Fan and Liang Pang and Liu Yang and Qingyao Ai and Hamed Zamani and Chen Wu and W. Bruce Croft and Xueqi Cheng},
+}
+@misc{chowdhury2024introducingswebenchverified,
+  title        = {Introducing {SWE‑bench Verified}},
+  author       = {Chowdhury, Neil and Aung, James and Shern, Chan Jun and Jaffe, Oliver and Sherburn, Dane and Starace, Giulio and Mays, Evan and Dias, Rachel and Aljubeh, Marwan and Glaese, Mia and Jimenez, Carlos E. and Yang, John and Liu, Kevin and Madry, Aleksander},
+  year         = {2024},
+  month        = aug,
+  day          = {13},
+  howpublished = {OpenAI Blog},
+  url          = {https://openai.com/index/introducing-swe-bench-verified/},
+}
+@misc{jiang2025cosilsoftwareissuelocalization,
+      title={CoSIL: Software Issue Localization via LLM-Driven Code Repository Graph Searching}, 
+      author={Zhonghao Jiang and Xiaoxue Ren and Meng Yan and Wei Jiang and Yong Li and Zhongxin Liu},
+      year={2025},
+      eprint={2503.22424},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2503.22424}, 
+}
+@inproceedings{
+zhang2024codesage,
+title={{CODE} {REPRESENTATION} {LEARNING} {AT} {SCALE}},
+author={Dejiao Zhang and Wasi Uddin Ahmad and Ming Tan and Hantian Ding and Ramesh Nallapati and Dan Roth and Xiaofei Ma and Bing Xiang},
+booktitle={The Twelfth International Conference on Learning Representations},
+year={2024},
+url={https://openreview.net/forum?id=vfzRRjumpX}
+}
+@inproceedings{feng-etal-2020-codebert,
+    title = "{C}ode{BERT}: A Pre-Trained Model for Programming and Natural Languages",
+    author = "Feng, Zhangyin  and
+      Guo, Daya  and
+      Tang, Duyu  and
+      Duan, Nan  and
+      Feng, Xiaocheng  and
+      Gong, Ming  and
+      Shou, Linjun  and
+      Qin, Bing  and
+      Liu, Ting  and
+      Jiang, Daxin  and
+      Zhou, Ming",
+    editor = "Cohn, Trevor  and
+      He, Yulan  and
+      Liu, Yang",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2020",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.findings-emnlp.139/",
+    doi = "10.18653/v1/2020.findings-emnlp.139",
+    pages = "1536--1547",
+}
+@misc{guo2021graphcodebertpretrainingcoderepresentations,
+      title={GraphCodeBERT: Pre-training Code Representations with Data Flow}, 
+      author={Daya Guo and Shuo Ren and Shuai Lu and Zhangyin Feng and Duyu Tang and Shujie Liu and Long Zhou and Nan Duan and Alexey Svyatkovskiy and Shengyu Fu and Michele Tufano and Shao Kun Deng and Colin Clement and Dawn Drain and Neel Sundaresan and Jian Yin and Daxin Jiang and Ming Zhou},
+      year={2021},
+      eprint={2009.08366},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2009.08366}, 
+}
+@inproceedings{
+sohrabizadeh2025nemotroncortexa,
+title={Nemotron-{CORTEXA}: Enhancing {LLM} Agents for Software Engineering Tasks via Improved Localization and Solution Diversity},
+author={Atefeh Sohrabizadeh and Jialin Song and Mingjie Liu and Rajarshi Roy and Chankyu Lee and Jonathan Raiman and Bryan Catanzaro},
+booktitle={Forty-second International Conference on Machine Learning},
+year={2025},
+url={https://openreview.net/forum?id=k6p8UKRdH7}
+}
+@inproceedings{Robertson1994OkapiATBM25,
+  title={Okapi at TREC-3},
+  author={Stephen E. Robertson and Steve Walker and Susan Jones and Micheline Hancock-Beaulieu and Mike Gatford},
+  booktitle={Text Retrieval Conference},
+  year={1994},
+  url={https://api.semanticscholar.org/CorpusID:41563977}
+}
+@inproceedings{
+hu2022lora,
+title={Lo{RA}: Low-Rank Adaptation of Large Language Models},
+author={Edward J Hu and yelong shen and Phillip Wallis and Zeyuan Allen-Zhu and Yuanzhi Li and Shean Wang and Lu Wang and Weizhu Chen},
+booktitle={International Conference on Learning Representations},
+year={2022},
+url={https://openreview.net/forum?id=nZeVKeeFYf9}
+}
+@book{shaked2007stochastic,
+  title={Stochastic Orders},
+  author={Shaked, Moshe and Shanthikumar, J. George},
   year={2007},
+  publisher={Springer}
+}
+@article{Kang_2024_llm-based_faultlocalization,
+author = {Kang, Sungmin and An, Gabin and Yoo, Shin},
+title = {A Quantitative and Qualitative Evaluation of LLM-Based Explainable Fault Localization},
+year = {2024},
+issue_date = {July 2024},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {1},
+number = {FSE},
+url = {https://doi.org/10.1145/3660771},
+doi = {10.1145/3660771},
+journal = {Proc. ACM Softw. Eng.},
+month = jul,
+articleno = {64},
+numpages = {23},
+keywords = {debugging, fault localization, language models}
+}
+@misc{wu2023largelanguagemodelsfault,
+      title={Large Language Models in Fault Localisation}, 
+      author={Yonghao Wu and Zheng Li and Jie M. Zhang and Mike Papadakis and Mark Harman and Yong Liu},
+      year={2023},
+      eprint={2308.15276},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2308.15276}, 
+}
+@inproceedings{
+wang2025openhands,
+title={OpenHands: An Open Platform for {AI} Software Developers as Generalist Agents},
+author={Xingyao Wang and Boxuan Li and Yufan Song and Frank F. Xu and Xiangru Tang and Mingchen Zhuge and Jiayi Pan and Yueqi Song and Bowen Li and Jaskirat Singh and Hoang H. Tran and Fuqiang Li and Ren Ma and Mingzhang Zheng and Bill Qian and Yanjun Shao and Niklas Muennighoff and Yizhe Zhang and Binyuan Hui and Junyang Lin and Robert Brennan and Hao Peng and Heng Ji and Graham Neubig},
+booktitle={The Thirteenth International Conference on Learning Representations},
+year={2025},
+url={https://openreview.net/forum?id=OJd3ayDDoF}
+}
+@misc{
+orwall2024moatless,
+title={Moatless tools},
+author={Albert Örwall},
+year={2024},
+url={https://github.com/aorwall/moatless-tools}
 }
 
-@book{Gusfield:97,
-    author  = {Dan Gusfield},
-    title   = {Algorithms on Strings, Trees and Sequences},
-    year    = "1997",
-    publisher = {Cambridge University Press},
-    address = {Cambridge, UK}
-}
-
-@article{rasooli-tetrault-2015,
-    author    = {Mohammad Sadegh Rasooli and Joel R. Tetreault},
-    title     = {Yara Parser: {A} Fast and Accurate Dependency Parser},
-    journal   = {Computing Research Repository},
-    volume    = {arXiv:1503.06733},
-    year      = {2015},
-    url       = {http://arxiv.org/abs/1503.06733},
-    note    = {version 2}
-}
-
-@article{Ando2005,
-	Acmid = {1194905},
-	Author = {Ando, Rie Kubota and Zhang, Tong},
-	Issn = {1532-4435},
-	Issue_Date = {12/1/2005},
-	Journal = {Journal of Machine Learning Research},
-	Month = dec,
-	Numpages = {37},
-	Pages = {1817--1853},
-	Publisher = {JMLR.org},
-	Title = {A Framework for Learning Predictive Structures from Multiple Tasks and Unlabeled Data},
-	Volume = {6},
-	Year = {2005}
-}

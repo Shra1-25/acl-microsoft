@@ -1,0 +1,77 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Reinforcement learning for localization.}
+RepoSearcher equips a repository agent with a curated tool set
+and trains it through rejection-sampled supervised fine-tuning
+followed by tool-integrated RL, reaching strong localization
+with a 32B model \citep{ma2025tooltrain}. SWE-RL scales RL over
+open software-evolution data and shows the learned reasoning
+transfers across software tasks \citep{wei2025swerl}.
+RepoNavigator narrows the agent to a single jump-to-definition
+tool and trains end-to-end with RL from a base model, so that a
+7B agent can outperform substantially larger baselines
+\citep{zhang2025reponavigator}. In every case training optimizes
+multi-step episodes that return only a sparse terminal reward,
+so adaptation is costly in rollouts and compute. Our round
+decomposition exposes a dense per-round target that telescopes
+to recall@$L$ (Section~\ref{sec:telescope}), turning the same
+problem into ordinary supervised fine-tuning.
+
+\paragraph{Agentic scaffolding.}
+SWE-Agent and OpenHands wrap a strong LLM in a general-purpose
+environment with shell access and an open-ended action space,
+and they set much of the standard for end-to-end issue
+resolution \citep{yang2024sweagent, wang2025openhands}; Moatless
+provides a comparable tool-driven loop \citep{orwall2024moatless}.
+Agentless instead drops interaction and runs a fixed
+localize-then-repair pipeline, showing that a simple prompted
+procedure can rival full agents \citep{xia2024agentless}. The
+interactive scaffoldings place no ceiling on trajectory length,
+so token cost is unbounded and a localization run easily
+overflows the context window of the open 7--14B models we
+target. Agentless is bounded, but its localization is a fixed
+prompted pipeline, not a component a small model can learn to
+improve. Our scaffolding bounds the token cost of every round
+and stays trainable, so a small model can run the search within
+budget and be trained to localize better.
+
+\paragraph{Graph-based exploration.}
+A related line hands the LLM the repository's structure.
+LocAgent builds a heterogeneous code graph and lets the model
+explore it through graph-traversal actions \citep{chen2025locagent},
+CoSIL has the model search a call graph it expands on the fly
+without a pre-built index
+\citep{jiang2025cosilsoftwareissuelocalization}, and RepoGraph
+supplies a repository-level code graph for software-engineering
+agents \citep{ouyang2025repograph}. This work establishes that
+structural edges carry localization signal. The traversal,
+however, is unconstrained, so trajectory length and token cost
+again grow without a bound. We use the same structure through
+bounded neighborhood expansion around ranked seeds, so graph
+signal raises recall without inflating the budget.
+
+\paragraph{Retrieval and reranking.}
+Localization is also posed as retrieval. Lexical matching
+\citep{Robertson1994OkapiATBM25} and learned code embeddings
+\citep{feng-etal-2020-codebert,
+guo2021graphcodebertpretrainingcoderepresentations,
+zhang2024codesage} score code units against the issue text, and
+SWERank sharpens this for issue localization with a bi-encoder
+retriever and a listwise LLM reranker
+\citep{reddy2025sweranksoftwareissuelocalization}; CoRet
+improves the retriever for code-editing queries
+\citep{fehr-etal-2025-coret} and SpIDER incorporates repository
+structure into the dense representation \citep{chaudhari2025spider}.
+These rankers are cheap and bounded, but the objective is
+per-query and order-centric, optimizing the order of one list
+rather than coverage of the gold set, and a single pass cannot
+revisit a discarded unit or follow a structural edge. SWERank+
+adds a multi-turn agentic loop with a memory buffer
+\citep{swerankplus2025}, yet the loop is open-ended and the
+training signal stays a ranking objective. We recast
+localization as sequential set-coverage on a code graph and
+train an objective provably co-optimal with recall@$L$
+(Section~\ref{sec:objective}), keeping the bounded cost of
+retrieval while adding the set recovery and multi-round
+refinement that ranking omits.

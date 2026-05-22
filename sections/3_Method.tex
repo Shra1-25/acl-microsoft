@@ -1,0 +1,99 @@
+\section{Method}
+\label{sec:method}
+
+% ============================================================
+% OUTLINE -- Method            target: ~1.5-1.7 pages (the core)
+% Spine: setup -> scaffolding (bounded cost) -> dense per-round
+% target (telescoping => supervised, not RL) -> the loss.
+%
+% Notation (use consistently paper-wide):
+%   G = (V,E)  code graph; edges = contains/call/import/co-change
+%   Y*         gold set of code units that must change
+%   L          the fixed-length returned list; recall@L the metric
+%   K          window size: ranked candidates revealed per round
+%   P_r        per-round candidate pool
+%   Phi_r      secured-gold potential
+% Display equations in the body: the telescoping identity, the
+% weighted BCE, the coverage term. Three equations max.
+% ============================================================
+
+\subsection{Problem Setup}
+\label{sec:setup}
+% - Repository R, natural-language issue q. A code graph
+%   G = (V,E): nodes are code units (file / class / function),
+%   edges are structural relations (contains, call, import,
+%   co-change).
+% - Task: recover the gold set Y* of units that must be modified.
+% - Metric: recall@L over a fixed-length returned list L.
+% - Frame the task as SET RECOVERY, not ranking -- this framing
+%   is exactly what the objective in 3.4 is built to match.
+%   (~0.2-0.25 page)
+
+\subsection{Multi-Round Localization Scaffolding}
+\label{sec:scaffold}
+% - FIGURE 1 here: the multi-round loop. Draw fresh -- do NOT
+%   reuse the GRPO diagram from the tech report. Show: a ranked
+%   candidate stream -> per-round window of K -> graph-
+%   neighborhood / seed expansion -> refine the list L -> stop.
+%   Caption: the per-round prompt stays small and roughly
+%   constant in size.
+% - Round-r state: current list L_{r-1}, the seen set,
+%   offset = r*K.
+% - Per round: (a) Window -- next K unseen ranked nodes;
+%   (b) optional seed-center selection + BFS neighborhood
+%   expansion along graph edges (restricted to the next-N
+%   ranked pool); (c) Refine -- choose the L IDs from the pool
+%   P_r = L_{r-1} U window (U neighbors); (d) Stop -- on
+%   confidence, list exhaustion, or max-rounds.
+% - KEY PROPERTY: each prompt sees only a bounded window, so
+%   per-LLM-call token cost is roughly constant and the whole
+%   trajectory has a predictable budget -- a 32K-context 7B
+%   model stays coherent where OpenHands trajectories grow
+%   without bound.
+% - Algorithm 1 (per-round procedure): RECOMMEND moving the
+%   formal listing to Appendix B and describing it in prose +
+%   Fig 1 here, to save space.
+%   (~0.45-0.55 page including the figure)
+
+\subsection{A Dense, Recall-Aligned Per-Round Target}
+\label{sec:telescope}
+% - Define the secured-gold potential  Phi_r = |Y* intersect L_r|.
+% - Per-round signal  r_r = (Phi_r - Phi_{r-1}) / D, with
+%   D = |Y* intersect candidates|  =  (gold added - gold dropped)/D.
+% - EQUATION (telescoping):  sum_r r_r = (Phi_R - Phi_0)/D
+%   = recall@L(L_final) - recall@L(L_0).
+% - THEOREM (state here, proof -> Appendix A): by potential-
+%   based reward shaping \citep{ng1999policy}, shaping with a
+%   state potential leaves the optimal policy invariant; hence
+%   the dense per-round objective and sparse end-to-end
+%   recall@L share the same optimum -- there is no myopia gap.
+% - IMPLICATION (the load-bearing sentence): the per-round
+%   optimum is closed-form, so training needs no policy
+%   gradient; supervised learning on the per-round target is
+%   denser, more stable, and cheaper than RL on the same signal.
+%   (~0.3-0.35 page)
+
+\subsection{Supervised Training Objective}
+\label{sec:objective}
+% - Per round build the pool P_r = L_{r-1} U window_r; labels
+%   y_j = 1[j in Y*].
+% - Scoring without a new head: use the model's own yes/no
+%   token logits, s_j = logit(yes) - logit(no), p_j = sigma(s_j).
+%   Zero new parameters; LoRA-friendly; avoids the cold-start
+%   failure of a randomly-initialized head.
+% - EQUATION (weighted BCE): the main term; its optimum is
+%   "every gold scored above every non-gold", which yields a
+%   max-coverage top-L.
+% - EQUATION (coverage term L_cov): a differentiable, listwise,
+%   permutation-invariant surrogate for covering the whole gold
+%   set; it never penalizes gold-vs-gold order.
+% - Total objective: L = L_bce + lambda * L_cov.
+% - State the guarantee scope: exact recall@L co-optimality
+%   holds at w+ = w- = 1; an asymmetric w+ > w- is a class-
+%   imbalance / "dropping gold is worse" heuristic -- report it
+%   as a tuning choice, not part of the theorem. lambda = 0 is
+%   the ablation baseline.
+% - Top-L selection is inference-only and never differentiated.
+% - One sentence: stages are trained densest-signal-first
+%   (curriculum); full staging details -> Appendix B.
+%   (~0.45-0.5 page)
