@@ -15,6 +15,48 @@
 % - Regret view: Case 1 (a gold-for-gold swap) has regret 0;
 %   Case 2 (a non-gold kept over a gold) has regret 1.
 
+\section{Code Graph Construction}
+\label{app:graph}
+
+The scaffolding's neighborhood expansion
+(Section~\ref{sec:scaffold}, Step~B) walks a per-repository
+code graph $\mathcal{G}{=}(V,E)$. We follow the four-edge
+schema of \citet{chen2025locagent} as implemented in
+\citet{chaudhari2025spider}, summarised here for completeness.
+
+For each repository the graph is built from the source files
+written in the repository's primary language; files in
+secondary languages are ignored. Nodes represent code entities
+at four granularities (directory, file, class, and function),
+and edges encode four structural relations: a \textit{contains}
+edge linking each container to the code units it declares, an
+\textit{invokes} edge between a function and each function it
+calls, an \textit{imports} edge between a file and each module
+it imports, and an \textit{inherits} edge between a class and
+each parent class it extends. Every non-directory node stores
+its source text alongside its identifier, so the model can see
+code when a node is shown.
+
+We extract Python source files with the standard \texttt{ast}
+module and Java, JavaScript, and TypeScript files with
+Tree-sitter\footnote{\url{https://github.com/tree-sitter}}. The
+traversal of the repository's directory tree adds directory
+nodes for navigation, skips files that contain no class or
+function definition, and emits one node per declared entity
+together with its containment, call, import, and inheritance
+edges. Multi-file class definitions and the more flexible
+declaration patterns of the non-Python languages are handled
+with language-specific Tree-sitter queries; we refer to
+\citet{chaudhari2025spider} for the full list of cases. Graphs
+are constructed on demand at the start of a localization run
+and reused across the rounds.
+
+For the experiments in Section~\ref{sec:experiments}, we use
+the graphs released with \citet{chaudhari2025spider} for
+SWE-PolyBench and SWE-Bench Verified, and construct graphs from
+scratch for the SWE-Bench Lite dev split with the same
+pipeline.
+
 \section{Scaffolding and Training Details}
 \label{app:details}
 % - Algorithm 1: the full per-round procedure (window, seed

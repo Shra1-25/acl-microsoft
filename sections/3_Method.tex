@@ -31,29 +31,81 @@
 
 \subsection{Multi-Round Localization Scaffolding}
 \label{sec:scaffold}
-% - FIGURE 1 here: the multi-round loop. Draw fresh -- do NOT
-%   reuse the GRPO diagram from the tech report. Show: a ranked
-%   candidate stream -> per-round window of K -> graph-
-%   neighborhood / seed expansion -> refine the list L -> stop.
-%   Caption: the per-round prompt stays small and roughly
-%   constant in size.
-% - Round-r state: current list L_{r-1}, the seen set,
-%   offset = r*K.
-% - Per round: (a) Window -- next K unseen ranked nodes;
-%   (b) optional seed-center selection + BFS neighborhood
-%   expansion along graph edges (restricted to the next-N
-%   ranked pool); (c) Refine -- choose the L IDs from the pool
-%   P_r = L_{r-1} U window (U neighbors); (d) Stop -- on
-%   confidence, list exhaustion, or max-rounds.
-% - KEY PROPERTY: each prompt sees only a bounded window, so
-%   per-LLM-call token cost is roughly constant and the whole
-%   trajectory has a predictable budget -- a 32K-context 7B
-%   model stays coherent where OpenHands trajectories grow
-%   without bound.
-% - Algorithm 1 (per-round procedure): RECOMMEND moving the
-%   formal listing to Appendix B and describing it in prose +
-%   Fig 1 here, to save space.
-%   (~0.45-0.55 page including the figure)
+
+The scaffolding processes a single issue $q$ over $R$ rounds. A
+retriever (dense, lexical, or their union) returns a ranked
+list of code units, and each round consumes the next $K$ unseen
+entries of that list. At the start of round $r$, the
+scaffolding holds three pieces of state: the current returned
+list $L_{r-1}$ (initialised to $\emptyset$ at $r{=}0$), the set
+of node identifiers $\mathcal{S}_{r-1}$ already shown to the
+model, and an offset $rK$ into the ranked list. The loop
+terminates when the ranked list is exhausted or a maximum
+number of rounds $R_{\max}$ is reached. An optional
+confident-stop hook is left for the RL stage
+(Section~\ref{sec:conclusion}); the supervised training of
+Section~\ref{sec:objective} does not predict it, so a
+trajectory always runs to $R_{\max}$ or exhaustion.
+
+Each round combines a bounded window of newly-ranked candidates
+with a bounded graph-neighborhood expansion, then refines $L$;
+Figure~\ref{fig:scaffold} sketches the loop.
+
+\begin{figure}[t]
+\centering
+% TODO: replace with the multi-round scaffolding diagram.
+\fbox{\rule{0pt}{2.4cm}\rule{0.9\columnwidth}{0pt}}
+\caption{The multi-round localization scaffolding. Each round
+consumes a bounded window of $K$ ranked candidates, expands
+neighborhoods around $C$ seed centers via bounded BFS on the
+code graph, and refines a fixed-length returned list $L_r$.
+Per-call token cost stays roughly constant across rounds.}
+\label{fig:scaffold}
+\end{figure}
+
+\paragraph{Window.}
+The scaffolding pulls the next $K$ unseen entries of the ranked
+list starting at offset $rK$, skipping any node already in
+$\mathcal{S}_{r-1}$. We denote this window $W_r$. If $W_r$ is
+empty the round terminates the loop.
+
+\paragraph{Step A: seed-center selection.}
+A single model call selects $C$ seed centers from $W_r$, i.e.\
+nodes whose graph neighborhoods are most likely to contain
+unseen gold units. If the model returns fewer than $C$ valid
+identifiers we pad with the top-ranked nodes of $W_r$ not yet
+returned, so Step~A always emits exactly $C$ centers.
+
+\paragraph{Step B: neighborhood expansion.}
+For each of the $C$ centers, the scaffolding runs a depth-$d$
+BFS along structural edges of the code graph (\textit{contains}
+by default; ablations in Section~\ref{sec:ablation} cover the
+four edge types). The neighbors are filtered to the next $N$
+unseen entries of the ranked list, so the candidate set the
+model sees stays bounded. A model call per center then selects
+the subset of these neighbors that must be modified, and the
+union across centers, $\mathcal{N}_r$, is deduplicated.
+
+\paragraph{Step C: list refinement.}
+A final model call sees the issue $q$, the current list
+$L_{r-1}$, the window $W_r$, and the deduplicated set
+$\mathcal{N}_r$, and selects $L$ identifiers from
+$L_{r-1} \cup W_r \cup \mathcal{N}_r$ to form $L_r$. The
+scaffolding then records the newly-shown identifiers, advances
+the offset, and continues.
+
+Three properties of this loop matter for what follows.
+\emph{First}, every model call sees only $W_r$, a single
+neighborhood, or the deduplicated round pool, so the per-call
+token cost is roughly constant across rounds; a 32K context
+comfortably absorbs each call regardless of how many rounds the
+trajectory uses. \emph{Second}, the loop offers a natural
+ablation: removing Steps~A and~B reduces it to a pure
+window-refine loop and isolates the contribution of graph
+exploration. \emph{Third}, $L_r$ at any round is a valid
+prediction, so the round structure exposes a per-round
+potential that we develop into a training target in the next
+section.
 
 \subsection{A Dense, Recall-Aligned Per-Round Target}
 \label{sec:telescope}
