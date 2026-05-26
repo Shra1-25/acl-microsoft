@@ -9,47 +9,44 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: custom.bib
-Warning--empty booktitle in guo2016deeprelevancematching
-Warning--empty journal in vero2025baxbenchllmsgeneratecorrect
-You've used 94 entries,
+You've used 24 entries,
             3764 wiz_defined-function locations,
-            1229 strings with 32402 characters,
-and the built_in function-call counts, 91114 in all, are:
-= -- 7030
-> -- 6935
-< -- 48
-+ -- 2928
-- -- 2190
-* -- 6801
-:= -- 13605
-add.period$ -- 391
-call.type$ -- 94
-change.case$ -- 1269
-chr.to.int$ -- 115
-cite$ -- 96
-duplicate$ -- 4851
-empty$ -- 5148
-format.name$ -- 2454
-if$ -- 19035
-int.to.chr$ -- 13
-int.to.str$ -- 12
-missing$ -- 1246
-newline$ -- 475
-num.names$ -- 376
-pop$ -- 3442
+            863 strings with 13210 characters,
+and the built_in function-call counts, 25046 in all, are:
+= -- 1869
+> -- 2042
+< -- 7
++ -- 864
+- -- 653
+* -- 1930
+:= -- 3774
+add.period$ -- 98
+call.type$ -- 24
+change.case$ -- 361
+chr.to.int$ -- 27
+cite$ -- 24
+duplicate$ -- 1289
+empty$ -- 1343
+format.name$ -- 719
+if$ -- 5166
+int.to.chr$ -- 2
+int.to.str$ -- 4
+missing$ -- 347
+newline$ -- 123
+num.names$ -- 96
+pop$ -- 969
 preamble$ -- 1
-purify$ -- 1107
+purify$ -- 315
 quote$ -- 0
-skip$ -- 4483
+skip$ -- 1208
 stack$ -- 0
-substring$ -- 1741
-swap$ -- 2831
-text.length$ -- 29
+substring$ -- 413
+swap$ -- 768
+text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 840
-warning$ -- 2
-while$ -- 330
+type$ -- 216
+warning$ -- 0
+while$ -- 84
 width$ -- 0
-write$ -- 1196
-(There were 2 warnings)
+write$ -- 303

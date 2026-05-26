@@ -1,17 +1,46 @@
-\section{Conclusion}
+\section{Discussion and Conclusion}
 \label{sec:conclusion}
 
-% ============================================================
-% OUTLINE -- Conclusion       target: ~0.1 page, 3-4 sentences
-%   - Restate the reframing: localization as sequential set-
-%     coverage on a code graph, not ranking.
-%   - The practical upshot: a bounded-cost multi-round
-%     scaffolding whose round structure yields a dense, recall-
-%     aligned target, so small open models train by ordinary
-%     supervised learning and reach large-model / agent-level
-%     localization cheaply.
-%   - One forward pointer: RL is reserved only for stop-timing
-%     and cross-round coordination, which have no closed-form
-%     target -- future work.
-%   - Do NOT introduce new claims or results here.
-% ============================================================
+\paragraph{Discussion.}
+The picture across SWE-Bench Verified
+(Table~\ref{tab:verified}) and SWE-PolyBench
+(Table~\ref{tab:swepoly-java-python},
+Figure~\ref{fig:scorer-func-recall}) is consistent. First, a
+bounded-context scaffolding closes most of the gap left by the
+first-stage retriever: every LLM-driven configuration we tried
+exceeds the $\approx0.35$ Recall@5 ceiling of the zero-shot
+ranker. Second, graph exploration (Step~B) is the largest single
+lever, lifting recall and accuracy on every model and language
+while keeping per-call context short. Third, a small fine-tuned
+scorer is enough to drive the full scaffolding: a
+Qwen2.5-Coder-3B scorer matches or beats Qwen3-Coder-30B-A3B
+under the same scaffolding on Verified, and pairs with a 30B
+Step-C agent to set the best Python numbers on SWE-PolyBench.
+Token consumption tracks the call count rather than the model
+size, so larger Step-C agents do not pay a context tax for using
+our scorer.
+
+\paragraph{Key takeaways.}
+(i) Localization scales better through scaffolding structure
+than through model size: a 3B scorer plus a 30B agent under our
+loop beats a 30B agent alone. (ii) Graph-aware exploration is
+cheap because the scorer sees short neighborhood windows rather
+than the full pool; the cost of an extra step is small compared
+to the recall it recovers. (iii) Supervised training is
+sufficient for the scorer because the per-round shaping signal
+telescopes to end-to-end Recall@$K$, so no policy-gradient
+machinery is needed for the inner loop.
+
+\paragraph{Conclusion.}
+We cast code localization as sequential set-coverage on a code
+graph and built a bounded-cost, multi-round, multi-agent
+scaffolding around that view. The round structure exposes a
+dense per-round target whose optimum coincides with end-to-end
+Recall@$K$, which lets a small open scorer be trained by
+ordinary supervised learning rather than sparse-reward RL. The
+resulting Qwen2.5-Coder-3B scorer makes the full scaffolding
+competitive with GPT-5.3 Codex on SWE-Bench Verified and on
+SWE-PolyBench Java and Python, at a fraction of the token cost.
+Stop-timing and cross-round coordination remain natural
+candidates for a light-weight RL stage on top of the supervised
+scorer; we leave that to future work.

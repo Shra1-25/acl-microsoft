@@ -7,11 +7,11 @@
 
 \section{Proof of the Telescoping Identity}
 \label{app:proof}
-% - Full statement and proof that sum_r r_r = recall@L(L_R) -
-%   recall@L(L_0) under equal add/drop weights, and that
+% - Full statement and proof that sum_t r_t = recall@K(\hat{L}_R) -
+%   recall@K(\hat{L}_0) under equal add/drop weights, and that
 %   potential-based shaping \citep{ng1999policy} leaves the
 %   optimal policy invariant -- so the dense objective and the
-%   recall@L optimum coincide.
+%   recall@K optimum coincide.
 % - Regret view: Case 1 (a gold-for-gold swap) has regret 0;
 %   Case 2 (a non-gold kept over a gold) has regret 1.
 
@@ -57,26 +57,143 @@ SWE-PolyBench and SWE-Bench Verified, and construct graphs from
 scratch for the SWE-Bench Lite dev split with the same
 pipeline.
 
-\section{Scaffolding and Training Details}
+\section{Scorer Training Details}
 \label{app:details}
-% - Algorithm 1: the full per-round procedure (window, seed
-%   selection, neighborhood BFS, list refinement, stop).
-% - Hyperparameters: K, N, C, max-rounds, list length L.
-% - LoRA config (q,k,v,o,gate,up,down; r = 32, alpha = 32;
-%   lm_head frozen; bf16). The staged-curriculum schedule.
-% - Prompt formats. CAVEAT to document: the training-time
-%   prompt format must match the recall@L scorer's format
-%   exactly -- the most likely silent bug.
+
+This appendix complements Section~\ref{sec:training} with the
+hyperparameters and procedural details that we omit from the main
+body.
+
+\paragraph{Group construction.}
+For each issue, every ground-truth function that falls inside the
+retriever's top-$N$ pool is included as a positive; the group is
+then completed to size $M$ with non-relevant candidates. Negatives
+are drawn with a stratified strategy: a fixed fraction is taken as
+top-ranked hard negatives, and the remaining slots are filled by
+partitioning the rest of the pool into equal-width rank bins and
+sampling one negative per bin. Each group therefore exposes the
+model to shallow, mid- and deep-pool negatives, which empirically
+prevents the calibration drift on deep-pool non-relevant candidates
+we observed under top-only hard-negative sampling. Negatives are
+re-sampled at the start of every epoch, so depth coverage widens
+monotonically across training.
+
+\paragraph{Optimization.}
+The adapter is trained in bfloat16 with FlashAttention-2 and
+activation checkpointing on the backbone. AdamW is used with the
+schedule of Table~\ref{tab:hparams}; gradients are accumulated over
+$8$ groups before each optimizer step and clipped to unit norm. All
+$M$ candidates of a group are forwarded under autograd in a single
+optimizer iteration so that the listwise term in~\eqref{eq:cov}
+backpropagates jointly across the group.
+
+\paragraph{Distributed training.}
+Training is data-parallel across GPUs via Hugging Face Accelerate.
+At the start of each epoch the shuffled issue list is sharded into
+disjoint contiguous slices --- one per rank --- and each rank
+builds its own training groups independently. Because issues whose
+ground-truth functions fall outside the retriever pool are dropped,
+the per-rank post-filter group counts are reduced with a
+min-collective to keep DDP collectives aligned. LoRA gradients are
+small relative to the backbone, so all-reducing them on every
+backward is inexpensive and we do not shard the model.
+
+\paragraph{Evaluation during training.}
+After each epoch the current adapter is evaluated on a fixed
+held-out subset of validation issues using the same windowed
+top-$K$ procedure as inference: candidates are scored in sliding
+windows over the top-$N$ pool, the global top-$K$ by score is
+selected, and function- and file-level $\text{recall}@K$ are
+reported. Best-epoch selection on this validation metric determines
+the adapter shipped for the test-time evaluation in
+Section~\ref{sec:experiments}.
+
+\paragraph{Prompt format.}
+The training-time prompt format matches the inference scorer's
+format exactly, including the assistant-turn template and the
+position at which the \textsc{yes}/\textsc{no} logits are read.
+Mismatches between train- and test-time prompts silently shift the
+score distribution and are the most common source of regression
+when porting the adapter to a new backbone.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Scorer fine-tuning hyperparameters. The same
+configuration is used for the BCE-only ($\lambda{=}0$) ablation
+and the main BCE+coverage ($\lambda{=}0.2$) runs.}
+\label{tab:hparams}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{ll}
+\toprule
+\textbf{Component} & \textbf{Value} \\
+\midrule
+Backbone               & Qwen2.5-Coder-3B-Instruct \\
+                       & \citep{hui2024qwen25codertechnicalreport} \\
+Precision              & bfloat16, FlashAttention-2 \\
+Adapter                & LoRA, $r{=}4$, $\alpha{=}32$, dropout $0.05$ \\
+LoRA targets           & $\{q,k,v,o\}_{\text{proj}}$, \\
+                       & $\{\text{gate},\text{up},\text{down}\}_{\text{proj}}$ \\
+Score readout          & $s = \ell(\text{yes}) - \ell(\text{no})$ \\
+                       & at final prompt position \\
+Group size $M$         & $20$ candidates per issue \\
+Issue / code trunc.    & $3072$ / $1024$ tokens \\
+Negative sampling      & $40\%$ top hard negatives; \\
+                       & remainder one-per-bin across pool; \\
+                       & re-sampled each epoch \\
+BCE class weights      & $w_{+}{=}w_{-}{=}1$ \\
+Coverage weight        & $\lambda{=}0.2$ (main); $\lambda{=}0$ (ablation) \\
+Optimizer              & AdamW \\
+Learning rate          & $1{\times}10^{-4}$, cosine, $3\%$ warm-up \\
+Grad. accumulation     & $8$ groups per step \\
+Grad. clipping         & max norm $1.0$ \\
+Epochs                 & $5$ \\
+Retriever pool $N$     & $500$ \\
+Train / val split      & $95\%/5\%$ of issues, fixed seed \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section{Additional Results}
 \label{app:results}
-% - Full per-benchmark and per-language (SWE-PolyBench)
-%   breakdown.
-% - w+ / w- and lambda sweeps.
-% - Diagnostics: gold vs non-gold score separation; the top-L
-%   hit fraction per epoch.
-% - Whichever of the efficiency / scaling figures did not make
-%   the main body (see Sec. 4.4 triage).
+
+The figures below complement the function-level scorer
+evaluation reported in
+Section~\ref{sec:main-results} (Figure~\ref{fig:scorer-func-recall}).
+Both use the same windowed protocol on SWE-PolyBench: the
+first-stage retriever returns the top $\text{PS}{=}100$
+candidates, the scorer ranks a window of $K{=}20$, and the
+top-$L{=}5$ by score are selected.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{imgs/reranker_file_recall.png}
+\caption{Per-language file-level recall on SWE-PolyBench under
+the windowed protocol of Figure~\ref{fig:scorer-func-recall}.
+The dashed line marks the retrieval ceiling --- the recall
+achievable if the gold function set lies in the top-$100$
+retriever pool. The fine-tuned 3B scorer (FT Qwen 3B) matches
+or exceeds GPT-5.3 Codex on Java and Python and tracks it within
+a few points on JavaScript and TypeScript.}
+\label{fig:scorer-file-recall}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{imgs/reranker_score_separation.png}
+\caption{Mean score on ground-truth candidates
+($p_{gt}$, filled bars) vs.\ non-relevant candidates
+($p_{\neg gt}$, hatched bars), averaged per language under the
+same windowed protocol. A wider gap indicates better
+discrimination between gold and non-gold. Fine-tuning widens
+the separation at every model size: the base 0.5B model is
+actively mis-calibrated --- it assigns $p_{\neg gt} > p_{gt}$
+in every language --- whereas the fine-tuned 3B variant
+achieves a separation comparable to GPT-5.3 Codex, with
+$p_{gt}$ above $p_{\neg gt}$ by a margin of $0.25$--$0.45$.}
+\label{fig:scorer-score-separation}
+\end{figure*}
 
 \section{AI Disclosure}
 \label{app:ai}

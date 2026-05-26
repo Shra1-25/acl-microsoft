@@ -41,50 +41,12 @@
   journal={arXiv preprint arXiv:2512.16956},
   year={2025}
 }
-
-@article{wang2024openhands,
-  title={{OpenHands}: An Open Platform for {AI} Software Developers as Generalist Agents},
-  author={Wang, Xingyao and others},
-  journal={arXiv preprint arXiv:2407.16741},
-  year={2024}
-}
-
 @article{xia2024agentless,
   title={Agentless: Demystifying {LLM}-based Software Engineering Agents},
   author={Xia, Chunqiu Steven and Deng, Yinlin and Dunn, Soren and Zhang, Lingming},
   journal={arXiv preprint arXiv:2407.01489},
   year={2024}
 }
-
-@article{orcaloca2025,
-  title={{OrcaLoca}: An {LLM} Agent Framework for Software Issue Localization},
-  author={{OrcaLoca Team}},
-  journal={arXiv preprint},
-  year={2025},
-  note={TODO: verify authors and arXiv id}
-}
-
-% TODO: verify -- real title is "LocAgent: Graph-Guided LLM
-% Agents for Code Localization"; arXiv:2503.09089.
-@article{locagent2025,
-  title={{LocAgent}: Graph-Guided {LLM} Agents for Code Localization},
-  author={{LocAgent Team}},
-  journal={arXiv preprint arXiv:2503.09089},
-  year={2025},
-  note={TODO: verify author list}
-}
-
-% TODO: verify -- SweRank, arXiv:2505.07849.
-@article{swerank2025,
-  title={{SweRank}: Software Issue Localization with Code Ranking},
-  author={{SweRank Team}},
-  journal={arXiv preprint arXiv:2505.07849},
-  year={2025},
-  note={TODO: verify author list and title}
-}
-
-% Verified: arXiv:2512.20482. Title and author list confirmed
-% against the arXiv abstract page.
 @article{swerankplus2025,
   title={{SweRank}+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization},
   author={Reddy, Revanth Gangi and Liu, Ye and Zhao, Wenting and Doo, JaeHyeok and Suresh, Tarun and Lee, Daniel and Xiong, Caiming and Zhou, Yingbo and Yavuz, Semih and Joty, Shafiq},
@@ -116,9 +78,13 @@
   year={2024}
 }
 
-@article{chen2025swebench,
+% Renamed: original key {chen2025swebench} carried wrong first
+% author ("Chen, Jiayi").  Real first author is Jiayi Pan; the
+% paper is SWE-Gym (ICML 2025, arXiv:2412.21139).  Verified
+% author list below against the arXiv abstract page.
+@article{pan2025swegym,
   title={Training Software Engineering Agents and Verifiers with {SWE}-Gym},
-  author={Chen, Jiayi and others},
+  author={Pan, Jiayi and Wang, Xingyao and Neubig, Graham and Jaitly, Navdeep and Ji, Heng and Suhr, Alane and Zhang, Yizhe},
   journal={arXiv preprint arXiv:2412.21139},
   year={2025}
 }
@@ -155,9 +121,10 @@
   year={2021}
 }
 
-% TODO: add before submission -- SWE-PolyBench (multilingual
-% benchmark), SWE-bench Verified, the GPT Codex 5.3 model card,
-% and the Qwen2.5-Coder technical report.
+% NOTE: SWE-PolyBench, SWE-bench Verified, and the Qwen2.5-Coder
+% technical report are now in the bib (via the SWERank+ import
+% block at the end of this file).  GPT Codex 5.3 model card
+% still TBD.
 
 
 % ============================================================
@@ -217,14 +184,6 @@
     doi = "10.18653/v1/2025.acl-short.62",
     pages = "775--789",
     ISBN = "979-8-89176-252-7",
-}
-@inproceedings{
-zhang2024code,
-title={{CODE} {REPRESENTATION} {LEARNING} {AT} {SCALE}},
-author={Dejiao Zhang and Wasi Uddin Ahmad and Ming Tan and Hantian Ding and Ramesh Nallapati and Dan Roth and Xiaofei Ma and Bing Xiang},
-booktitle={The Twelfth International Conference on Learning Representations},
-year={2024},
-url={https://openreview.net/forum?id=vfzRRjumpX}
 }
 @inproceedings{
 suresh2025cornstack,
@@ -524,18 +483,6 @@ url={https://openreview.net/forum?id=dw9VUsSHGB}
   journal = {arXiv preprint arXiv:2405.11430},
   year    = {2024}
 }
-
-@misc{xia2024agentlessdemystifyingllmbasedsoftware,
-  title         = {Agentless: Demystifying LLM-based Software Engineering Agents},
-  author        = {Chunqiu Steven Xia and Yinlin Deng and Soren Dunn and Lingming Zhang},
-  year          = {2024},
-  eprint        = {2407.01489},
-  archiveprefix = {arXiv},
-  primaryclass  = {cs.SE},
-  url           = {https://arxiv.org/abs/2407.01489}
-}
-
-
 @inproceedings{liu2024repobench,
   title     = {RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems},
   author    = {Tianyang Liu and Canwen Xu and Julian McAuley},
@@ -632,12 +579,6 @@ url={https://openreview.net/forum?id=dw9VUsSHGB}
   howpublished = {\url{https://github.com/paul-gauthier/aider}},
   title        = {Aider is AI pair programming in your terminal},
   year         = {2024}
-}
-@article{yang2024swe,
-  title   = {Swe-agent: Agent-computer interfaces enable automated software engineering},
-  author  = {Yang, John and Jimenez, Carlos E and Wettig, Alexander and Lieret, Kilian and Yao, Shunyu and Narasimhan, Karthik and Press, Ofir},
-  journal = {arXiv preprint arXiv:2405.15793},
-  year    = {2024}
 }
 @misc{swe-leaderboard,
   author       = {Carlos E Jimenez and John Yang and Alexander Wettig and Shunyu Yao and Kexin Pei and Ofir Press and Karthik R Narasimhan},
@@ -845,15 +786,6 @@ doi = {https://doi.org/10.1016/j.ipm.2019.102067},
 url = {https://www.sciencedirect.com/science/article/pii/S0306457319302390},
 author = {Jiafeng Guo and Yixing Fan and Liang Pang and Liu Yang and Qingyao Ai and Hamed Zamani and Chen Wu and W. Bruce Croft and Xueqi Cheng},
 }
-@misc{chowdhury2024introducingswebenchverified,
-  title        = {Introducing {SWE‑bench Verified}},
-  author       = {Chowdhury, Neil and Aung, James and Shern, Chan Jun and Jaffe, Oliver and Sherburn, Dane and Starace, Giulio and Mays, Evan and Dias, Rachel and Aljubeh, Marwan and Glaese, Mia and Jimenez, Carlos E. and Yang, John and Liu, Kevin and Madry, Aleksander},
-  year         = {2024},
-  month        = aug,
-  day          = {13},
-  howpublished = {OpenAI Blog},
-  url          = {https://openai.com/index/introducing-swe-bench-verified/},
-}
 @misc{jiang2025cosilsoftwareissuelocalization,
       title={CoSIL: Software Issue Localization via LLM-Driven Code Repository Graph Searching}, 
       author={Zhonghao Jiang and Xiaoxue Ren and Meng Yan and Wei Jiang and Yong Li and Zhongxin Liu},
@@ -976,3 +908,833 @@ year={2024},
 url={https://github.com/aorwall/moatless-tools}
 }
 
+% ============================================================
+% References imported from arXiv-2512.20482v1 (SWERank+).
+% Fuzzy-deduped against existing entries by arXiv id and title.
+% Off-domain entries (medical IR, finance, recsys, molecule
+% discovery, web search engines) and internal duplicates have
+% been excluded.
+% ============================================================
+
+@misc{openai2023chatgpt,
+  author       = {OpenAI},
+  title        = {ChatGPT: Language Model by OpenAI},
+  year         = {2023},
+  url          = {https://chat.openai.com/},
+  note         = {Accessed: January 21, 2025}
+}
+
+@inproceedings{
+    wang2021codet5,
+    title={CodeT5: Identifier-aware Unified Pre-trained Encoder-Decoder Models for Code Understanding and Generation}, 
+    author={Yue, Wang and Weishi, Wang and Shafiq Joty and Steven C.H. Hoi},
+    booktitle={EMNLP},
+    year={2021},
+}
+
+@inproceedings{Wang-FSE23,
+author = {Wang, Weishi and Wang, Yue and Joty, Shafiq and Hoi, Steven C.H.},
+title = {RAP-Gen: Retrieval-Augmented Patch Generation with CodeT5 for Automatic Program Repair},
+year = {2023},
+isbn = {9798400703270},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3611643.3616256},
+doi = {10.1145/3611643.3616256},
+abstract = {Automatic program repair (APR) is crucial to reduce manual debugging efforts for developers and improve software reliability. While conventional search-based techniques typically rely on heuristic rules or a redundancy assumption to mine fix patterns, recent years have witnessed the surge of deep learning (DL) based approaches to automate the program repair process in a data-driven manner. However, their performance is often limited by a fixed set of parameters to model the highly complex search space of APR. To ease such burden on the parametric models, in this work, we propose a novel Retrieval-Augmented Patch Generation framework (RAP-Gen) by explicitly leveraging relevant fix patterns retrieved from a codebase of previous bug-fix pairs. Specifically, we build a hybrid patch retriever to account for both lexical and semantic matching based on the raw source code in a language-agnostic manner, which does not rely on any code-specific features. In addition, we adapt a code-aware language model CodeT5 as our foundation model to facilitate both patch retrieval and generation tasks in a unified manner. We adopt a stage-wise approach where the patch retriever first retrieves a relevant external bug-fix pair to augment the buggy input for the CodeT5 patch generator, which synthesizes a ranked list of repair patch candidates. Notably, RAP-Gen is a generic APR framework that can flexibly integrate different patch retrievers and generators to repair various types of bugs. We thoroughly evaluate RAP-Gen on three benchmarks in two programming languages, including the TFix benchmark in JavaScript, and Code Refinement and Defects4J benchmarks in Java, where the bug localization information may or may not be provided. Experimental results show that RAP-Gen significantly outperforms previous state-of-the-art (SoTA) approaches on all benchmarks, e.g., boosting the accuracy of T5-large on TFix from 49.70\% to 54.15\% (repairing 478 more bugs) and repairing 15 more bugs on 818 Defects4J bugs. Further analysis reveals that our patch retriever can search for relevant fix patterns to guide the APR systems.},
+booktitle = {Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering},
+pages = {146–158},
+numpages = {13},
+keywords = {Automated program repair, Neural networks, Pretrained language models, Retrieval-augmented generation},
+location = {San Francisco, CA, USA},
+series = {ESEC/FSE 2023}
+}
+
+@misc{anthropic2023claude,
+  author       = {Anthropic},
+  title        = {Claude: Conversational AI by Anthropic},
+  year         = {2023},
+  url          = {https://www.anthropic.com/claude},
+  note         = {Accessed: January 21, 2025}
+}
+
+@article{yu2025orcaloca,
+  title={OrcaLoca: An LLM Agent Framework for Software Issue Localization},
+  author={Yu, Zhongming and Zhang, Hejia and Zhao, Yujie and Huang, Hanxian and Yao, Matrix and Ding, Ke and Zhao, Jishen},
+  journal={arXiv preprint arXiv:2502.00350},
+  year={2025}
+}
+
+@misc{hui2024qwen25codertechnicalreport,
+      title={Qwen2.5-Coder Technical Report}, 
+      author={Binyuan Hui and Jian Yang and Zeyu Cui and Jiaxi Yang and Dayiheng Liu and Lei Zhang and Tianyu Liu and Jiajun Zhang and Bowen Yu and Keming Lu and Kai Dang and Yang Fan and Yichang Zhang and An Yang and Rui Men and Fei Huang and Bo Zheng and Yibo Miao and Shanghaoran Quan and Yunlong Feng and Xingzhang Ren and Xuancheng Ren and Jingren Zhou and Junyang Lin},
+      year={2024},
+      eprint={2409.12186},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2409.12186}, 
+}
+
+@misc{voyageai2024,
+  author    = {VoyageAI},
+  title     = {Voyage-code-2: Elevate Your Code Retrieval},
+  year      = {2024},
+  url       = {https://blog.voyageai.com/2024/01/23/voyage-code-2-elevate-your-code-retrieval/},
+  note      = {Accessed: 2024-02-02}
+}
+
+@article{lewis2020retrieval,
+  title={Retrieval-augmented generation for knowledge-intensive nlp tasks},
+  author={Lewis, Patrick and Perez, Ethan and Piktus, Aleksandra and Petroni, Fabio and Karpukhin, Vladimir and Goyal, Naman and K{\"u}ttler, Heinrich and Lewis, Mike and Yih, Wen-tau and Rockt{\"a}schel, Tim and others},
+  journal={Advances in Neural Information Processing Systems},
+  volume={33},
+  pages={9459--9474},
+  year={2020}
+}
+
+@inproceedings{guu2020retrieval,
+  title={Retrieval augmented language model pre-training},
+  author={Guu, Kelvin and Lee, Kenton and Tung, Zora and Pasupat, Panupong and Chang, Mingwei},
+  booktitle={International conference on machine learning},
+  pages={3929--3938},
+  year={2020},
+  organization={PMLR}
+}
+
+@inproceedings{qu2020open,
+  title={Open-retrieval conversational question answering},
+  author={Qu, Chen and Yang, Liu and Chen, Cen and Qiu, Minghui and Croft, W Bruce and Iyyer, Mohit},
+  booktitle={Proceedings of the 43rd International ACM SIGIR conference on research and development in Information Retrieval},
+  pages={539--548},
+  year={2020}
+}
+
+@misc{wang2024coderagbench,
+      title={CodeRAG-Bench: Can Retrieval Augment Code Generation?}, 
+      author={Zora Zhiruo Wang and Akari Asai and Xinyan Velocity Yu and Frank F. Xu and Yiqing Xie and Graham Neubig and Daniel Fried},
+      year={2024},
+      eprint={2406.14497},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2406.14497}, 
+}
+
+@article{radford2019language,
+  title={Language models are unsupervised multitask learners},
+  author={Radford, Alec and Wu, Jeffrey and Child, Rewon and Luan, David and Amodei, Dario and Sutskever, Ilya and others},
+  journal={OpenAI blog},
+  volume={1},
+  number={8},
+  pages={9},
+  year={2019}
+}
+
+@article{mann2020language,
+  title={Language models are few-shot learners},
+  author={Mann, Ben and Ryder, N and Subbiah, M and Kaplan, J and Dhariwal, P and Neelakantan, A and Shyam, P and Sastry, G and Askell, A and Agarwal, S and others},
+  journal={arXiv preprint arXiv:2005.14165},
+  volume={1},
+  year={2020}
+}
+
+@article{touvron2023llama,
+  title={Llama: Open and efficient foundation language models},
+  author={Touvron, Hugo and Lavril, Thibaut and Izacard, Gautier and Martinet, Xavier and Lachaux, Marie-Anne and Lacroix, Timoth{\'e}e and Rozi{\`e}re, Baptiste and Goyal, Naman and Hambro, Eric and Azhar, Faisal and others},
+  journal={arXiv preprint arXiv:2302.13971},
+  year={2023}
+}
+
+@article{hou2024llm4se,
+  title={Large language models for software engineering: A systematic literature review},
+  author={Hou, Xinyi and Zhao, Yanjie and Liu, Yue and Yang, Zhou and Wang, Kailong and Li, Li and Luo, Xiapu and Lo, David and Grundy, John and Wang, Haoyu},
+  journal={ACM Transactions on Software Engineering and Methodology},
+  volume={33},
+  number={8},
+  pages={1--79},
+  year={2024},
+  publisher={ACM New York, NY}
+}
+
+@misc{aider2024swe,
+  author       = {Paul Gauthier},
+  title        = {How Aider Scored SOTA 26.3\% on SWE Bench Lite | Aider},
+  year         = {2024},
+  url          = {https://aider.chat/2024/05/22/swe-bench-lite.html},
+  note         = {Accessed: January 21, 2025}
+}
+
+@article{yang2025qwen3,
+  title={Qwen3 technical report},
+  author={Yang, An and Li, Anfeng and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Gao, Chang and Huang, Chengen and Lv, Chenxu and others},
+  journal={arXiv preprint arXiv:2505.09388},
+  year={2025}
+}
+
+@article{de2020autoregressive,
+  title={Autoregressive entity retrieval},
+  author={De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio},
+  journal={arXiv preprint arXiv:2010.00904},
+  year={2020}
+}
+
+@misc{wang2023codet5opencodelarge,
+      title={CodeT5+: Open Code Large Language Models for Code Understanding and Generation}, 
+      author={Yue Wang and Hung Le and Akhilesh Deepak Gotmare and Nghi D. Q. Bui and Junnan Li and Steven C. H. Hoi},
+      year={2023},
+      eprint={2305.07922},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2305.07922}, 
+}
+
+@article{robertson2009probabilistic,
+  title={The probabilistic relevance framework: BM25 and beyond},
+  author={Robertson, Stephen and Zaragoza, Hugo and others},
+  journal={Foundations and Trends{\textregistered} in Information Retrieval},
+  volume={3},
+  number={4},
+  pages={333--389},
+  year={2009},
+  publisher={Now Publishers, Inc.}
+}
+
+@inproceedings{10.1145/3611643.3616271,
+author = {Wei, Yuxiang and Xia, Chunqiu Steven and Zhang, Lingming},
+title = {Copiloting the Copilots: Fusing Large Language Models with Completion Engines for Automated Program Repair},
+year = {2023},
+isbn = {9798400703270},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3611643.3616271},
+doi = {10.1145/3611643.3616271},
+abstract = {During Automated Program Repair (APR), it can be challenging&nbsp;to synthesize correct patches for real-world systems in general-purpose programming languages. Recent Large Language Models&nbsp;(LLMs) have been shown to be helpful “copilots” in assisting developers with various coding tasks, and have also been directly&nbsp;applied for patch synthesis. However, most LLMs treat programs as&nbsp;sequences of tokens, meaning that they are ignorant of the underlying semantics constraints of the target programming language. This&nbsp;results in plenty of statically invalid generated patches, impeding&nbsp;the practicality of the technique. Therefore, we propose Repilot,&nbsp;a framework to further copilot the AI “copilots” (i.e., LLMs) by&nbsp;synthesizing more valid patches during the repair process. Our key&nbsp;insight is that many LLMs produce outputs autoregressively (i.e.,&nbsp;token by token), resembling human writing programs, which can&nbsp;be significantly boosted and guided through a Completion Engine.&nbsp;Repilot synergistically synthesizes a candidate patch through the&nbsp;interaction between an LLM and a Completion Engine, which 1)&nbsp;prunes away infeasible tokens suggested by the LLM and 2) proactively completes the token based on the suggestions provided by the&nbsp;Completion Engine. Our evaluation on a subset of the widely-used&nbsp;Defects4j 1.2 and 2.0 datasets shows that Repilot fixes 66 and 50&nbsp;bugs, respectively, surpassing the best-performing baseline by 14&nbsp;and 16 bugs fixed. More&nbsp;importantly, Repilot is capable of producing more valid and correct patches than the base LLM when given&nbsp;the same generation budget.},
+booktitle = {Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering},
+pages = {172–184},
+numpages = {13},
+keywords = {Completion Engine, Large Language Model, Program Repair},
+location = {San Francisco, CA, USA},
+series = {ESEC/FSE 2023}
+}
+
+@article{kang2023preliminary,
+  title={A preliminary evaluation of llm-based fault localization},
+  author={Kang, Sungmin and An, Gabin and Yoo, Shin},
+  journal={arXiv preprint arXiv:2308.05487},
+  year={2023}
+}
+
+@article{qin2024agentfl,
+  title={AgentFL: Scaling LLM-based Fault Localization to Project-Level Context},
+  author={Qin, Yihao and Wang, Shangwen and Lou, Yiling and Dong, Jinhao and Wang, Kaixin and Li, Xiaoling and Mao, Xiaoguang},
+  journal={arXiv preprint arXiv:2403.16362},
+  year={2024}
+}
+
+@article{tay2022transformer,
+  title={Transformer memory as a differentiable search index},
+  author={Tay, Yi and Tran, Vinh and Dehghani, Mostafa and Ni, Jianmo and Bahri, Dara and Mehta, Harsh and Qin, Zhen and Hui, Kai and Zhao, Zhe and Gupta, Jai and others},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={21831--21843},
+  year={2022}
+}
+
+@article{li2024matching,
+  title={From matching to generation: A survey on generative information retrieval},
+  author={Li, Xiaoxi and Jin, Jiajie and Zhou, Yujia and Zhang, Yuyao and Zhang, Peitian and Zhu, Yutao and Dou, Zhicheng},
+  journal={arXiv preprint arXiv:2404.14851},
+  year={2024}
+}
+
+@article{he2025llm,
+  title={LLM-Based Multi-Agent Systems for Software Engineering: Literature Review, Vision, and the Road Ahead},
+  author={He, Junda and Treude, Christoph and Lo, David},
+  journal={ACM Transactions on Software Engineering and Methodology},
+  volume={34},
+  number={5},
+  pages={1--30},
+  year={2025},
+  publisher={ACM New York, NY}
+}
+
+@article{torun2025past,
+  title={Past, Present, and Future of Bug Tracking in the Generative AI Era},
+  author={Torun, Utku Boran and Demircan, Mehmet Taha and G{\"o}n, Mahmut Furkan and T{\"u}z{\"u}n, Eray},
+  journal={arXiv preprint arXiv:2510.08005},
+  year={2025}
+}
+
+@article{yaraghi2025black,
+  title={Black-Box Test Code Fault Localization Driven by Large Language Models and Execution Estimation},
+  author={Yaraghi, Ahmadreza Saboor and Gharachorlu, Golnaz and Fatima, Sakina and Briand, Lionel C and Wan, Ruiyuan and Gao, Ruifeng},
+  journal={arXiv preprint arXiv:2506.19045},
+  year={2025}
+}
+
+@article{chang2025bridging,
+  title={Bridging Bug Localization and Issue Fixing: A Hierarchical Localization Framework Leveraging Large Language Models},
+  author={Chang, Jianming and Zhou, Xin and Wang, Lulu and Lo, David and Li, Bixin},
+  journal={arXiv preprint arXiv:2502.15292},
+  year={2025}
+}
+
+@inproceedings{shen2024retrieval,
+  title={Retrieval-augmented retrieval: Large language models are strong zero-shot retriever},
+  author={Shen, Tao and Long, Guodong and Geng, Xiubo and Tao, Chongyang and Lei, Yibin and Zhou, Tianyi and Blumenstein, Michael and Jiang, Daxin},
+  booktitle={Findings of the Association for Computational Linguistics ACL 2024},
+  pages={15933--15946},
+  year={2024}
+}
+
+@misc{orwall2023moatless,
+  author = {Albert Örwall},
+  title = {Moatless tools},
+  year = {2024},
+  url = {https://github.com/aorwall/moatless-tools}
+}
+
+@misc{wei2023chainofthoughtpromptingelicitsreasoning,
+      title={Chain-of-Thought Prompting Elicits Reasoning in Large Language Models}, 
+      author={Jason Wei and Xuezhi Wang and Dale Schuurmans and Maarten Bosma and Brian Ichter and Fei Xia and Ed Chi and Quoc Le and Denny Zhou},
+      year={2023},
+      eprint={2201.11903},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2201.11903}, 
+}
+
+@article{fatemi2023talk,
+  title={Talk like a graph: Encoding graphs for large language models},
+  author={Fatemi, Bahare and Halcrow, Jonathan and Perozzi, Bryan},
+  journal={arXiv preprint arXiv:2310.04560},
+  year={2023}
+}
+
+@misc{wang2023selfconsistencyimproveschainthought,
+      title={Self-Consistency Improves Chain of Thought Reasoning in Language Models}, 
+      author={Xuezhi Wang and Jason Wei and Dale Schuurmans and Quoc Le and Ed Chi and Sharan Narang and Aakanksha Chowdhery and Denny Zhou},
+      year={2023},
+      eprint={2203.11171},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2203.11171}, 
+}
+
+@misc{tomassi2019bugswarm,
+      title={BugSwarm: Mining and Continuously Growing a Dataset of Reproducible Failures and Fixes}, 
+      author={David A. Tomassi and Naji Dmeiri and Yichen Wang and Antara Bhowmick and Yen-Chuan Liu and Premkumar Devanbu and Bogdan Vasilescu and Cindy Rubio-González},
+      year={2019},
+      eprint={1903.06725},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/1903.06725}, 
+}
+
+@article{wang2022text,
+  title={Text Embeddings by Weakly-Supervised Contrastive Pre-training},
+  author={Wang, Liang and Yang, Nan and Huang, Xiaolong and Jiao, Binxing and Yang, Linjun and Jiang, Daxin and Majumder, Rangan and Wei, Furu},
+  journal={arXiv preprint arXiv:2212.03533},
+  year={2022}
+}
+
+@inproceedings{chen2024teval,
+  title={T-eval: Evaluating the tool utilization capability of large language models step by step},
+  author={Chen, Zehui and Du, Weihua and Zhang, Wenwei and Liu, Kuikun and Liu, Jiangning and Zheng, Miao and Zhuo, Jingming and Zhang, Songyang and Lin, Dahua and Chen, Kai and others},
+  booktitle={Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages={9510--9529},
+  year={2024}
+}
+
+@inproceedings{ellson2002graphviz,
+  title={Graphviz—open source graph drawing tools},
+  author={Ellson, John and Gansner, Emden and Koutsofios, Lefteris and North, Stephen C and Woodhull, Gordon},
+  booktitle={Graph Drawing: 9th International Symposium, GD 2001 Vienna, Austria, September 23--26, 2001 Revised Papers 9},
+  pages={483--484},
+  year={2002},
+  organization={Springer}
+}
+
+@article{li2024coir,
+  title={CoIR: A Comprehensive Benchmark for Code Information Retrieval Models},
+  author={Li, Xiangyang and Dong, Kuicai and Lee, Yi Quan and Xia, Wei and Yin, Yichun and Zhang, Hao and Liu, Yong and Wang, Yasheng and Tang, Ruiming},
+  journal={arXiv preprint arXiv:2407.02883},
+  year={2024}
+}
+
+@inproceedings{reddy2024first,
+  title={FIRST: Faster Improved Listwise Reranking with Single Token Decoding},
+  author={Reddy, Revanth Gangi and Doo, JaeHyeok and Xu, Yifei and Sultan, Md Arafat and Swain, Deevya and Sil, Avirup and Ji, Heng},
+  booktitle={Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},
+  pages={8642--8652},
+  year={2024}
+}
+
+@misc{qwen2025qwq32b,
+  author       = {{Qwen Team}},
+  title        = {{QwQ-32B: Embracing the Power of Reinforcement Learning}},
+  howpublished = {\url{https://qwenlm.github.io/blog/qwq-32b/}},
+  month        = mar,
+  day          = {6},
+  year         = {2025},
+  note         = {Accessed: 2025-04-23}
+}
+
+@inproceedings{sontakke2022code,
+  title={Code summarization: Do transformers really understand code?},
+  author={Sontakke, Ankita Nandkishor and Patwardhan, Manasi and Vig, Lovekesh and Medicherla, Raveendra Kumar and Naik, Ravindra and Shroff, Gautam},
+  booktitle={Deep Learning for Code Workshop},
+  year={2022}
+}
+
+@inproceedings{pan2024lost,
+  title={Lost in translation: A study of bugs introduced by large language models while translating code},
+  author={Pan, Rangeet and Ibrahimzada, Ali Reza and Krishna, Rahul and Sankar, Divya and Wassi, Lambert Pouguem and Merler, Michele and Sobolev, Boris and Pavuluri, Raju and Sinha, Saurabh and Jabbarvand, Reyhaneh},
+  booktitle={Proceedings of the IEEE/ACM 46th International Conference on Software Engineering},
+  pages={1--13},
+  year={2024}
+}
+
+@article{wong2016survey,
+  title={A survey on software fault localization},
+  author={Wong, W Eric and Gao, Ruizhi and Li, Yihao and Abreu, Rui and Wotawa, Franz},
+  journal={IEEE Transactions on Software Engineering},
+  volume={42},
+  number={8},
+  pages={707--740},
+  year={2016},
+  publisher={IEEE}
+}
+
+@inproceedings{oord2018representation,
+  title={Representation learning with contrastive predictive coding},
+  author={Oord, Aaron van den and Li, Yazhe and Vinyals, Oriol},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={10203--10213},
+  year={2018}
+}
+
+@inproceedings{reimers-gurevych-2019-sentence,
+    title = "Sentence-{BERT}: Sentence Embeddings using {S}iamese {BERT}-Networks",
+    author = "Reimers, Nils  and
+      Gurevych, Iryna",
+    editor = "Inui, Kentaro  and
+      Jiang, Jing  and
+      Ng, Vincent  and
+      Wan, Xiaojun",
+    booktitle = "Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)",
+    month = nov,
+    year = "2019",
+    address = "Hong Kong, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D19-1410",
+    doi = "10.18653/v1/D19-1410",
+    pages = "3982--3992"
+}
+
+@inproceedings{wang-etal-2024-improving-text,
+    title = "Improving Text Embeddings with Large Language Models",
+    author = "Wang, Liang  and
+      Yang, Nan  and
+      Huang, Xiaolong  and
+      Yang, Linjun  and
+      Majumder, Rangan  and
+      Wei, Furu",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.acl-long.642",
+    doi = "10.18653/v1/2024.acl-long.642",
+    pages = "11897--11916"
+}
+
+@article{moreira2024nv,
+  title={NV-Retriever: Improving text embedding models with effective hard-negative mining},
+  author={Moreira, Gabriel de Souza P and Osmulski, Radek and Xu, Mengyao and Ak, Ronay and Schifferer, Benedikt and Oldridge, Even},
+  journal={arXiv preprint arXiv:2407.15831},
+  year={2024}
+}
+
+@inproceedings{gunther2023jina,
+  title={Jina Embeddings: A Novel Set of High-Performance Sentence Embedding Models},
+  author={G{\"u}nther, Michael and Mastrapas, Georgios and Wang, Bo and Xiao, Han and Geuter, Jonathan},
+  booktitle={Proceedings of the 3rd Workshop for Natural Language Processing Open Source Software (NLP-OSS 2023)},
+  pages={8--18},
+  year={2023}
+}
+
+@article{soremekun2021locating,
+  title={Locating faults with program slicing: an empirical analysis},
+  author={Soremekun, Ezekiel and Kirschner, Lukas and B{\"o}hme, Marcel and Zeller, Andreas},
+  journal={Empirical Software Engineering},
+  volume={26},
+  pages={1--45},
+  year={2021},
+  publisher={Springer}
+}
+
+@incollection{ELSAKA201779,
+title = {Chapter Three - Fault Localization Using Hybrid Static/Dynamic Analysis},
+editor = {Atif M. Memon},
+series = {Advances in Computers},
+publisher = {Elsevier},
+volume = {105},
+pages = {79-114},
+year = {2017},
+issn = {0065-2458},
+doi = {https://doi.org/10.1016/bs.adcom.2016.12.004},
+url = {https://www.sciencedirect.com/science/article/pii/S0065245816300778},
+author = {E. Elsaka},
+keywords = {Automated software testing, Automated software debugging, Static analysis, Dynamic analysis, Software quality, Software debugging tools, Code coverage}
+}
+
+@article{amario2024understanding,
+  title={Understanding the use of spectrum-based fault localization},
+  author={Amario de Souza, Higor and de Souza Lauretto, Marcelo and Kon, Fabio and Lordello Chaim, Marcos},
+  journal={Journal of Software: Evolution and Process},
+  volume={36},
+  number={6},
+  pages={e2622},
+  year={2024},
+  publisher={Wiley Online Library}
+}
+
+@article{adhiselvam2015enhanced,
+  title={An enhanced approach for software bug localization using map reduce technique based apriori (mrtba) algorithm},
+  author={Adhiselvam, A and Kirubakaran, E and Sukumar, R},
+  journal={Indian Journal of Science and Technology},
+  volume={8},
+  pages={35},
+  year={2015}
+}
+
+@article{de2016spectrum,
+  title={Spectrum-based software fault localization: A survey of techniques, advances, and challenges},
+  author={de Souza, Higor A and Chaim, Marcos L and Kon, Fabio},
+  journal={arXiv preprint arXiv:1607.04347},
+  year={2016}
+}
+
+@inproceedings{jin2024teach,
+  title={Teach ai how to code: Using large language models as teachable agents for programming education},
+  author={Jin, Hyoungwook and Lee, Seonghee and Shin, Hyungyu and Kim, Juho},
+  booktitle={Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems},
+  pages={1--28},
+  year={2024}
+}
+
+@inproceedings{billah2024large,
+  title={Are Large Language Models a Threat to Programming Platforms? An Exploratory Study},
+  author={Billah, Md Mustakim and Roy, Palash Ranjan and Codabux, Zadia and Roy, Banani},
+  booktitle={Proceedings of the 18th ACM/IEEE International Symposium on Empirical Software Engineering and Measurement},
+  pages={292--301},
+  year={2024}
+}
+
+@article{liu2024codexembed,
+  title={Codexembed: A generalist embedding model family for multiligual and multi-task code retrieval},
+  author={Liu, Ye and Meng, Rui and Joty, Shafiq and Savarese, Silvio and Xiong, Caiming and Zhou, Yingbo and Yavuz, Semih},
+  journal={arXiv preprint arXiv:2411.12644},
+  year={2024}
+}
+
+@article{kocetkovstack,
+  title={The Stack: 3 TB of permissively licensed source code},
+  author={Kocetkov, Denis and Li, Raymond and Jia, LI and Mou, Chenghao and Jernite, Yacine and Mitchell, Margaret and Ferrandis, Carlos Mu{\~n}oz and Hughes, Sean and Wolf, Thomas and Bahdanau, Dzmitry and others},
+  journal={Transactions on Machine Learning Research},
+    year={2022}
+}
+
+@misc{openai2024embedding,
+  author       = {OpenAI},
+  title        = {New embedding models and API updates},
+  year         = {2024},
+  month        = {January},
+  day          = {25},
+  howpublished = {\url{https://openai.com/blog/new-embedding-models-and-api-updates/}}
+}
+
+@article{pradeep2023rankzephyr,
+  title={RankZephyr: Effective and Robust Zero-Shot Listwise Reranking is a Breeze!},
+  author={Pradeep, Ronak and Sharifymoghaddam, Sahel and Lin, Jimmy},
+  journal={arXiv preprint arXiv:2312.02724},
+  year={2023}
+}
+
+@article{lee2025gemini,
+  title={Gemini Embedding: Generalizable Embeddings from Gemini},
+  author={Lee, Jinhyuk and Chen, Feiyang and Dua, Sahil and Cer, Daniel and Shanbhogue, Madhuri and Naim, Iftekhar and {\'A}brego, Gustavo Hern{\'a}ndez and Li, Zhe and Chen, Kaifeng and Vera, Henrique Schechter and others},
+  journal={arXiv preprint arXiv:2503.07891},
+  year={2025}
+}
+
+@misc{cursor2025,
+  title        = {{Cursor: The AI Code Editor}},
+  author       = {{Cursor}},
+  howpublished = {\url{https://www.cursor.com/}},
+  year         = {2025},
+  note         = {Accessed: 2025-04-22}
+}
+
+@misc{windsurf2025,
+  title        = {{Windsurf Editor: The AI‑Native IDE}},
+  author       = {{Windsurf}},
+  howpublished = {\url{https://windsurf.com/editor}},
+  year         = {2025},
+  note         = {Accessed: 2025-04-22}
+}
+
+@misc{cognition2024devin,
+  author       = {{Cognition AI}},
+  title        = {{Devin: The First AI Software Engineer}},
+  howpublished = {\url{https://devin.ai/}},
+  year         = {2024},
+  note         = {Accessed: 2025-04-22}
+}
+
+@misc{microsoft2023copilot,
+  author       = {{Microsoft}},
+  title        = {{GitHub Copilot—Your AI pair programmer}},
+  year         = {2023},
+  url          = {https://github.com/features/copilot},
+  urldate      = {2025-04-22}
+}
+
+@article{mundler2024swt,
+  title={SWT-bench: Testing and validating real-world bug-fixes with code agents},
+  author={M{\"u}ndler, Niels and M{\"u}ller, Mark and He, Jingxuan and Vechev, Martin},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  pages={81857--81887},
+  year={2024}
+}
+
+@inproceedings{bohme2017bug,
+  title={Where is the bug and how is it fixed? an experiment with practitioners},
+  author={B{\"o}hme, Marcel and Soremekun, Ezekiel O and Chattopadhyay, Sudipta and Ugherughe, Emamurho and Zeller, Andreas},
+  booktitle={Proceedings of the 2017 11th joint meeting on foundations of software engineering},
+  pages={117--128},
+  year={2017}
+}
+
+@misc{SFR-embedding-2,
+  title={SFR-Embedding-2: Advanced Text Embedding with Multi-stage Training},
+  author={Rui Meng and Ye Liu and Shafiq Rayhan Jotya and Caiming Xiong and Yingbo Zhou and Semih Yavuz},
+  year={2024},
+  url={https://huggingface.co/Salesforce/SFR-Embedding-2_R},
+}
+
+@article{li2023towards,
+  title={Towards general text embeddings with multi-stage contrastive learning},
+  author={Li, Zehan and Zhang, Xin and Zhang, Yanzhao and Long, Dingkun and Xie, Pengjun and Zhang, Meishan},
+  journal={arXiv preprint arXiv:2308.03281},
+  year={2023}
+}
+
+@inproceedings{muennighoff2023mteb,
+  title={MTEB: Massive Text Embedding Benchmark},
+  author={Muennighoff, Niklas and Tazi, Nouamane and Magne, Loic and Reimers, Nils},
+  booktitle={Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics},
+  pages={2014--2037},
+  year={2023}
+}
+
+@article{Yang2024Qwen2TR,
+  title={Qwen2 Technical Report},
+  author={An Yang and Baosong Yang and Binyuan Hui and Bo Zheng and Bowen Yu and Chang Zhou and Chengpeng Li and Chengyuan Li and Dayiheng Liu and Fei Huang and Guanting Dong and Haoran Wei and Huan Lin and Jialong Tang and Jialin Wang and Jian Yang and Jianhong Tu and Jianwei Zhang and Jianxin Ma and Jin Xu and Jingren Zhou and Jinze Bai and Jinzheng He and Junyang Lin and Kai Dang and Keming Lu and Ke-Yang Chen and Kexin Yang and Mei Li and Min Xue and Na Ni and Pei Zhang and Peng Wang and Ru Peng and Rui Men and Ruize Gao and Runji Lin and Shijie Wang and Shuai Bai and Sinan Tan and Tianhang Zhu and Tianhao Li and Tianyu Liu and Wenbin Ge and Xiaodong Deng and Xiaohuan Zhou and Xingzhang Ren and Xinyu Zhang and Xipin Wei and Xuancheng Ren and Yang Fan and Yang Yao and Yichang Zhang and Yunyang Wan and Yunfei Chu and Zeyu Cui and Zhenru Zhang and Zhi-Wei Fan},
+  journal={ArXiv},
+  year={2024},
+  volume={abs/2407.10671},
+  url={https://api.semanticscholar.org/CorpusID:271212307}
+}
+
+@article{merrick2024arctic,
+  title={Arctic-embed: Scalable, efficient, and accurate text embedding models},
+  author={Merrick, Luke and Xu, Danmei and Nuti, Gaurav and Campos, Daniel},
+  journal={arXiv preprint arXiv:2405.05374},
+  year={2024}
+}
+
+@article{yu2024arctic,
+  title={Arctic-Embed 2.0: Multilingual Retrieval Without Compromise},
+  author={Yu, Puxuan and Merrick, Luke and Nuti, Gaurav and Campos, Daniel},
+  journal={arXiv preprint arXiv:2412.04506},
+  year={2024}
+}
+
+@article{kwiatkowski2019natural,
+  title={Natural questions: a benchmark for question answering research},
+  author={Kwiatkowski, Tom and Palomaki, Jennimaria and Redfield, Olivia and Collins, Michael and Parikh, Ankur and Alberti, Chris and Epstein, Danielle and Polosukhin, Illia and Devlin, Jacob and Lee, Kenton and others},
+  journal={Transactions of the Association for Computational Linguistics},
+  volume={7},
+  pages={453--466},
+  year={2019},
+  publisher={MIT Press One Rogers Street, Cambridge, MA 02142-1209, USA journals-info~…}
+}
+
+@misc{nussbaum2024nomic,
+      title={Nomic Embed: Training a Reproducible Long Context Text Embedder}, 
+      author={Zach Nussbaum and John X. Morris and Brandon Duderstadt and Andriy Mulyar},
+      year={2024},
+      eprint={2402.01613},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@inproceedings{Thorne18Fever,
+    author = {Thorne, James and Vlachos, Andreas and Christodoulopoulos, Christos and Mittal, Arpit},
+    title = {{FEVER}: a Large-scale Dataset for Fact Extraction and {VERification}},
+    booktitle = {NAACL-HLT},
+    year = {2018}
+}
+
+@inproceedings{yang2018hotpotqa,
+  title={HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering},
+  author={Yang, Zhilin and Qi, Peng and Zhang, Saizheng and Bengio, Yoshua and Cohen, William and Salakhutdinov, Ruslan and Manning, Christopher D},
+  booktitle={Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},
+  year={2018},
+  organization={Association for Computational Linguistics}
+}
+
+@article{Yang2024Qwen25TR,
+  title={Qwen2.5 Technical Report},
+  author={Qwen An Yang and Baosong Yang and Beichen Zhang and Binyuan Hui and Bo Zheng and Bowen Yu and Chengyuan Li and Dayiheng Liu and Fei Huang and Guanting Dong and Haoran Wei and Huan Lin and Jian Yang and Jianhong Tu and Jianwei Zhang and Jianxin Yang and Jiaxin Yang and Jingren Zhou and Junyang Lin and Kai Dang and Keming Lu and Keqin Bao and Kexin Yang and Le Yu and Mei Li and Mingfeng Xue and Pei Zhang and Qin Zhu and Rui Men and Runji Lin and Tianhao Li and Tingyu Xia and Xingzhang Ren and Xuancheng Ren and Yang Fan and Yang Su and Yi-Chao Zhang and Yunyang Wan and Yuqi Liu and Zeyu Cui and Zhenru Zhang and Zihan Qiu and Shanghaoran Quan and Zekun Wang},
+  journal={ArXiv},
+  year={2024},
+  volume={abs/2412.15115},
+  url={https://api.semanticscholar.org/CorpusID:274859421}
+}
+
+@inproceedings{rasley2020deepspeed,
+  title={Deepspeed: System optimizations enable training deep learning models with over 100 billion parameters},
+  author={Rasley, Jeff and Rajbhandari, Samyam and Ruwase, Olatunji and He, Yuxiong},
+  booktitle={Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining},
+  pages={3505--3506},
+  year={2020}
+}
+
+@article{xie2025swe,
+  title={SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution},
+  author={Xie, Chengxing and Li, Bowen and Gao, Chang and Du, He and Lam, Wai and Zou, Difan and Chen, Kai},
+  journal={arXiv preprint arXiv:2501.05040},
+  year={2025}
+}
+
+@misc{jain2023neftunenoisyembeddingsimprove,
+      title={NEFTune: Noisy Embeddings Improve Instruction Finetuning}, 
+      author={Neel Jain and Ping-yeh Chiang and Yuxin Wen and John Kirchenbauer and Hong-Min Chu and Gowthami Somepalli and Brian R. Bartoldson and Bhavya Kailkhura and Avi Schwarzschild and Aniruddha Saha and Micah Goldblum and Jonas Geiping and Tom Goldstein},
+      year={2023},
+      eprint={2310.05914},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2310.05914}, 
+}
+
+@misc{pradeep2023rankvicunazeroshotlistwisedocument,
+      title={RankVicuna: Zero-Shot Listwise Document Reranking with Open-Source Large Language Models}, 
+      author={Ronak Pradeep and Sahel Sharifymoghaddam and Jimmy Lin},
+      year={2023},
+      eprint={2309.15088},
+      archivePrefix={arXiv},
+      primaryClass={cs.IR},
+      url={https://arxiv.org/abs/2309.15088}, 
+}
+
+@misc{yang2025swesmith,
+  title={SWE-smith: Scaling Data for Software Engineering Agents}, 
+  author={John Yang and Kilian Lieret and Carlos E. Jimenez and Alexander Wettig and Kabir Khandpur and Yanzhe Zhang and Binyuan Hui and Ofir Press and Ludwig Schmidt and Diyi Yang},
+  year={2025},
+  eprint={2504.21798},
+  archivePrefix={arXiv},
+  primaryClass={cs.SE},
+  url={https://arxiv.org/abs/2504.21798}, 
+}
+
+@article{zhang2025qwen3,
+  title={Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models},
+  author={Zhang, Yanzhao and Li, Mingxin and Long, Dingkun and Zhang, Xin and Lin, Huan and Yang, Baosong and Xie, Pengjun and Yang, An and Liu, Dayiheng and Lin, Junyang and others},
+  journal={arXiv preprint arXiv:2506.05176},
+  year={2025}
+}
+
+@inproceedings{zhuang2024beyond,
+  title={Beyond Yes and No: Improving Zero-Shot LLM Rankers via Scoring Fine-Grained Relevance Labels},
+  author={Zhuang, Honglei and Qin, Zhen and Hui, Kai and Wu, Junru and Yan, Le and Wang, Xuanhui and Bendersky, Michael},
+  booktitle={Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 2: Short Papers)},
+  pages={358--370},
+  year={2024}
+}
+
+@inproceedings{zhuang2023rankt5,
+  title={Rankt5: Fine-tuning t5 for text ranking with ranking losses},
+  author={Zhuang, Honglei and Qin, Zhen and Jagerman, Rolf and Hui, Kai and Ma, Ji and Lu, Jing and Ni, Jianmo and Wang, Xuanhui and Bendersky, Michael},
+  booktitle={Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  pages={2308--2313},
+  year={2023}
+}
+
+@inproceedings{qin2024large,
+  title={Large Language Models are Effective Text Rankers with Pairwise Ranking Prompting},
+  author={Qin, Zhen and Jagerman, Rolf and Hui, Kai and Zhuang, Honglei and Wu, Junru and Yan, Le and Shen, Jiaming and Liu, Tianqi and Liu, Jialu and Metzler, Donald and others},
+  booktitle={Findings of the Association for Computational Linguistics: NAACL 2024},
+  pages={1504--1518},
+  year={2024}
+}
+
+@inproceedings{yao2023react,
+  title={React: Synergizing reasoning and acting in language models},
+  author={Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and Shafran, Izhak and Narasimhan, Karthik and Cao, Yuan},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2023}
+}
+
+@inproceedings{jones2005empirical,
+  title={Empirical evaluation of the tarantula automatic fault-localization technique},
+  author={Jones, James A and Harrold, Mary Jean},
+  booktitle={Proceedings of the 20th IEEE/ACM international Conference on Automated software engineering},
+  pages={273--282},
+  year={2005}
+}
+
+@article{zeller2002isolating,
+  title={Isolating cause-effect chains from computer programs},
+  author={Zeller, Andreas},
+  journal={ACM SIGSOFT Software Engineering Notes},
+  volume={27},
+  number={6},
+  pages={1--10},
+  year={2002},
+  publisher={ACM New York, NY, USA}
+}
+
+@inproceedings{li2019deepfl,
+  title={Deepfl: Integrating multiple fault diagnosis dimensions for deep fault localization},
+  author={Li, Xia and Li, Wei and Zhang, Yuqun and Zhang, Lingming},
+  booktitle={Proceedings of the 28th ACM SIGSOFT international symposium on software testing and analysis},
+  pages={169--180},
+  year={2019}
+}
+
+@misc{codegemmateam2024codegemmaopencodemodels,
+      title={CodeGemma: Open Code Models Based on Gemma}, 
+      author={CodeGemma Team and Heri Zhao and Jeffrey Hui and Joshua Howland and Nam Nguyen and Siqi Zuo and Andrea Hu and Christopher A. Choquette-Choo and Jingyue Shen and Joe Kelley and Kshitij Bansal and Luke Vilnis and Mateo Wirth and Paul Michel and Peter Choy and Pratik Joshi and Ravin Kumar and Sarmad Hashmi and Shubham Agrawal and Zhitao Gong and Jane Fine and Tris Warkentin and Ale Jakse Hartman and Bin Ni and Kathy Korevec and Kelly Schaefer and Scott Huffman},
+      year={2024},
+      eprint={2406.11409},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2406.11409}, 
+}
+
+@misc{dong2025surveycodegenerationllmbased,
+      title={A Survey on Code Generation with LLM-based Agents}, 
+      author={Yihong Dong and Xue Jiang and Jiaru Qian and Tian Wang and Kechi Zhang and Zhi Jin and Ge Li},
+      year={2025},
+      eprint={2508.00083},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2508.00083}, 
+}

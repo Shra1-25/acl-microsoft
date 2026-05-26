@@ -7,145 +7,185 @@
 % target (telescoping => supervised, not RL) -> the loss.
 %
 % Notation (use consistently paper-wide):
-%   G = (V,E)  code graph; edges = contains/call/import/co-change
-%   Y*         gold set of code units that must change
-%   L          the fixed-length returned list; recall@L the metric
-%   K          window size: ranked candidates revealed per round
-%   P_r        per-round candidate pool
-%   Phi_r      secured-gold potential
-% Display equations in the body: the telescoping identity, the
-% weighted BCE, the coverage term. Three equations max.
+%   G = (V,E)  code graph; edges = contains/invokes/imports/inherits
+%   G          gold set of code units that must change
+%   pi         retriever-induced ranking over V
+%   K          fixed length of the returned list; recall@K the metric
+%   r          window size: ranked candidates revealed per round
+%   N          retriever pool: top-N of pi used as a pre-filter (Step B)
+%   S          seeds per round (centers for BFS expansion)
+%   R          round budget (max rounds); t is the round index
+%   n          max neighbors per seed kept by scorer (Step B)
+%   P_t        per-round candidate pool
+%   Phi_t      secured-gold potential
+% Display equations in the body: recall@K definition, the
+% telescoping identity, the weighted BCE, the coverage term.
 % ============================================================
 
 \subsection{Problem Setup}
 \label{sec:setup}
-% - Repository R, natural-language issue q. A code graph
-%   G = (V,E): nodes are code units (file / class / function),
-%   edges are structural relations (contains, call, import,
-%   co-change).
-% - Task: recover the gold set Y* of units that must be modified.
-% - Metric: recall@L over a fixed-length returned list L.
-% - Frame the task as SET RECOVERY, not ranking -- this framing
-%   is exactly what the objective in 3.4 is built to match.
-%   (~0.2-0.25 page)
 
-\subsection{Multi-Round Localization Scaffolding}
+We represent a software repository as a code graph
+$\mathcal{G}=(V,E)$ whose nodes are code units (files, classes,
+functions) and whose edges encode structural relations such as
+\textit{contains}, \textit{invokes}, and \textit{imports}.
+Given a natural-language issue $q$, a first-stage retriever
+induces a ranking $\pi$ over $V$ by relevance to $q$. Let
+$G \subseteq V$ denote the (unknown at test time) gold set of
+nodes that must change to resolve $q$. The task is to return a
+length-$K$ list $\hat{L} \subseteq V$ that maximises
+\begin{equation}
+\text{recall}@K(\hat{L}) \;=\; \frac{|\hat{L} \cap G|}{|G|}.
+\label{eq:recall}
+\end{equation}
+
+The setting is bounded-context: a small open model cannot
+ingest the full ranked list, let alone the repository. The
+system observes only a window of $r$ ranked nodes per round and
+may issue a bounded number of bounded-size model calls,
+precluding single-pass reranking of the candidate pool. We
+therefore cast localization as iterative set recovery.
+
+\subsection{Multi-Agent Multi-Turn Scaffolding}
 \label{sec:scaffold}
 
-The scaffolding processes a single issue $q$ over $R$ rounds. A
-retriever (dense, lexical, or their union) returns a ranked
-list of code units, and each round consumes the next $K$ unseen
-entries of that list. At the start of round $r$, the
-scaffolding holds three pieces of state: the current returned
-list $L_{r-1}$ (initialised to $\emptyset$ at $r{=}0$), the set
-of node identifiers $\mathcal{S}_{r-1}$ already shown to the
-model, and an offset $rK$ into the ranked list. The loop
-terminates when the ranked list is exhausted or a maximum
-number of rounds $R_{\max}$ is reached. An optional
-confident-stop hook is left for the RL stage
-(Section~\ref{sec:conclusion}); the supervised training of
-Section~\ref{sec:objective} does not predict it, so a
-trajectory always runs to $R_{\max}$ or exhaustion.
-
-Each round combines a bounded window of newly-ranked candidates
-with a bounded graph-neighborhood expansion, then refines $L$;
-Figure~\ref{fig:scaffold} sketches the loop.
+We split the work between a small post-trained \emph{scorer}
+and a larger \emph{agent}: the scorer triages a bounded
+candidate pool each round, and only the agent commits the
+length-$K$ list. A \emph{seed} is a node from which the
+scaffolding expands its graph neighborhood via BFS. One round
+runs in three steps (Figure~\ref{fig:scaffold}); the loop runs
+for at most $R$ rounds or until the ranked list is exhausted.
 
 \begin{figure}[t]
 \centering
-% TODO: replace with the multi-round scaffolding diagram.
-\fbox{\rule{0pt}{2.4cm}\rule{0.9\columnwidth}{0pt}}
-\caption{The multi-round localization scaffolding. Each round
-consumes a bounded window of $K$ ranked candidates, expands
-neighborhoods around $C$ seed centers via bounded BFS on the
-code graph, and refines a fixed-length returned list $L_r$.
-Per-call token cost stays roughly constant across rounds.}
+\includegraphics[width=\columnwidth]{imgs/scaffolding.png}
+\caption{Overview of our multi-agent, graph-aware code
+localization method. A retriever returns a top-$r$ ranked list
+of candidate functions; for each seed selected by the scorer,
+we traverse the code graph to collect its 4-hop neighbors,
+which the post-trained scorer ranks to select the most relevant
+subgraph nodes. An agent takes the issue, the ranked list, and
+these subgraph nodes as input and refines them into the final
+locations. In the example, the buggy function \texttt{func25}
+is recovered through graph expansion from the seed even though
+lexical ranking alone would miss it. One round is shown; the
+loop repeats for $R$ rounds.}
 \label{fig:scaffold}
 \end{figure}
 
-\paragraph{Window.}
-The scaffolding pulls the next $K$ unseen entries of the ranked
-list starting at offset $rK$, skipping any node already in
-$\mathcal{S}_{r-1}$. We denote this window $W_r$. If $W_r$ is
-empty the round terminates the loop.
-
-\paragraph{Step A: seed-center selection.}
-A single model call selects $C$ seed centers from $W_r$, i.e.\
-nodes whose graph neighborhoods are most likely to contain
-unseen gold units. If the model returns fewer than $C$ valid
-identifiers we pad with the top-ranked nodes of $W_r$ not yet
-returned, so Step~A always emits exactly $C$ centers.
+\paragraph{Step A: seed selection.}
+At round $t$ the scaffolding takes the next $r$ unseen entries
+of the ranking $\pi$ as the window $W_t$, and the scorer
+selects $S$ seeds from $W_t$. If the scorer returns
+fewer than $S$ identifiers we pad with the top-ranked remaining
+entries of $W_t$.
 
 \paragraph{Step B: neighborhood expansion.}
-For each of the $C$ centers, the scaffolding runs a depth-$d$
-BFS along structural edges of the code graph (\textit{contains}
-by default; ablations in Section~\ref{sec:ablation} cover the
-four edge types). The neighbors are filtered to the next $N$
-unseen entries of the ranked list, so the candidate set the
-model sees stays bounded. A model call per center then selects
-the subset of these neighbors that must be modified, and the
-union across centers, $\mathcal{N}_r$, is deduplicated.
+For each of the $S$ seeds the scaffolding runs a depth-$d$
+BFS along structural edges of the code graph
+(\textit{contains} by default; ablations in
+Section~\ref{sec:ablation} cover the four edge types). We
+keep only neighbors that also appear in the top-$N$ of $\pi$
+(with $N{=}500$ throughout), a cheap rank pre-filter that
+removes graph noise without invoking the scorer. The scorer
+then keeps the $n$ most relevant survivors per seed, yielding
+up to $Sn$ neighbors $\mathcal{N}_t$.
 
-\paragraph{Step C: list refinement.}
-A final model call sees the issue $q$, the current list
-$L_{r-1}$, the window $W_r$, and the deduplicated set
-$\mathcal{N}_r$, and selects $L$ identifiers from
-$L_{r-1} \cup W_r \cup \mathcal{N}_r$ to form $L_r$. The
-scaffolding then records the newly-shown identifiers, advances
-the offset, and continues.
+\paragraph{Step C: list update.}
+A single agent call sees the issue $q$, the current returned
+list $\hat{L}_{t-1}$ (initialised to the top-$K$ of $\pi$ at
+$t{=}0$), the window $W_t$, and the scorer-selected neighbors
+$\mathcal{N}_t$, and writes back the updated length-$K$ list
+$\hat{L}_t$.
 
-Three properties of this loop matter for what follows.
-\emph{First}, every model call sees only $W_r$, a single
-neighborhood, or the deduplicated round pool, so the per-call
-token cost is roughly constant across rounds; a 32K context
-comfortably absorbs each call regardless of how many rounds the
-trajectory uses. \emph{Second}, the loop offers a natural
-ablation: removing Steps~A and~B reduces it to a pure
-window-refine loop and isolates the contribution of graph
-exploration. \emph{Third}, $L_r$ at any round is a valid
-prediction, so the round structure exposes a per-round
-potential that we develop into a training target in the next
-section.
+No call sees more than $r + Sn$ candidates plus $\hat{L}_{t-1}$, so
+per-call token cost is roughly constant across rounds and a
+32K context comfortably absorbs it. Removing Steps~A and~B
+collapses the procedure to a pure window-update loop, giving a
+clean ablation that isolates the contribution of graph
+exploration (Section~\ref{sec:ablation}). The final prediction
+is $\hat{L} \equiv \hat{L}_R$.
 
-\subsection{A Dense, Recall-Aligned Per-Round Target}
-\label{sec:telescope}
-% - Define the secured-gold potential  Phi_r = |Y* intersect L_r|.
-% - Per-round signal  r_r = (Phi_r - Phi_{r-1}) / D, with
-%   D = |Y* intersect candidates|  =  (gold added - gold dropped)/D.
-% - EQUATION (telescoping):  sum_r r_r = (Phi_R - Phi_0)/D
-%   = recall@L(L_final) - recall@L(L_0).
-% - THEOREM (state here, proof -> Appendix A): by potential-
-%   based reward shaping \citep{ng1999policy}, shaping with a
-%   state potential leaves the optimal policy invariant; hence
-%   the dense per-round objective and sparse end-to-end
-%   recall@L share the same optimum -- there is no myopia gap.
-% - IMPLICATION (the load-bearing sentence): the per-round
-%   optimum is closed-form, so training needs no policy
-%   gradient; supervised learning on the per-round target is
-%   denser, more stable, and cheaper than RL on the same signal.
-%   (~0.3-0.35 page)
+\subsection{Training the Scorer}
+\label{sec:training}
 
-\subsection{Supervised Training Objective}
-\label{sec:objective}
-% - Per round build the pool P_r = L_{r-1} U window_r; labels
-%   y_j = 1[j in Y*].
-% - Scoring without a new head: use the model's own yes/no
-%   token logits, s_j = logit(yes) - logit(no), p_j = sigma(s_j).
-%   Zero new parameters; LoRA-friendly; avoids the cold-start
-%   failure of a randomly-initialized head.
-% - EQUATION (weighted BCE): the main term; its optimum is
-%   "every gold scored above every non-gold", which yields a
-%   max-coverage top-L.
-% - EQUATION (coverage term L_cov): a differentiable, listwise,
-%   permutation-invariant surrogate for covering the whole gold
-%   set; it never penalizes gold-vs-gold order.
-% - Total objective: L = L_bce + lambda * L_cov.
-% - State the guarantee scope: exact recall@L co-optimality
-%   holds at w+ = w- = 1; an asymmetric w+ > w- is a class-
-%   imbalance / "dropping gold is worse" heuristic -- report it
-%   as a tuning choice, not part of the theorem. lambda = 0 is
-%   the ablation baseline.
-% - Top-L selection is inference-only and never differentiated.
-% - One sentence: stages are trained densest-signal-first
-%   (curriculum); full staging details -> Appendix B.
-%   (~0.45-0.5 page)
+The dense per-round shaping signal the scaffolding exposes
+telescopes to end-to-end $\text{recall}@K$, so by potential-based
+reward shaping \citep{ng1999policy} the dense per-round objective
+and the sparse end-to-end metric share the same optimum; we state
+and prove the identity in Appendix~\ref{app:proof}. Training the
+scorer therefore reduces to supervised learning on labelled
+candidate windows rather than reinforcement learning over
+multi-step trajectories. We parameterise the scorer as a low-rank
+adaptation \citep{hu2022lora} of Qwen2.5-Coder-3B-Instruct
+\citep{hui2024qwen25codertechnicalreport}; only the adapter
+weights move during training, and no new scoring head is added.
+A standalone evaluation of the trained scorer against base
+Qwen and GPT-5.3 Codex baselines is reported in
+Appendix~\ref{app:results}.
+
+\paragraph{Score readout.}
+For an issue $q$ and a candidate function $c$, we form a single
+chat-formatted prompt $x(q, c)$ that contains $q$, the
+token-truncated source of $c$, and an assistant turn asking whether
+$c$ is relevant to $q$. Writing $\ell(x) \in \mathbb{R}^{|V|}$ for
+the next-token logits at the final position of $x$, we score $c$ by
+the contrast between two fixed vocabulary tokens
+($\ell_{+}$ for the \textsc{yes} token, $\ell_{-}$ for \textsc{no}),
+\begin{equation}
+\begin{aligned}
+  s(q,c) &= \ell_{+}\!\bigl(x(q,c)\bigr) - \ell_{-}\!\bigl(x(q,c)\bigr), \\
+  p(q,c) &= \sigma\!\bigl(s(q,c)\bigr),
+\end{aligned}
+  \label{eq:score}
+\end{equation}
+with $\sigma$ the logistic sigmoid. The language-model head stays
+frozen, so the readout adds no parameters.
+
+\paragraph{Training groups.}
+Each training instance is a single issue $q$ together with a
+\emph{group} of $M$ candidates assembled to mirror the inference
+window. The group contains every ground-truth function for $q$
+that lies inside the retriever's top-$N$ pool, completed with
+non-relevant candidates drawn to span the full rank depth: a fixed
+fraction is taken as hard negatives from the top of the pool, and
+the remaining slots are filled by one-per-bin sampling across the
+deeper pool. Members are position-shuffled so order does not leak
+the label, and negatives are re-sampled at the start of every
+epoch (Appendix~\ref{app:details}).
+
+\paragraph{Objective.}
+Let $s_j := s(q, c_j)$ and $y_j \in \{0,1\}$ be the label of
+$c_j$, and write $\mathcal{G} = \{j : y_j = 1\}$ for the indices
+of the ground-truth members. The loss combines a pointwise binary
+cross-entropy under the sigmoid link of~\eqref{eq:score},
+\begin{equation}
+\begin{aligned}
+  \mathcal{L}_{\text{BCE}}
+   = -\frac{1}{M}\sum_{j=1}^{M} \bigl[\,
+   &y_j \log \sigma(s_j) \\
+   &{}+ (1-y_j) \log(1-\sigma(s_j)) \,\bigr],
+\end{aligned}
+  \label{eq:bce}
+\end{equation}
+with a listwise \emph{coverage} term --- a softmax log-likelihood
+over the group, evaluated at each ground-truth member and averaged,
+\begin{equation}
+  \mathcal{L}_{\text{cov}}
+  = -\frac{1}{|\mathcal{G}|}\sum_{j \in \mathcal{G}}
+    \log \frac{\exp(s_j)}{\sum_{k=1}^{M} \exp(s_k)}.
+  \label{eq:cov}
+\end{equation}
+The full objective is the convex combination
+$\mathcal{L} = \mathcal{L}_{\text{BCE}} + \lambda\, \mathcal{L}_{\text{cov}}$.
+$\mathcal{L}_{\text{BCE}}$ supplies a gradient on every candidate
+and calibrates the per-candidate probabilities that downstream
+selection and the next epoch's hard-negative mining read off the
+score. $\mathcal{L}_{\text{cov}}$ is permutation-invariant across
+$\mathcal{G}$ and concentrates softmax mass on ground-truth members
+relative to in-group negatives, without penalising gold-vs-gold
+order. Setting $\lambda{=}0$ recovers a pure-BCE scorer, which
+we report as an ablation alongside the combined loss
+(Section~\ref{sec:ablation}). Top-$K$ selection itself is performed
+only at inference and is never differentiated.

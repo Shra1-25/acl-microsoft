@@ -11,8 +11,7 @@ functions an issue actually touches, the step known as
 unrecoverable: once a wrong location enters the agent's editable
 context, the repair stage reasons over the wrong code, and no
 later reasoning recovers the correct patch
-\citep{jimenez2024swebench, yang2024sweagent}. The strongest
-systems are built around this fact. \citet{xia2024agentless}
+\citep{jimenez2024swebench, yang2024sweagent}. \citet{xia2024agentless}
 drop agentic interaction and resolve issues with a fixed
 localize-then-repair pipeline, crediting much of their accuracy
 to a hierarchical localization phase, and methods that improve
@@ -21,11 +20,11 @@ resolution \citep{sohrabizadeh2025nemotroncortexa}. Localization
 is therefore not a preprocessing convenience but the step that
 determines how well downstream repair can perform.
 
-Yet localizing well is hard: a real repository holds thousands
-of files joined by tangled import, call, and inheritance edges,
-while an issue report describes symptoms in natural language
-that can sit far from the code that must change. Current systems
-close this gap in four ways. Reinforcement learning methods
+% Yet localizing well is hard: a real repository holds thousands
+% of files joined by tangled import, call, and inheritance edges,
+% while an issue report describes symptoms in natural language
+% that can sit far from the code that must change. 
+Current systems close this gap in four ways. Reinforcement learning methods
 train the search policy itself: RepoSearcher pairs
 tool-integrated RL with rejection-sampled supervised
 fine-tuning \citep{ma2025tooltrain}, and SWE-RL scales RL over
@@ -37,7 +36,7 @@ Graph-exploration agents such as LocAgent let an LLM traverse a
 repository code graph, hopping freely between related code units
 \citep{chen2025locagent}. Dense retrieval methods skip the agent
 altogether: SWERank scores code units with a bi-encoder
-retriever and a listwise LLM reranker
+retriever and a listwise LLM scorer
 \citep{reddy2025sweranksoftwareissuelocalization}.
 
 The first three families pay for accuracy in tokens, and none of

@@ -15,7 +15,8 @@ tool and trains end-to-end with RL from a base model, so that a
 multi-step episodes that return only a sparse terminal reward,
 so adaptation is costly in rollouts and compute. Our round
 decomposition exposes a dense per-round target that telescopes
-to recall@$L$ (Section~\ref{sec:telescope}), turning the same
+to recall@$K$ (Section~\ref{sec:training}; proof in
+Appendix~\ref{app:proof}), turning the same
 problem into ordinary supervised fine-tuning.
 
 \paragraph{Agentic scaffolding.}
@@ -58,7 +59,7 @@ Localization is also posed as retrieval. Lexical matching
 guo2021graphcodebertpretrainingcoderepresentations,
 zhang2024codesage} score code units against the issue text, and
 SWERank sharpens this for issue localization with a bi-encoder
-retriever and a listwise LLM reranker
+retriever and a listwise LLM scorer
 \citep{reddy2025sweranksoftwareissuelocalization}; CoRet
 improves the retriever for code-editing queries
 \citep{fehr-etal-2025-coret} and SpIDER incorporates repository
@@ -71,7 +72,7 @@ adds a multi-turn agentic loop with a memory buffer
 \citep{swerankplus2025}, yet the loop is open-ended and the
 training signal stays a ranking objective. We recast
 localization as sequential set-coverage on a code graph and
-train an objective provably co-optimal with recall@$L$
-(Section~\ref{sec:objective}), keeping the bounded cost of
+train an objective provably co-optimal with recall@$K$
+(Section~\ref{sec:training}), keeping the bounded cost of
 retrieval while adding the set recovery and multi-round
 refinement that ranking omits.

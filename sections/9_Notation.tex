@@ -1,0 +1,57 @@
+\section{Notation}
+\label{app:notation}
+
+Table~\ref{tab:notation} collects the symbols used in the
+paper, grouped by the section of first use. The symbol
+$\mathcal{G}$ denotes the code graph in
+Section~\ref{sec:setup} and an index set of ground-truth
+members during scorer training in
+Section~\ref{sec:training}; the two uses do not co-occur and
+context disambiguates.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{@{}lp{5.4cm}@{}}
+\toprule
+\textbf{Symbol} & \textbf{Meaning} \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Problem setup (Sec.~\ref{sec:setup})}} \\
+$\mathcal{G}{=}(V,E)$ & Code graph: $V$ are code units, $E$ are structural edges (\textit{contains}, \textit{invokes}, \textit{imports}, \textit{inherits}) \\
+$q$           & Natural-language issue description \\
+$\pi$         & Retriever-induced ranking over $V$ \\
+$G \subseteq V$ & Gold set: nodes that must change to resolve $q$ \\
+$K$           & Fixed length of the returned list \\
+$\hat{L}$     & Predicted length-$K$ list, $\hat{L} \subseteq V$ \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Scaffolding (Sec.~\ref{sec:scaffold})}} \\
+$t$, $R$      & Round index; round budget (max rounds) \\
+$r$           & Window size: candidates revealed per round \\
+$W_t$         & Round-$t$ window: next $r$ unseen entries of $\pi$ \\
+$d$           & BFS depth (Step B) \\
+$N$           & Retriever pool size for the Step B pre-filter ($N{=}500$) \\
+$S$           & Seeds (BFS centers) per round \\
+$n$           & Max neighbors per seed kept by the scorer \\
+$\mathcal{N}_t$ & Scorer-kept neighbors at round $t$; $|\mathcal{N}_t|\!\le\!Sn$ \\
+$\hat{L}_t$   & Running predicted list at round $t$; $\hat{L}\!\equiv\!\hat{L}_R$ \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Scorer training (Sec.~\ref{sec:training})}} \\
+$c$, $c_j$    & Candidate function \\
+$x(q,c)$      & Chat prompt fed to the scorer \\
+$\ell_{+}, \ell_{-}$ & Logits at the \textsc{yes} / \textsc{no} vocabulary tokens \\
+$s(q,c)$, $s_j$ & Scorer score, $\ell_{+}-\ell_{-}$ \\
+$p(q,c)$      & $\sigma(s(q,c))$, sigmoid probability \\
+$y_j$         & Relevance label of $c_j$ \\
+$M$           & Group size: candidates per training instance \\
+$\mathcal{G}$ & Index set of GT members in a training group, $\{j:y_j{=}1\}$ (overloads the code-graph symbol) \\
+$\mathcal{L}_{\text{BCE}}$, $\mathcal{L}_{\text{cov}}$ & Pointwise BCE; listwise coverage loss \\
+$\lambda$     & Coverage weight ($\lambda{=}0.2$ main; $\lambda{=}0$ ablation) \\
+$w_{+}, w_{-}$ & BCE class weights (positive; negative) \\
+\bottomrule
+\end{tabular}
+\caption{Notation used throughout the paper. Each symbol is
+also defined at its point of first use in the body.}
+\label{tab:notation}
+\end{table}

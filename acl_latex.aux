@@ -99,21 +99,9 @@
 \@LN{80}{0}
 \@LN{81}{0}
 \@LN{82}{0}
-\citation{ma2025tooltrain}
-\citation{wei2025swerl}
-\citation{zhang2025reponavigator}
-\citation{yang2024sweagent,wang2025openhands}
-\citation{orwall2024moatless}
-\citation{xia2024agentless}
-\citation{chen2025locagent}
-\citation{jiang2025cosilsoftwareissuelocalization}
-\citation{ouyang2025repograph}
-\citation{Robertson1994OkapiATBM25}
-\citation{feng-etal-2020-codebert,guo2021graphcodebertpretrainingcoderepresentations,zhang2024codesage}
-\citation{reddy2025sweranksoftwareissuelocalization}
-\citation{fehr-etal-2025-coret}
-\citation{chaudhari2025spider}
-\citation{swerankplus2025}
+\citation{ng1999policy}
+\citation{hu2022lora}
+\citation{hui2024qwen25codertechnicalreport}
 \@LN@col{1}
 \@LN{83}{1}
 \@LN{84}{1}
@@ -125,20 +113,22 @@
 \@LN{90}{1}
 \@LN{91}{1}
 \@LN{92}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{2}{section.2}\protected@file@percent }
+\newlabel{sec:method}{{2}{2}{Method}{section.2}{}}
 \@LN{93}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Problem Setup}{2}{subsection.2.1}\protected@file@percent }
+\newlabel{sec:setup}{{2.1}{2}{Problem Setup}{subsection.2.1}{}}
 \@LN{94}{1}
 \@LN{95}{1}
 \@LN{96}{1}
 \@LN{97}{1}
 \@LN{98}{1}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
-\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{Reinforcement learning for localization.}{2}{section*.1}\protected@file@percent }
 \@LN{99}{1}
 \@LN{100}{1}
 \@LN{101}{1}
 \@LN{102}{1}
 \@LN{103}{1}
+\newlabel{eq:recall}{{1}{2}{Problem Setup}{equation.1}{}}
 \@LN{104}{1}
 \@LN{105}{1}
 \@LN{106}{1}
@@ -149,33 +139,39 @@
 \@LN{111}{1}
 \@LN{112}{1}
 \@LN{113}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Multi-Agent Multi-Turn Scaffolding}{2}{subsection.2.2}\protected@file@percent }
+\newlabel{sec:scaffold}{{2.2}{2}{Multi-Agent Multi-Turn Scaffolding}{subsection.2.2}{}}
 \@LN{114}{1}
 \@LN{115}{1}
 \@LN{116}{1}
 \@LN{117}{1}
-\@writefile{toc}{\contentsline {paragraph}{Agentic scaffolding.}{2}{section*.2}\protected@file@percent }
 \@LN{118}{1}
 \@LN{119}{1}
 \@LN{120}{1}
 \@LN{121}{1}
+\@writefile{toc}{\contentsline {paragraph}{Step A: seed selection.}{2}{section*.2}\protected@file@percent }
 \@LN{122}{1}
 \@LN{123}{1}
 \@LN{124}{1}
 \@LN{125}{1}
 \@LN{126}{1}
 \@LN{127}{1}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of our multi-agent, graph-aware code localization method. A retriever returns a top-$r$ ranked list of candidate functions; for each seed selected by the scorer, we traverse the code graph to collect its 4-hop neighbors, which the post-trained scorer ranks to select the most relevant subgraph nodes. An agent takes the issue, the ranked list, and these subgraph nodes as input and refines them into the final locations. In the example, the buggy function \texttt  {func25} is recovered through graph expansion from the seed even though lexical ranking alone would miss it. One round is shown; the loop repeats for $R$ rounds.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:scaffold}{{1}{2}{Overview of our multi-agent, graph-aware code localization method. A retriever returns a top-$r$ ranked list of candidate functions; for each seed selected by the scorer, we traverse the code graph to collect its 4-hop neighbors, which the post-trained scorer ranks to select the most relevant subgraph nodes. An agent takes the issue, the ranked list, and these subgraph nodes as input and refines them into the final locations. In the example, the buggy function \texttt {func25} is recovered through graph expansion from the seed even though lexical ranking alone would miss it. One round is shown; the loop repeats for $R$ rounds}{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Step B: neighborhood expansion.}{2}{section*.3}\protected@file@percent }
 \@LN{128}{1}
 \@LN{129}{1}
 \@LN{130}{1}
 \@LN{131}{1}
 \@LN{132}{1}
-\@LN@col{2}
 \@LN{133}{1}
 \@LN{134}{1}
 \@LN{135}{1}
 \@LN{136}{1}
 \@LN{137}{1}
-\@writefile{toc}{\contentsline {paragraph}{Graph-based exploration.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step C: list update.}{2}{section*.4}\protected@file@percent }
 \@LN{138}{1}
 \@LN{139}{1}
 \@LN{140}{1}
@@ -190,51 +186,48 @@
 \@LN{149}{1}
 \@LN{150}{1}
 \@LN{151}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Training the Scorer}{2}{subsection.2.3}\protected@file@percent }
+\newlabel{sec:training}{{2.3}{2}{Training the Scorer}{subsection.2.3}{}}
 \@LN{152}{1}
 \@LN{153}{1}
-\@writefile{toc}{\contentsline {paragraph}{Retrieval and reranking.}{2}{section*.4}\protected@file@percent }
 \@LN{154}{1}
 \@LN{155}{1}
-\@LN{156}{1}
-\@LN{157}{1}
-\@LN{158}{1}
-\@LN{159}{1}
-\@LN{160}{1}
-\@LN{161}{1}
-\@LN{162}{1}
-\@LN{163}{1}
-\@LN{164}{1}
-\@LN{165}{1}
-\@LN{166}{1}
-\@LN{167}{1}
-\@LN{168}{1}
-\@LN{169}{1}
-\@LN{170}{1}
-\@LN{171}{1}
-\@LN{172}{1}
-\@LN{173}{1}
-\@LN{174}{1}
-\@LN{175}{1}
-\@LN{176}{1}
-\@LN{177}{1}
-\@LN{178}{1}
-\citation{*}
-\bibdata{custom}
-\bibcite{ahmed2024can}{{1}{2024}{{Ahmed et~al.}}{{Ahmed, Devanbu, Treude, and Pradel}}}
-\bibcite{alshahwan2024automated}{{2}{2024}{{Alshahwan et~al.}}{{Alshahwan, Chheda, Finogenova, Gokkaya, Harman, Harper, Marginean, Sengupta, and Wang}}}
+\citation{jimenez2024swebench}
+\citation{jimenez2024swebench}
+\citation{chaudhari2025spider}
+\citation{hui2024qwen25codertechnicalreport}
+\citation{yang2025qwen3}
+\citation{reddy2025sweranksoftwareissuelocalization}
 \@LN@col{1}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The multi-round localization scaffolding. Each round consumes a bounded window of $K$ ranked candidates, expands neighborhoods around $C$ seed centers via bounded BFS on the code graph, and refines a fixed-length returned list $L_r$. Per-call token cost stays roughly constant across rounds.}}{3}{figure.caption.5}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:scaffold}{{1}{3}{The multi-round localization scaffolding. Each round consumes a bounded window of $K$ ranked candidates, expands neighborhoods around $C$ seed centers via bounded BFS on the code graph, and refines a fixed-length returned list $L_r$. Per-call token cost stays roughly constant across rounds}{figure.caption.5}{}}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@writefile{toc}{\contentsline {paragraph}{Score readout.}{3}{section*.5}\protected@file@percent }
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\newlabel{eq:score}{{2}{3}{Score readout}{equation.2}{}}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
 \@LN{179}{2}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
-\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training groups.}{3}{section*.6}\protected@file@percent }
 \@LN{180}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{3}{subsection.3.1}\protected@file@percent }
-\newlabel{sec:setup}{{3.1}{3}{Problem Setup}{subsection.3.1}{}}
 \@LN{181}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Multi-Round Localization Scaffolding}{3}{subsection.3.2}\protected@file@percent }
-\newlabel{sec:scaffold}{{3.2}{3}{Multi-Round Localization Scaffolding}{subsection.3.2}{}}
 \@LN{182}{2}
 \@LN{183}{2}
 \@LN{184}{2}
@@ -245,22 +238,24 @@
 \@LN{189}{2}
 \@LN{190}{2}
 \@LN{191}{2}
+\@writefile{toc}{\contentsline {paragraph}{Objective.}{3}{section*.7}\protected@file@percent }
 \@LN{192}{2}
 \@LN{193}{2}
 \@LN{194}{2}
 \@LN{195}{2}
 \@LN{196}{2}
+\newlabel{eq:bce}{{3}{3}{Objective}{equation.3}{}}
 \@LN{197}{2}
+\@LN@col{2}
 \@LN{198}{2}
 \@LN{199}{2}
 \@LN{200}{2}
-\@writefile{toc}{\contentsline {paragraph}{Window.}{3}{section*.6}\protected@file@percent }
+\newlabel{eq:cov}{{4}{3}{Objective}{equation.4}{}}
 \@LN{201}{2}
 \@LN{202}{2}
 \@LN{203}{2}
 \@LN{204}{2}
 \@LN{205}{2}
-\@writefile{toc}{\contentsline {paragraph}{Step A: seed-center selection.}{3}{section*.7}\protected@file@percent }
 \@LN{206}{2}
 \@LN{207}{2}
 \@LN{208}{2}
@@ -268,19 +263,21 @@
 \@LN{210}{2}
 \@LN{211}{2}
 \@LN{212}{2}
-\@writefile{toc}{\contentsline {paragraph}{Step B: neighborhood expansion.}{3}{section*.8}\protected@file@percent }
 \@LN{213}{2}
 \@LN{214}{2}
-\@LN@col{2}
 \@LN{215}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experiments}{3}{section.3}\protected@file@percent }
+\newlabel{sec:experiments}{{3}{3}{Experiments}{section.3}{}}
 \@LN{216}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Setup}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:setup-exp}{{3.1}{3}{Setup}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.8}\protected@file@percent }
 \@LN{217}{2}
 \@LN{218}{2}
 \@LN{219}{2}
 \@LN{220}{2}
 \@LN{221}{2}
 \@LN{222}{2}
-\@writefile{toc}{\contentsline {paragraph}{Step C: list refinement.}{3}{section*.9}\protected@file@percent }
 \@LN{223}{2}
 \@LN{224}{2}
 \@LN{225}{2}
@@ -289,6 +286,7 @@
 \@LN{228}{2}
 \@LN{229}{2}
 \@LN{230}{2}
+\@writefile{toc}{\contentsline {paragraph}{Backbones and baselines.}{3}{section*.9}\protected@file@percent }
 \@LN{231}{2}
 \@LN{232}{2}
 \@LN{233}{2}
@@ -301,68 +299,35 @@
 \@LN{240}{2}
 \@LN{241}{2}
 \@LN{242}{2}
-\@LN{243}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}A Dense, Recall-Aligned Per-Round Target}{3}{subsection.3.3}\protected@file@percent }
-\newlabel{sec:telescope}{{3.3}{3}{A Dense, Recall-Aligned Per-Round Target}{subsection.3.3}{}}
-\@LN{244}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Supervised Training Objective}{3}{subsection.3.4}\protected@file@percent }
-\newlabel{sec:objective}{{3.4}{3}{Supervised Training Objective}{subsection.3.4}{}}
-\@LN{245}{2}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
-\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
-\@LN{246}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
-\newlabel{sec:setup-exp}{{4.1}{3}{Setup}{subsection.4.1}{}}
-\@LN{247}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{3}{subsection.4.2}\protected@file@percent }
-\newlabel{sec:main-results}{{4.2}{3}{Main Results}{subsection.4.2}{}}
-\@LN{248}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Does the Coverage Term Help?}{3}{subsection.4.3}\protected@file@percent }
-\newlabel{sec:ablation}{{4.3}{3}{Does the Coverage Term Help?}{subsection.4.3}{}}
-\@LN{249}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Efficiency and Scaling}{3}{subsection.4.4}\protected@file@percent }
-\newlabel{sec:efficiency}{{4.4}{3}{Efficiency and Scaling}{subsection.4.4}{}}
-\@LN{250}{2}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{3}{section.5}\protected@file@percent }
-\newlabel{sec:conclusion}{{5}{3}{Conclusion}{section.5}{}}
-\@LN{251}{2}
-\newlabel{sec:limitations}{{5}{3}{Limitations}{section*.10}{}}
-\@LN{252}{2}
-\@LN{253}{2}
-\@LN{254}{2}
-\@LN{255}{2}
-\@LN{256}{2}
-\@LN{257}{2}
-\@LN{258}{2}
-\@LN{259}{2}
-\@LN{260}{2}
-\@LN{261}{2}
-\@LN{262}{2}
-\bibcite{athiwaratkun2023multilingual}{{3}{2023}{{Athiwaratkun et~al.}}{{Athiwaratkun, Gouda, Wang, Li, Tian, Tan, Ahmad, Wang, Sun, Shang, Gonugondla, Ding, Kumar, Fulton, Farahani, Jain, Giaquinto, Qian, Ramanathan, Nallapati, Ray, Bhatia, Sengupta, Roth, and Xiang}}}
-\bibcite{austin2021program}{{4}{2021}{{Austin et~al.}}{{Austin, Odena, Nye, Bosma, Michalewski, Dohan, Jiang, Cai, Terry, Le et~al.}}}
-\bibcite{bigcode-evaluation-harness}{{5}{2022}{{Ben~Allal et~al.}}{{Ben~Allal, Muennighoff, Kumar~Umapathi, Lipkin, and von Werra}}}
-\bibcite{chaudhari2025spider}{{6}{2025}{{Chaudhari et~al.}}{{Chaudhari, Jacob, Goswami, Cao, Rashid, and Bock}}}
-\bibcite{chen2025swebench}{{7}{2025{a}}{{Chen et~al.}}{{}}}
-\bibcite{chen2021evaluating}{{8}{2021}{{Chen et~al.}}{{Chen, Tworek, Jun, Yuan, Pinto, Kaplan, Edwards, Burda, Joseph, Brockman et~al.}}}
-\bibcite{chen2025locagent}{{9}{2025{b}}{{Chen et~al.}}{{Chen, Tang, Deng, Wu, Wu, Jiang, Prasanna, Cohan, and Wang}}}
-\bibcite{sweverified}{{10}{2024{a}}{{Chowdhury et~al.}}{{Chowdhury, Aung, Shern, Jaffe, Sherburn, Starace, Mays, Dias, Aljubeh, Glaese, Jimenez, Yang, Ho, Patwardhan, Liu, and Madry}}}
-\bibcite{chowdhury2024introducingswebenchverified}{{11}{2024{b}}{{Chowdhury et~al.}}{{Chowdhury, Aung, Shern, Jaffe, Sherburn, Starace, Mays, Dias, Aljubeh, Glaese, Jimenez, Yang, Liu, and Madry}}}
-\bibcite{clement-etal-2020-pymt5}{{12}{2020}{{Clement et~al.}}{{Clement, Drain, Timcheck, Svyatkovskiy, and Sundaresan}}}
-\bibcite{dai2024mhpp}{{13}{2024}{{Dai et~al.}}{{Dai, Lu, Feng, Ruan, Cheng, Tan, and Guo}}}
-\bibcite{deng2023benchmark}{{14}{2023}{{Deng et~al.}}{{Deng, Zhao, Tang, Gerstein, and Cohan}}}
-\bibcite{ding-etal-2024-cocomic}{{15}{2024}{{Ding et~al.}}{{Ding, Wang, Ahmad, Ramanathan, Nallapati, Bhatia, Roth, and Xiang}}}
-\bibcite{ding2023crosscodeeval}{{16}{2023}{{Ding et~al.}}{{Ding, Wang, Ahmad, Ding, Tan, Jain, Ramanathan, Nallapati, Bhatia, Roth, and Xiang}}}
-\bibcite{fehr-etal-2025-coret}{{17}{2025}{{Fehr et~al.}}{{Fehr, Teja~S, Franceschi, and Zappella}}}
-\bibcite{feng-etal-2020-codebert}{{18}{2020}{{Feng et~al.}}{{Feng, Guo, Tang, Duan, Feng, Gong, Shou, Qin, Liu, Jiang, and Zhou}}}
-\bibcite{aider}{{19}{2024}{{Gauthier}}{{}}}
-\bibcite{goodhart1976monetary}{{20}{1976}{{Goodhart}}{{}}}
-\bibcite{gu2024cruxeval}{{21}{2024}{{Gu et~al.}}{{Gu, Rozi{\`e}re, Leather, Solar-Lezama, Synnaeve, and Wang}}}
 \@LN@col{1}
+\@LN{243}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Main Results}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:main-results}{{3.2}{4}{Main Results}{subsection.3.2}{}}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
 \@LN{263}{3}
 \@LN{264}{3}
 \@LN{265}{3}
 \@LN{266}{3}
 \@LN{267}{3}
+\@writefile{toc}{\contentsline {paragraph}{Standalone scorer analysis.}{4}{section*.11}\protected@file@percent }
 \@LN{268}{3}
 \@LN{269}{3}
 \@LN{270}{3}
@@ -375,6 +340,7 @@
 \@LN{277}{3}
 \@LN{278}{3}
 \@LN{279}{3}
+\@writefile{toc}{\contentsline {paragraph}{End-to-end results on SWE-PolyBench.}{4}{section*.13}\protected@file@percent }
 \@LN{280}{3}
 \@LN{281}{3}
 \@LN{282}{3}
@@ -388,9 +354,19 @@
 \@LN{290}{3}
 \@LN{291}{3}
 \@LN{292}{3}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Per-language function-level recall on SWE-PolyBench under a windowed scorer protocol (pool size $\text  {PS}{=}100$, candidate window $K{=}20$, top-$L{=}5$). The dashed line is the retrieval ceiling at $\text  {PS}{=}100$. Comparisons include the raw embedding ranker at $L{=}5$, base and fine-tuned Qwen2.5-Coder 0.5B/3B-Instruct, and GPT-5.3 Codex. The fine-tuned 3B scorer dominates the 0.5B variants and trails GPT-5.3 Codex by $2$--$10$ points across languages; JavaScript shows the largest residual gap, where GPT-5.3 Codex benefits most from its longer context.}}{4}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:scorer-func-recall}{{2}{4}{Per-language function-level recall on SWE-PolyBench under a windowed scorer protocol (pool size $\text {PS}{=}100$, candidate window $K{=}20$, top-$L{=}5$). The dashed line is the retrieval ceiling at $\text {PS}{=}100$. Comparisons include the raw embedding ranker at $L{=}5$, base and fine-tuned Qwen2.5-Coder 0.5B/3B-Instruct, and GPT-5.3 Codex. The fine-tuned 3B scorer dominates the 0.5B variants and trails GPT-5.3 Codex by $2$--$10$ points across languages; JavaScript shows the largest residual gap, where GPT-5.3 Codex benefits most from its longer context}{figure.caption.12}{}}
 \@LN{293}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Does the Coverage Term Help?}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:ablation}{{3.3}{4}{Does the Coverage Term Help?}{subsection.3.3}{}}
 \@LN{294}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Efficiency and Scaling}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:efficiency}{{3.4}{4}{Efficiency and Scaling}{subsection.3.4}{}}
 \@LN{295}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion and Conclusion}{4}{section.4}\protected@file@percent }
+\newlabel{sec:conclusion}{{4}{4}{Discussion and Conclusion}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Discussion.}{4}{section*.15}\protected@file@percent }
 \@LN{296}{3}
 \@LN{297}{3}
 \@LN{298}{3}
@@ -409,6 +385,7 @@
 \@LN{311}{3}
 \@LN{312}{3}
 \@LN{313}{3}
+\@writefile{toc}{\contentsline {paragraph}{Key takeaways.}{4}{section*.16}\protected@file@percent }
 \@LN{314}{3}
 \@LN{315}{3}
 \@LN{316}{3}
@@ -416,580 +393,445 @@
 \@LN{318}{3}
 \@LN{319}{3}
 \@LN{320}{3}
-\@LN@col{2}
 \@LN{321}{3}
-\@LN{322}{3}
-\@LN{323}{3}
-\@LN{324}{3}
-\@LN{325}{3}
-\@LN{326}{3}
-\@LN{327}{3}
-\@LN{328}{3}
-\@LN{329}{3}
-\@LN{330}{3}
-\@LN{331}{3}
-\@LN{332}{3}
-\@LN{333}{3}
-\@LN{334}{3}
-\@LN{335}{3}
-\@LN{336}{3}
-\@LN{337}{3}
-\@LN{338}{3}
-\@LN{339}{3}
-\@LN{340}{3}
-\@LN{341}{3}
-\@LN{342}{3}
-\@LN{343}{3}
-\@LN{344}{3}
-\@LN{345}{3}
-\@LN{346}{3}
-\@LN{347}{3}
-\@LN{348}{3}
-\@LN{349}{3}
-\@LN{350}{3}
-\@LN{351}{3}
-\@LN{352}{3}
-\@LN{353}{3}
-\@LN{354}{3}
-\@LN{355}{3}
-\@LN{356}{3}
-\@LN{357}{3}
-\@LN{358}{3}
-\@LN{359}{3}
-\@LN{360}{3}
-\@LN{361}{3}
-\@LN{362}{3}
-\@LN{363}{3}
-\@LN{364}{3}
-\@LN{365}{3}
-\@LN{366}{3}
-\@LN{367}{3}
-\@LN{368}{3}
-\@LN{369}{3}
-\@LN{370}{3}
-\@LN{371}{3}
-\@LN{372}{3}
-\@LN{373}{3}
-\@LN{374}{3}
-\@LN{375}{3}
-\@LN{376}{3}
-\bibcite{gulwani2017program}{{22}{2017}{{Gulwani et~al.}}{{Gulwani, Polozov, Singh et~al.}}}
-\bibcite{guo2021graphcodebertpretrainingcoderepresentations}{{23}{2021}{{Guo et~al.}}{{Guo, Ren, Lu, Feng, Tang, Liu, Zhou, Duan, Svyatkovskiy, Fu, Tufano, Deng, Clement, Drain, Sundaresan, Yin, Jiang, and Zhou}}}
-\bibcite{guo2023longcoder}{{24}{2023}{{Guo et~al.}}{{Guo, Xu, Duan, Yin, and McAuley}}}
-\bibcite{guo2016deeprelevancematching}{{25}{2016}{{Guo et~al.}}{{Guo, Fan, Ai, and Croft}}}
-\bibcite{GUO2020deeplookintoneuralranking}{{26}{2020}{{Guo et~al.}}{{Guo, Fan, Pang, Yang, Ai, Zamani, Wu, Croft, and Cheng}}}
-\bibcite{hendrycks2021measuring}{{27}{2021}{{Hendrycks et~al.}}{{Hendrycks, Basart, Kadavath, Mazeika, Arora, Guo, Burns, Puranik, He, Song, and Steinhardt}}}
-\bibcite{hu2022lora}{{28}{2022}{{Hu et~al.}}{{Hu, yelong shen, Wallis, Allen-Zhu, Li, Wang, Wang, and Chen}}}
-\bibcite{MLAgentBench}{{29}{2024}{{Huang et~al.}}{{Huang, Vora, Liang, and Leskovec}}}
-\bibcite{husain2019codesearchnet}{{30}{2019}{{Husain et~al.}}{{Husain, Wu, Gazit, Allamanis, and Brockschmidt}}}
-\bibcite{jain2024livecodebench}{{31}{2024}{{Jain et~al.}}{{Jain, Han, Gu, Li, Yan, Zhang, Wang, Solar-Lezama, Sen, and Stoica}}}
-\bibcite{10.1145/3510003.3510203}{{32}{2022}{{Jain et~al.}}{{Jain, Vaidyanath, Iyer, Natarajan, Parthasarathy, Rajamani, and Sharma}}}
-\bibcite{jiang2024survey}{{33}{2024}{{Jiang et~al.}}{{Jiang, Wang, Shen, Kim, and Kim}}}
-\bibcite{jiang2025cosilsoftwareissuelocalization}{{34}{2025}{{Jiang et~al.}}{{Jiang, Ren, Yan, Jiang, Li, and Liu}}}
-\bibcite{swe-leaderboard}{{35}{2024{a}}{{Jimenez et~al.}}{{Jimenez, Yang, Wettig, Yao, Pei, Press, and Narasimhan}}}
-\bibcite{jimenez2024swebench}{{36}{2024{b}}{{Jimenez et~al.}}{{Jimenez, Yang, Wettig, Yao, Pei, Press, and Narasimhan}}}
-\bibcite{dsbench}{{37}{2024}{{Jing et~al.}}{{Jing, Huang, Wang, Yao, Yu, Ma, Zhang, Du, and Yu}}}
-\bibcite{jones2002visualization}{{38}{2002}{{Jones et~al.}}{{Jones, Harrold, and Stasko}}}
-\bibcite{Kang_2024_llm-based_faultlocalization}{{39}{2024}{{Kang et~al.}}{{Kang, An, and Yoo}}}
-\bibcite{pmlr-v202-lai23b}{{40}{2023}{{Lai et~al.}}{{Lai, Li, Wang, Zhang, Zhong, Zettlemoyer, Yih, Fried, Wang, and Yu}}}
-\bibcite{li2024evocodebench}{{41}{2024{a}}{{Li et~al.}}{{Li, Li, Zhang, Dong, and Jin}}}
-\bibcite{deveval}{{42}{2024{b}}{{Li et~al.}}{{Li, Li, Zhao, Li, Liu, Zhu, Wang, Liu, Fang, Wang, Ding, Zhang, Zhu, Dong, Jin, Li, Huang, Li, Gu, and Yang}}}
+\bibdata{custom}
+\bibcite{chaudhari2025spider}{{1}{2025}{{Chaudhari et~al.}}{{Chaudhari, Jacob, Goswami, Cao, Rashid, and Bock}}}
+\bibcite{chen2025locagent}{{2}{2025}{{Chen et~al.}}{{Chen, Tang, Deng, Wu, Wu, Jiang, Prasanna, Cohan, and Wang}}}
+\bibcite{fehr-etal-2025-coret}{{3}{2025}{{Fehr et~al.}}{{Fehr, Teja~S, Franceschi, and Zappella}}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Retrieval performance on SWE-Bench Verified ($N{=}500$). $\text  {Recall}@5$ is reported separately under a dense (SWERankEmbed-Large) and a lexical (BM25) first-stage retriever. Token consumption is the total tokens per issue (tokens/call $\times $ \#calls), averaged across the two retrievers. $^{*}$Zero-shot rows evaluate the raw retriever ranking at $K{=}20$, since no LLM-based pruning is applied.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:verified}{{1}{5}{Retrieval performance on SWE-Bench Verified ($N{=}500$). $\text {Recall}@5$ is reported separately under a dense (SWERankEmbed-Large) and a lexical (BM25) first-stage retriever. Token consumption is the total tokens per issue (tokens/call $\times $ \#calls), averaged across the two retrievers. $^{*}$Zero-shot rows evaluate the raw retriever ranking at $K{=}20$, since no LLM-based pruning is applied}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Retrieval performance on SWE-PolyBench Java and Python under two Step-C agents (GPT-5.3 Codex and Qwen3-Coder-30B-A3B-Instruct). Recall@5 and Accuracy@5 (perfect recall) are reported after filtering out instances with empty function-level GT and using denominator $|GT \cap \mathrm  {graph\_functions}|$. ``--'' marks a run we have not executed. Tokens/call is averaged across the kept instances; \#Calls is per issue.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:swepoly-java-python}{{2}{5}{Retrieval performance on SWE-PolyBench Java and Python under two Step-C agents (GPT-5.3 Codex and Qwen3-Coder-30B-A3B-Instruct). Recall@5 and Accuracy@5 (perfect recall) are reported after filtering out instances with empty function-level GT and using denominator $|GT \cap \mathrm {graph\_functions}|$. ``--'' marks a run we have not executed. Tokens/call is averaged across the kept instances; \#Calls is per issue}{table.caption.14}{}}
 \@LN@col{1}
-\@LN{377}{4}
-\@LN{378}{4}
-\@LN{379}{4}
-\@LN{380}{4}
-\@LN{381}{4}
-\@LN{382}{4}
-\@LN{383}{4}
-\@LN{384}{4}
-\@LN{385}{4}
-\@LN{386}{4}
-\@LN{387}{4}
-\@LN{388}{4}
-\@LN{389}{4}
-\@LN{390}{4}
-\@LN{391}{4}
-\@LN{392}{4}
-\@LN{393}{4}
-\@LN{394}{4}
-\@LN{395}{4}
-\@LN{396}{4}
-\@LN{397}{4}
-\@LN{398}{4}
-\@LN{399}{4}
-\@LN{400}{4}
-\@LN{401}{4}
-\@LN{402}{4}
-\@LN{403}{4}
-\@LN{404}{4}
-\@LN{405}{4}
-\@LN{406}{4}
-\@LN{407}{4}
-\@LN{408}{4}
-\@LN{409}{4}
-\@LN{410}{4}
-\@LN{411}{4}
-\@LN{412}{4}
-\@LN{413}{4}
-\@LN{414}{4}
-\@LN{415}{4}
-\@LN{416}{4}
-\@LN{417}{4}
-\@LN{418}{4}
-\@LN{419}{4}
-\@LN{420}{4}
-\@LN{421}{4}
-\@LN{422}{4}
-\@LN{423}{4}
-\@LN{424}{4}
-\@LN{425}{4}
-\@LN{426}{4}
-\@LN{427}{4}
-\@LN{428}{4}
-\@LN{429}{4}
-\@LN{430}{4}
-\@LN{431}{4}
-\@LN{432}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@writefile{toc}{\contentsline {paragraph}{Conclusion.}{5}{section*.17}\protected@file@percent }
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
 \@LN@col{2}
-\@LN{433}{4}
-\@LN{434}{4}
-\@LN{435}{4}
-\@LN{436}{4}
-\@LN{437}{4}
-\@LN{438}{4}
-\@LN{439}{4}
-\@LN{440}{4}
-\@LN{441}{4}
-\@LN{442}{4}
-\@LN{443}{4}
-\@LN{444}{4}
-\@LN{445}{4}
-\@LN{446}{4}
-\@LN{447}{4}
-\@LN{448}{4}
-\@LN{449}{4}
-\@LN{450}{4}
-\@LN{451}{4}
-\@LN{452}{4}
-\@LN{453}{4}
-\@LN{454}{4}
-\@LN{455}{4}
-\@LN{456}{4}
-\@LN{457}{4}
-\@LN{458}{4}
-\@LN{459}{4}
-\@LN{460}{4}
-\@LN{461}{4}
-\@LN{462}{4}
-\@LN{463}{4}
-\@LN{464}{4}
-\@LN{465}{4}
-\@LN{466}{4}
-\@LN{467}{4}
-\@LN{468}{4}
-\@LN{469}{4}
-\@LN{470}{4}
-\@LN{471}{4}
-\@LN{472}{4}
-\@LN{473}{4}
-\@LN{474}{4}
-\@LN{475}{4}
-\@LN{476}{4}
-\@LN{477}{4}
-\@LN{478}{4}
-\@LN{479}{4}
-\@LN{480}{4}
-\@LN{481}{4}
-\@LN{482}{4}
-\@LN{483}{4}
-\@LN{484}{4}
-\@LN{485}{4}
-\@LN{486}{4}
-\@LN{487}{4}
-\@LN{488}{4}
-\bibcite{li2024sketch2codeevaluatingvisionlanguagemodels}{{43}{2024{c}}{{Li et~al.}}{{Li, Zhang, and Yang}}}
-\bibcite{li2021fault}{{44}{2021}{{Li et~al.}}{{Li, Wang, and Nguyen}}}
-\bibcite{doi:10.1126/science.abq1158}{{45}{2022}{{Li et~al.}}{{Li, Choi, Chung, Kushman, Schrittwieser, Leblond, Eccles, Keeling, Gimeno, Lago, Hubert, Choy, de~Masson~d’Autume, Babuschkin, Chen, Huang, Welbl, Gowal, Cherepanov, Molloy, Mankowitz, Robson, Kohli, de~Freitas, Kavukcuoglu, and Vinyals}}}
-\bibcite{liu2024repobench}{{46}{2024}{{Liu et~al.}}{{Liu, Xu, and McAuley}}}
-\bibcite{locagent2025}{{47}{2025}{{LocAgent Team}}{{}}}
-\bibcite{luo2024repoagent}{{48}{2024}{{Luo et~al.}}{{Luo, Ye, Liang, Zhang, Qin, Lu, Wu, Cong, Lin, Zhang, Che, Liu, and Sun}}}
-\bibcite{ma2025tooltrain}{{49}{2025}{{Ma et~al.}}{{Ma, Peng, Zeng, Gao, Zou, and Xie}}}
-\bibcite{10.1145/362566.362568}{{50}{1971}{{Manna and Waldinger}}{{}}}
-\bibcite{miserendino2025swe}{{51}{2025}{{Miserendino et~al.}}{{Miserendino, Wang, Patwardhan, and Heidecke}}}
-\bibcite{ng1999policy}{{52}{1999}{{Ng et~al.}}{{Ng, Harada, and Russell}}}
-\bibcite{nijkamp2023codegen}{{53}{2023}{{Nijkamp et~al.}}{{Nijkamp, Pang, Hayashi, Tu, Wang, Zhou, Savarese, and Xiong}}}
-\bibcite{orcaloca2025}{{54}{2025}{{OrcaLoca Team}}{{}}}
-\bibcite{ouyang2025repograph}{{55}{2025}{{Ouyang et~al.}}{{Ouyang, Yu, Ma, Xiao, Zhang, Jia, Han, Zhang, and Yu}}}
-\bibcite{papadakis2015metallaxis}{{56}{2015}{{Papadakis and Le~Traon}}{{}}}
-\bibcite{qin2024toolllm}{{57}{2024}{{Qin et~al.}}{{Qin, Liang, Ye, Zhu, Yan, Lu, Lin, Cong, Tang, Qian et~al.}}}
-\bibcite{rashid2025swepolybenchmultilanguagebenchmarkrepository}{{58}{2025}{{Rashid et~al.}}{{Rashid, Bock, Zhuang, Buchholz, Esler, Valentin, Franceschi, Wistuba, Sivaprasad, Kim, Deoras, Zappella, and Callot}}}
-\bibcite{swerankplus2025}{{59}{2025{a}}{{Reddy et~al.}}{{Reddy, Liu, Zhao, Doo, Suresh, Lee, Xiong, Zhou, Yavuz, and Joty}}}
-\bibcite{reddy2025sweranksoftwareissuelocalization}{{60}{2025{b}}{{Reddy et~al.}}{{Reddy, Suresh, Doo, Liu, Nguyen, Zhou, Yavuz, Xiong, Ji, and Joty}}}
-\bibcite{Robertson1994OkapiATBM25}{{61}{1994}{{Robertson et~al.}}{{Robertson, Walker, Jones, Hancock-Beaulieu, and Gatford}}}
-\bibcite{shaked2007stochastic}{{62}{2007}{{Shaked and Shanthikumar}}{{}}}
-\bibcite{shao2024deepseekmath}{{63}{2024}{{Shao et~al.}}{{Shao, Wang, Zhu, Xu, Song, Zhang, Li, Wu, and Guo}}}
-\bibcite{shortcutbench}{{64}{2025}{{Shen et~al.}}{{Shen, Li, Meng, Cai, Qi, Zhang, Xu, and Ma}}}
-\bibcite{sohrabizadeh2025nemotroncortexa}{{65}{2025}{{Sohrabizadeh et~al.}}{{Sohrabizadeh, Song, Liu, Roy, Lee, Raiman, and Catanzaro}}}
+\@LN{340}{4}
+\newlabel{sec:limitations}{{4}{5}{Limitations}{section*.18}{}}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\bibcite{feng-etal-2020-codebert}{{4}{2020}{{Feng et~al.}}{{Feng, Guo, Tang, Duan, Feng, Gong, Shou, Qin, Liu, Jiang, and Zhou}}}
+\bibcite{guo2021graphcodebertpretrainingcoderepresentations}{{5}{2021}{{Guo et~al.}}{{Guo, Ren, Lu, Feng, Tang, Liu, Zhou, Duan, Svyatkovskiy, Fu, Tufano, Deng, Clement, Drain, Sundaresan, Yin, Jiang, and Zhou}}}
+\bibcite{hu2022lora}{{6}{2022}{{Hu et~al.}}{{Hu, yelong shen, Wallis, Allen-Zhu, Li, Wang, Wang, and Chen}}}
+\bibcite{hui2024qwen25codertechnicalreport}{{7}{2024}{{Hui et~al.}}{{Hui, Yang, Cui, Yang, Liu, Zhang, Liu, Zhang, Yu, Lu, Dang, Fan, Zhang, Yang, Men, Huang, Zheng, Miao, Quan, Feng, Ren, Ren, Zhou, and Lin}}}
+\bibcite{jiang2025cosilsoftwareissuelocalization}{{8}{2025}{{Jiang et~al.}}{{Jiang, Ren, Yan, Jiang, Li, and Liu}}}
+\bibcite{jimenez2024swebench}{{9}{2024}{{Jimenez et~al.}}{{Jimenez, Yang, Wettig, Yao, Pei, Press, and Narasimhan}}}
+\bibcite{ma2025tooltrain}{{10}{2025}{{Ma et~al.}}{{Ma, Peng, Zeng, Gao, Zou, and Xie}}}
+\bibcite{ng1999policy}{{11}{1999}{{Ng et~al.}}{{Ng, Harada, and Russell}}}
+\bibcite{ouyang2025repograph}{{12}{2025}{{Ouyang et~al.}}{{Ouyang, Yu, Ma, Xiao, Zhang, Jia, Han, Zhang, and Yu}}}
+\bibcite{swerankplus2025}{{13}{2025{a}}{{Reddy et~al.}}{{Reddy, Liu, Zhao, Doo, Suresh, Lee, Xiong, Zhou, Yavuz, and Joty}}}
+\bibcite{reddy2025sweranksoftwareissuelocalization}{{14}{2025{b}}{{Reddy et~al.}}{{Reddy, Suresh, Doo, Liu, Nguyen, Zhou, Yavuz, Xiong, Ji, and Joty}}}
+\bibcite{Robertson1994OkapiATBM25}{{15}{1994}{{Robertson et~al.}}{{Robertson, Walker, Jones, Hancock-Beaulieu, and Gatford}}}
+\bibcite{sohrabizadeh2025nemotroncortexa}{{16}{2025}{{Sohrabizadeh et~al.}}{{Sohrabizadeh, Song, Liu, Roy, Lee, Raiman, and Catanzaro}}}
+\bibcite{wang2025openhands}{{17}{2025}{{Wang et~al.}}{{Wang, Li, Song, Xu, Tang, Zhuge, Pan, Song, Li, Singh, Tran, Li, Ma, Zheng, Qian, Shao, Muennighoff, Zhang, Hui, Lin, Brennan, Peng, Ji, and Neubig}}}
+\bibcite{wei2025swerl}{{18}{2025}{{Wei et~al.}}{{Wei, Duchenne, Copet, Carbonneaux, Zhang, Fried, Synnaeve, Singh, and Wang}}}
+\bibcite{xia2024agentless}{{19}{2024}{{Xia et~al.}}{{Xia, Deng, Dunn, and Zhang}}}
+\bibcite{yang2025qwen3}{{20}{2025}{{Yang et~al.}}{{Yang, Li, Yang, Zhang, Hui, Zheng, Yu, Gao, Huang, Lv et~al.}}}
+\bibcite{yang2024sweagent}{{21}{2024}{{Yang et~al.}}{{Yang, Jimenez, Wettig, Lieret, Yao, Narasimhan, and Press}}}
+\bibcite{zhang2024codesage}{{22}{2024}{{Zhang et~al.}}{{Zhang, Ahmad, Tan, Ding, Nallapati, Roth, Ma, and Xiang}}}
+\bibcite{zhang2025reponavigator}{{23}{2025}{{Zhang et~al.}}{{Zhang, Duan, Zhang, Xu, Wang, Liang, Li, Liang, Xia, Huang, He, and Wu}}}
 \@LN@col{1}
-\@LN{489}{5}
-\@LN{490}{5}
-\@LN{491}{5}
-\@LN{492}{5}
-\@LN{493}{5}
-\@LN{494}{5}
-\@LN{495}{5}
-\@LN{496}{5}
-\@LN{497}{5}
-\@LN{498}{5}
-\@LN{499}{5}
-\@LN{500}{5}
-\@LN{501}{5}
-\@LN{502}{5}
-\@LN{503}{5}
-\@LN{504}{5}
-\@LN{505}{5}
-\@LN{506}{5}
-\@LN{507}{5}
-\@LN{508}{5}
-\@LN{509}{5}
-\@LN{510}{5}
-\@LN{511}{5}
-\@LN{512}{5}
-\@LN{513}{5}
-\@LN{514}{5}
-\@LN{515}{5}
-\@LN{516}{5}
-\@LN{517}{5}
-\@LN{518}{5}
-\@LN{519}{5}
-\@LN{520}{5}
-\@LN{521}{5}
-\@LN{522}{5}
-\@LN{523}{5}
-\@LN{524}{5}
-\@LN{525}{5}
-\@LN{526}{5}
-\@LN{527}{5}
-\@LN{528}{5}
-\@LN{529}{5}
-\@LN{530}{5}
-\@LN{531}{5}
-\@LN{532}{5}
-\@LN{533}{5}
-\@LN{534}{5}
-\@LN{535}{5}
-\@LN{536}{5}
-\@LN{537}{5}
-\@LN{538}{5}
-\@LN{539}{5}
-\@LN{540}{5}
-\@LN{541}{5}
-\@LN{542}{5}
-\@LN{543}{5}
+\@LN{360}{5}
+\@LN{361}{5}
+\@LN{362}{5}
+\@LN{363}{5}
+\@LN{364}{5}
+\@LN{365}{5}
+\@LN{366}{5}
+\@LN{367}{5}
+\@LN{368}{5}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
 \@LN@col{2}
-\@LN{544}{5}
-\@LN{545}{5}
-\@LN{546}{5}
-\@LN{547}{5}
-\@LN{548}{5}
-\@LN{549}{5}
-\@LN{550}{5}
-\@LN{551}{5}
-\@LN{552}{5}
-\@LN{553}{5}
-\@LN{554}{5}
-\@LN{555}{5}
-\@LN{556}{5}
-\@LN{557}{5}
-\@LN{558}{5}
-\@LN{559}{5}
-\@LN{560}{5}
-\@LN{561}{5}
-\@LN{562}{5}
-\@LN{563}{5}
-\@LN{564}{5}
-\@LN{565}{5}
-\@LN{566}{5}
-\@LN{567}{5}
-\@LN{568}{5}
-\@LN{569}{5}
-\@LN{570}{5}
-\@LN{571}{5}
-\@LN{572}{5}
-\@LN{573}{5}
-\@LN{574}{5}
-\@LN{575}{5}
-\@LN{576}{5}
-\@LN{577}{5}
-\@LN{578}{5}
-\@LN{579}{5}
-\@LN{580}{5}
-\@LN{581}{5}
-\@LN{582}{5}
-\@LN{583}{5}
-\@LN{584}{5}
-\@LN{585}{5}
-\@LN{586}{5}
-\@LN{587}{5}
-\@LN{588}{5}
-\@LN{589}{5}
-\@LN{590}{5}
-\@LN{591}{5}
-\@LN{592}{5}
-\@LN{593}{5}
-\@LN{594}{5}
-\@LN{595}{5}
-\@LN{596}{5}
-\bibcite{stackoverflow2023}{{66}{2023}{{Stack Overflow}}{{}}}
-\bibcite{suresh2025cornstack}{{67}{2025}{{Suresh et~al.}}{{Suresh, Reddy, Xu, Nussbaum, Mulyar, Duderstadt, and Ji}}}
-\bibcite{swerank2025}{{68}{2025}{{SweRank Team}}{{}}}
-\bibcite{szafraniec2023code}{{69}{2023}{{Szafraniec et~al.}}{{Szafraniec, Roziere, Leather, Labatut, Charton, and Synnaeve}}}
-\bibcite{tian-etal-2024-debugbench}{{70}{2024}{{Tian et~al.}}{{Tian, Ye, Qin, Cong, Lin, Pan, Wu, Haotian, Weichuan, Liu, and Sun}}}
-\bibcite{vero2025baxbenchllmsgeneratecorrect}{{71}{2025}{{Vero et~al.}}{{Vero, Mündler, Chibotaru, Raychev, Baader, Jovanović, He, and Vechev}}}
-\bibcite{wang2025openhands}{{72}{2025}{{Wang et~al.}}{{Wang, Li, Song, Xu, Tang, Zhuge, Pan, Song, Li, Singh, Tran, Li, Ma, Zheng, Qian, Shao, Muennighoff, Zhang, Hui, Lin, Brennan, Peng, Ji, and Neubig}}}
-\bibcite{wang2024openhands}{{73}{2024}{{Wang et~al.}}{{}}}
-\bibcite{wang2022mconala}{{74}{2022}{{Wang et~al.}}{{Wang, Cuenca, Zhou, Xu, and Neubig}}}
-\bibcite{wei2025swerl}{{75}{2025}{{Wei et~al.}}{{Wei, Duchenne, Copet, Carbonneaux, Zhang, Fried, Synnaeve, Singh, and Wang}}}
-\bibcite{wu2023largelanguagemodelsfault}{{76}{2023}{{Wu et~al.}}{{Wu, Li, Zhang, Papadakis, Harman, and Liu}}}
-\bibcite{xia2024agentless}{{77}{2024{a}}{{Xia et~al.}}{{Xia, Deng, Dunn, and Zhang}}}
-\bibcite{xia2024agentlessdemystifyingllmbasedsoftware}{{78}{2024{b}}{{Xia et~al.}}{{Xia, Deng, Dunn, and Zhang}}}
-\bibcite{xie2024codebenchgen}{{79}{2024}{{Xie et~al.}}{{Xie, Xie, Sheth, Liu, Fried, and Rose}}}
-\bibcite{yang2024sweagent}{{80}{2024{a}}{{Yang et~al.}}{{Yang, Jimenez, Wettig, Lieret, Yao, Narasimhan, and Press}}}
-\bibcite{yang2024swe}{{81}{2024{b}}{{Yang et~al.}}{{Yang, Jimenez, Wettig, Lieret, Yao, Narasimhan, and Press}}}
-\bibcite{yang2024swebenchmultimodalaisystems}{{82}{2024{c}}{{Yang et~al.}}{{Yang, Jimenez, Zhang, Lieret, Yang, Wu, Press, Muennighoff, Synnaeve, Narasimhan, Yang, Wang, and Press}}}
-\bibcite{CoderEval}{{83}{2024}{{Yu et~al.}}{{Yu, Shen, Ran, Zhang, Zhang, Ma, Liang, Li, Wang, and Xie}}}
-\bibcite{zan2022cert}{{84}{2022}{{Zan et~al.}}{{Zan, Chen, Yang, Lin, Kim, Guan, Wang, Chen, and Lou}}}
-\bibcite{zan2025multiswebenchmultilingualbenchmarkissue}{{85}{2025}{{Zan et~al.}}{{Zan, Huang, Liu, Chen, Zhang, Xin, Chen, Liu, Zhong, Li, Liu, Xiao, Chen, Zhang, Su, Liu, Long, Shen, and Xiang}}}
-\bibcite{zan2024swebenchjava}{{86}{2024}{{Zan et~al.}}{{Zan, Huang, Yu, Lin, Shi, Liu, Chen, Qi, Yu, Yu, Ran, Zeng, Shen, Bian, Liang, Guan, Huang, Xie, Wang, and Wang}}}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@LN{434}{5}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@LN{439}{5}
+\@LN{440}{5}
+\@LN{441}{5}
+\@LN{442}{5}
+\@LN{443}{5}
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\@LN{450}{5}
+\@LN{451}{5}
+\@LN{452}{5}
+\@LN{453}{5}
+\@LN{454}{5}
+\@LN{455}{5}
+\@LN{456}{5}
+\@LN{457}{5}
+\@LN{458}{5}
+\@LN{459}{5}
+\@LN{460}{5}
+\@LN{461}{5}
+\@LN{462}{5}
+\@LN{463}{5}
+\@LN{464}{5}
+\@LN{465}{5}
+\@LN{466}{5}
+\@LN{467}{5}
+\@LN{468}{5}
+\@LN{469}{5}
+\@LN{470}{5}
+\@LN{471}{5}
+\bibcite{orwall2024moatless}{{24}{2024}{{Örwall}}{{}}}
+\citation{ma2025tooltrain}
+\citation{wei2025swerl}
+\citation{zhang2025reponavigator}
+\citation{yang2024sweagent,wang2025openhands}
+\citation{orwall2024moatless}
+\citation{xia2024agentless}
+\citation{chen2025locagent}
+\citation{jiang2025cosilsoftwareissuelocalization}
+\citation{ouyang2025repograph}
 \@LN@col{1}
-\@LN{597}{6}
-\@LN{598}{6}
-\@LN{599}{6}
-\@LN{600}{6}
-\@LN{601}{6}
-\@LN{602}{6}
-\@LN{603}{6}
-\@LN{604}{6}
-\@LN{605}{6}
-\@LN{606}{6}
-\@LN{607}{6}
-\@LN{608}{6}
-\@LN{609}{6}
-\@LN{610}{6}
-\@LN{611}{6}
-\@LN{612}{6}
-\@LN{613}{6}
-\@LN{614}{6}
-\@LN{615}{6}
-\@LN{616}{6}
-\@LN{617}{6}
-\@LN{618}{6}
-\@LN{619}{6}
-\@LN{620}{6}
-\@LN{621}{6}
-\@LN{622}{6}
-\@LN{623}{6}
-\@LN{624}{6}
-\@LN{625}{6}
-\@LN{626}{6}
-\@LN{627}{6}
-\@LN{628}{6}
-\@LN{629}{6}
-\@LN{630}{6}
-\@LN{631}{6}
-\@LN{632}{6}
-\@LN{633}{6}
-\@LN{634}{6}
-\@LN{635}{6}
-\@LN{636}{6}
-\@LN{637}{6}
-\@LN{638}{6}
-\@LN{639}{6}
-\@LN{640}{6}
-\@LN{641}{6}
-\@LN{642}{6}
-\@LN{643}{6}
-\@LN{644}{6}
-\@LN{645}{6}
-\@LN{646}{6}
-\@LN{647}{6}
-\@LN{648}{6}
-\@LN{649}{6}
-\@LN{650}{6}
-\@LN{651}{6}
-\@LN{652}{6}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Notation used throughout the paper. Each symbol is also defined at its point of first use in the body.}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:notation}{{3}{7}{Notation used throughout the paper. Each symbol is also defined at its point of first use in the body}{table.caption.20}{}}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN{476}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Notation}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:notation}{{A}{7}{Notation}{appendix.A}{}}
+\@LN{477}{6}
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
 \@LN@col{2}
-\@LN{653}{6}
-\@LN{654}{6}
-\@LN{655}{6}
-\@LN{656}{6}
-\@LN{657}{6}
-\@LN{658}{6}
-\@LN{659}{6}
-\@LN{660}{6}
-\@LN{661}{6}
-\@LN{662}{6}
-\@LN{663}{6}
-\@LN{664}{6}
-\@LN{665}{6}
-\@LN{666}{6}
-\@LN{667}{6}
-\@LN{668}{6}
-\@LN{669}{6}
-\@LN{670}{6}
-\@LN{671}{6}
-\@LN{672}{6}
-\@LN{673}{6}
-\@LN{674}{6}
-\@LN{675}{6}
-\@LN{676}{6}
-\@LN{677}{6}
-\@LN{678}{6}
-\@LN{679}{6}
-\@LN{680}{6}
-\@LN{681}{6}
-\@LN{682}{6}
-\@LN{683}{6}
-\@LN{684}{6}
-\@LN{685}{6}
-\@LN{686}{6}
-\@LN{687}{6}
-\@LN{688}{6}
-\@LN{689}{6}
-\@LN{690}{6}
-\@LN{691}{6}
-\@LN{692}{6}
-\@LN{693}{6}
-\@LN{694}{6}
-\@LN{695}{6}
-\@LN{696}{6}
-\@LN{697}{6}
-\@LN{698}{6}
-\@LN{699}{6}
-\@LN{700}{6}
-\@LN{701}{6}
-\@LN{702}{6}
-\@LN{703}{6}
-\@LN{704}{6}
-\@LN{705}{6}
-\@LN{706}{6}
-\@LN{707}{6}
-\@LN{708}{6}
-\@LN{709}{6}
-\bibcite{zhang2024codesage}{{87}{2024{a}}{{Zhang et~al.}}{{Zhang, Ahmad, Tan, Ding, Nallapati, Roth, Ma, and Xiang}}}
-\bibcite{zhang2024code}{{88}{2024{b}}{{Zhang et~al.}}{{Zhang, Ahmad, Tan, Ding, Nallapati, Roth, Ma, and Xiang}}}
-\bibcite{zhang2024codeagent}{{89}{2024{c}}{{Zhang et~al.}}{{Zhang, Li, Li, Shi, and Jin}}}
-\bibcite{zhang-etal-2024-benchmarking-data}{{90}{2024{d}}{{Zhang et~al.}}{{Zhang, Jiang, XingyuHan, Chen, Yang, and Ren}}}
-\bibcite{zhang2025reponavigator}{{91}{2025}{{Zhang et~al.}}{{Zhang, Duan, Zhang, Xu, Wang, Liang, Li, Liang, Xia, Huang, He, and Wu}}}
-\bibcite{zhuge2024agent}{{92}{2024}{{Zhuge et~al.}}{{Zhuge, Zhao, Ashley, Wang, Khizbullin, Xiong, Liu, Chang, Krishnamoorthi, Tian et~al.}}}
-\bibcite{zhuo2024bigcodebench}{{93}{2024}{{Zhuo et~al.}}{{Zhuo, Vu, Chim, Hu, Yu, Widyasari, Yusuf, Zhan, He, Paul et~al.}}}
-\bibcite{orwall2024moatless}{{94}{2024}{{Örwall}}{{}}}
+\@LN{483}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Related Work}{7}{appendix.B}\protected@file@percent }
+\newlabel{sec:related}{{B}{7}{Related Work}{appendix.B}{}}
+\@writefile{toc}{\contentsline {paragraph}{Reinforcement learning for localization.}{7}{section*.21}\protected@file@percent }
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@LN{489}{6}
+\@LN{490}{6}
+\@LN{491}{6}
+\@LN{492}{6}
+\@LN{493}{6}
+\@LN{494}{6}
+\@LN{495}{6}
+\@LN{496}{6}
+\@LN{497}{6}
+\@LN{498}{6}
+\@LN{499}{6}
+\@LN{500}{6}
+\@LN{501}{6}
+\@LN{502}{6}
+\@writefile{toc}{\contentsline {paragraph}{Agentic scaffolding.}{7}{section*.22}\protected@file@percent }
+\@LN{503}{6}
+\@LN{504}{6}
+\@LN{505}{6}
+\@LN{506}{6}
+\@LN{507}{6}
+\@LN{508}{6}
+\@LN{509}{6}
+\@LN{510}{6}
+\@LN{511}{6}
+\@LN{512}{6}
+\@LN{513}{6}
+\@LN{514}{6}
+\@LN{515}{6}
+\@LN{516}{6}
+\@LN{517}{6}
+\@LN{518}{6}
+\@LN{519}{6}
+\@LN{520}{6}
+\@LN{521}{6}
+\@LN{522}{6}
+\@writefile{toc}{\contentsline {paragraph}{Graph-based exploration.}{7}{section*.23}\protected@file@percent }
+\@LN{523}{6}
+\@LN{524}{6}
+\@LN{525}{6}
+\@LN{526}{6}
+\@LN{527}{6}
+\@LN{528}{6}
+\@LN{529}{6}
+\@LN{530}{6}
+\@LN{531}{6}
+\@LN{532}{6}
+\citation{Robertson1994OkapiATBM25}
+\citation{feng-etal-2020-codebert,guo2021graphcodebertpretrainingcoderepresentations,zhang2024codesage}
+\citation{reddy2025sweranksoftwareissuelocalization}
+\citation{fehr-etal-2025-coret}
+\citation{chaudhari2025spider}
+\citation{swerankplus2025}
 \citation{chen2025locagent}
 \citation{chaudhari2025spider}
 \citation{chaudhari2025spider}
 \citation{chaudhari2025spider}
 \@LN@col{1}
-\@LN{710}{7}
-\@LN{711}{7}
-\@LN{712}{7}
-\@LN{713}{7}
-\@LN{714}{7}
-\@LN{715}{7}
-\@LN{716}{7}
-\@LN{717}{7}
-\@LN{718}{7}
-\@LN{719}{7}
-\@LN{720}{7}
-\@LN{721}{7}
-\@LN{722}{7}
-\@LN{723}{7}
-\@LN{724}{7}
-\@LN{725}{7}
-\@LN{726}{7}
-\@LN{727}{7}
-\@LN{728}{7}
-\@LN{729}{7}
-\@LN{730}{7}
-\@LN{731}{7}
-\@LN{732}{7}
-\@LN{733}{7}
-\@LN{734}{7}
-\@LN{735}{7}
-\@LN{736}{7}
-\@LN{737}{7}
-\@LN{738}{7}
-\@LN{739}{7}
-\@LN{740}{7}
-\@LN{741}{7}
-\@LN{742}{7}
-\@LN{743}{7}
-\@LN{744}{7}
-\@LN{745}{7}
-\@LN{746}{7}
-\@LN{747}{7}
-\@LN{748}{7}
-\@LN{749}{7}
-\@LN{750}{7}
-\@LN{751}{7}
-\@LN{752}{7}
-\@LN{753}{7}
-\@LN{754}{7}
-\@LN{755}{7}
-\@LN{756}{7}
-\@LN{757}{7}
-\@LN{758}{7}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Proof of the Telescoping Identity}{8}{appendix.A}\protected@file@percent }
-\newlabel{app:proof}{{A}{8}{Proof of the Telescoping Identity}{appendix.A}{}}
-\@LN{759}{7}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Code Graph Construction}{8}{appendix.B}\protected@file@percent }
-\newlabel{app:graph}{{B}{8}{Code Graph Construction}{appendix.B}{}}
-\@LN{760}{7}
-\@LN{761}{7}
-\@LN{762}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@writefile{toc}{\contentsline {paragraph}{Retrieval and reranking.}{8}{section*.24}\protected@file@percent }
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@LN{549}{7}
+\@LN{550}{7}
+\@LN{551}{7}
+\@LN{552}{7}
+\@LN{553}{7}
+\@LN{554}{7}
+\@LN{555}{7}
+\@LN{556}{7}
+\@LN{557}{7}
+\@LN{558}{7}
+\@LN{559}{7}
+\@LN{560}{7}
+\@LN{561}{7}
+\@LN{562}{7}
+\@LN{563}{7}
+\@LN{564}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Proof of the Telescoping Identity}{8}{appendix.C}\protected@file@percent }
+\newlabel{app:proof}{{C}{8}{Proof of the Telescoping Identity}{appendix.C}{}}
+\@LN{565}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Code Graph Construction}{8}{appendix.D}\protected@file@percent }
+\newlabel{app:graph}{{D}{8}{Code Graph Construction}{appendix.D}{}}
+\@LN{566}{7}
+\@LN{567}{7}
+\@LN{568}{7}
+\@LN{569}{7}
+\@LN{570}{7}
+\@LN{571}{7}
+\@LN{572}{7}
+\@LN{573}{7}
+\@LN{574}{7}
+\@LN{575}{7}
+\@LN{576}{7}
+\@LN{577}{7}
+\@LN{578}{7}
+\@LN{579}{7}
+\@LN{580}{7}
+\@LN{581}{7}
 \@LN@col{2}
-\@LN{763}{7}
-\@LN{764}{7}
-\@LN{765}{7}
-\@LN{766}{7}
-\@LN{767}{7}
-\@LN{768}{7}
-\@LN{769}{7}
-\@LN{770}{7}
-\@LN{771}{7}
-\@LN{772}{7}
-\@LN{773}{7}
-\@LN{774}{7}
-\@LN{775}{7}
-\@LN{776}{7}
-\@LN{777}{7}
-\@LN{778}{7}
-\@LN{779}{7}
-\@LN{780}{7}
-\@LN{781}{7}
-\@LN{782}{7}
-\@LN{783}{7}
-\@LN{784}{7}
-\@LN{785}{7}
-\@LN{786}{7}
-\@LN{787}{7}
-\@LN{788}{7}
-\@LN{789}{7}
-\@LN{790}{7}
-\@LN{791}{7}
-\@LN{792}{7}
-\@LN{793}{7}
-\@LN{794}{7}
-\@LN{795}{7}
-\@LN{796}{7}
-\@LN{797}{7}
-\@LN{798}{7}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Scaffolding and Training Details}{8}{appendix.C}\protected@file@percent }
-\newlabel{app:details}{{C}{8}{Scaffolding and Training Details}{appendix.C}{}}
-\@LN{799}{7}
-\@writefile{toc}{\contentsline {section}{\numberline {D}Additional Results}{8}{appendix.D}\protected@file@percent }
-\newlabel{app:results}{{D}{8}{Additional Results}{appendix.D}{}}
-\@LN{800}{7}
-\@writefile{toc}{\contentsline {section}{\numberline {E}AI Disclosure}{8}{appendix.E}\protected@file@percent }
-\newlabel{app:ai}{{E}{8}{AI Disclosure}{appendix.E}{}}
-\gdef \@abspage@last{8}
+\@LN{582}{7}
+\@LN{583}{7}
+\@LN{584}{7}
+\@LN{585}{7}
+\@LN{586}{7}
+\@LN{587}{7}
+\@LN{588}{7}
+\@LN{589}{7}
+\@LN{590}{7}
+\@LN{591}{7}
+\@LN{592}{7}
+\@LN{593}{7}
+\@LN{594}{7}
+\@LN{595}{7}
+\@LN{596}{7}
+\@LN{597}{7}
+\@LN{598}{7}
+\@LN{599}{7}
+\@LN{600}{7}
+\@LN{601}{7}
+\@LN{602}{7}
+\@LN{603}{7}
+\@LN{604}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Scorer Training Details}{8}{appendix.E}\protected@file@percent }
+\newlabel{app:details}{{E}{8}{Scorer Training Details}{appendix.E}{}}
+\@LN{605}{7}
+\@LN{606}{7}
+\@LN{607}{7}
+\@writefile{toc}{\contentsline {paragraph}{Group construction.}{8}{section*.25}\protected@file@percent }
+\@LN{608}{7}
+\@LN{609}{7}
+\@LN{610}{7}
+\@LN{611}{7}
+\@LN{612}{7}
+\@LN{613}{7}
+\@LN{614}{7}
+\@LN{615}{7}
+\@LN{616}{7}
+\@LN{617}{7}
+\@LN{618}{7}
+\@LN{619}{7}
+\@LN{620}{7}
+\@LN{621}{7}
+\@LN{622}{7}
+\@LN{623}{7}
+\@writefile{toc}{\contentsline {paragraph}{Optimization.}{8}{section*.26}\protected@file@percent }
+\@LN{624}{7}
+\@LN{625}{7}
+\@LN{626}{7}
+\@LN{627}{7}
+\@LN{628}{7}
+\@LN{629}{7}
+\citation{hui2024qwen25codertechnicalreport}
+\@LN@col{1}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@writefile{toc}{\contentsline {paragraph}{Distributed training.}{9}{section*.27}\protected@file@percent }
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@writefile{toc}{\contentsline {paragraph}{Evaluation during training.}{9}{section*.28}\protected@file@percent }
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@writefile{toc}{\contentsline {paragraph}{Prompt format.}{9}{section*.29}\protected@file@percent }
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Additional Results}{9}{appendix.F}\protected@file@percent }
+\newlabel{app:results}{{F}{9}{Additional Results}{appendix.F}{}}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@writefile{toc}{\contentsline {section}{\numberline {G}AI Disclosure}{9}{appendix.G}\protected@file@percent }
+\newlabel{app:ai}{{G}{9}{AI Disclosure}{appendix.G}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scorer fine-tuning hyperparameters. The same configuration is used for the BCE-only ($\lambda {=}0$) ablation and the main BCE+coverage ($\lambda {=}0.2$) runs.}}{9}{table.caption.30}\protected@file@percent }
+\newlabel{tab:hparams}{{4}{9}{Scorer fine-tuning hyperparameters. The same configuration is used for the BCE-only ($\lambda {=}0$) ablation and the main BCE+coverage ($\lambda {=}0.2$) runs}{table.caption.30}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Per-language file-level recall on SWE-PolyBench under the windowed protocol of Figure~\ref {fig:scorer-func-recall}. The dashed line marks the retrieval ceiling --- the recall achievable if the gold function set lies in the top-$100$ retriever pool. The fine-tuned 3B scorer (FT Qwen 3B) matches or exceeds GPT-5.3 Codex on Java and Python and tracks it within a few points on JavaScript and TypeScript.}}{10}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:scorer-file-recall}{{3}{10}{Per-language file-level recall on SWE-PolyBench under the windowed protocol of Figure~\ref {fig:scorer-func-recall}. The dashed line marks the retrieval ceiling --- the recall achievable if the gold function set lies in the top-$100$ retriever pool. The fine-tuned 3B scorer (FT Qwen 3B) matches or exceeds GPT-5.3 Codex on Java and Python and tracks it within a few points on JavaScript and TypeScript}{figure.caption.31}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Mean score on ground-truth candidates ($p_{gt}$, filled bars) vs.\ non-relevant candidates ($p_{\neg gt}$, hatched bars), averaged per language under the same windowed protocol. A wider gap indicates better discrimination between gold and non-gold. Fine-tuning widens the separation at every model size: the base 0.5B model is actively mis-calibrated --- it assigns $p_{\neg gt} > p_{gt}$ in every language --- whereas the fine-tuned 3B variant achieves a separation comparable to GPT-5.3 Codex, with $p_{gt}$ above $p_{\neg gt}$ by a margin of $0.25$--$0.45$.}}{10}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:scorer-score-separation}{{4}{10}{Mean score on ground-truth candidates ($p_{gt}$, filled bars) vs.\ non-relevant candidates ($p_{\neg gt}$, hatched bars), averaged per language under the same windowed protocol. A wider gap indicates better discrimination between gold and non-gold. Fine-tuning widens the separation at every model size: the base 0.5B model is actively mis-calibrated --- it assigns $p_{\neg gt} > p_{gt}$ in every language --- whereas the fine-tuned 3B variant achieves a separation comparable to GPT-5.3 Codex, with $p_{gt}$ above $p_{\neg gt}$ by a margin of $0.25$--$0.45$}{figure.caption.32}{}}
+\gdef \@abspage@last{10}

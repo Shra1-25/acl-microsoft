@@ -18,9 +18,11 @@
 \usepackage{booktabs}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{arydshln}
 
-\title{Code Localization as Sequential Set-Coverage: \\
-       A Trainable Multi-Round Scaffolding for Small LLMs}
+\title{Multi-Agent Multiturn Scaffolding for Cost Effective Code Localization }
 
 % Anonymized for review. Restore the full author block for the
 % camera-ready version.
@@ -38,13 +40,12 @@ Although this approach is feasible for large models with long contexts, it comes
 
 To solve this, we propose a multi-agent system with a smarter codebase navigation scaffolding, that delegates token-heavy tasks of skimming through varoius code subgraphs to a smaller and cheaper post-trained agent (scorer) while working in unison with a larger and costlier agent to save its token consumption.
 We observe that such a collaborative system is not only cost effective but can augment any existing localization method and improve their performance across different benchmarks and programming languages. 
- 
+
 
 % Before a coding agent can fix a GitHub issue, it must localize the files and functions to change; a mistake here cannot be undone by any later reasoning. Strong localization scaffoldings such as OpenHands and SWE-Agent are built for long contexts and large models, so the open 7--14B code models most teams can run overflow a 32K-token budget before the search ends. Training small models is no easier: a multi-step agent yields only a sparse terminal reward, forcing expensive reinforcement learning. We present a multi-round localization scaffolding that removes both barriers. The agent refines a fixed-length candidate list over rounds, each round inspecting a bounded window of ranked nodes and their neighborhood on a code graph, so per-call token cost stays roughly constant. The round structure also exposes a dense per-round target: under potential-based shaping, the per-round signal telescopes to end-to-end recall@$L$. The agent therefore trains by ordinary supervised fine-tuning---a weighted cross-entropy with a differentiable coverage term---rather than sparse-reward RL. This recasts localization from ranking to sequential set-coverage on a code graph. Trained this way, small open models become competitive with GPT Codex~5.3 under the same scaffolding, and a 30B model matches open-ended OpenHands agents at a fraction of the token cost, on SWE-Bench Lite, SWE-Bench Verified, and the multilingual SWE-PolyBench.
 \end{abstract}
 
 \input{sections/1_Introduction}
-\input{sections/2_Related_Work}
 \input{sections/3_Method}
 \input{sections/4_Experiments}
 \input{sections/5_Conclusion}
@@ -56,10 +57,12 @@ We observe that such a collaborative system is not only cost effective but can a
 % TEMP: \nocite{*} lists every custom.bib entry so the outline
 % skeleton compiles a References section. Remove it once the
 % sections cite sources with \citep.
-\nocite{*}
+% \nocite{*}
 \bibliography{custom}
 
 \appendix
+\input{sections/9_Notation}
+\input{sections/8_Related_Work}
 \input{sections/7_Appendix}
 
 \end{document}
