@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex acl_latex"] 1779796736.27736 "acl_latex.aux" "acl_latex.bbl" "acl_latex" 1779796739.54868 0
+["bibtex acl_latex"] 1779798109.91123 "acl_latex.aux" "acl_latex.bbl" "acl_latex" 1779798112.78523 0
   "./acl_natbib.bst" 1779332885.63145 45186 3d1af46d62cc9172ef6e42b56c1cd613 ""
   "./custom.bib" 1779761354.22283 92840 470567e6038a5cb9717d7466d4ea761a ""
-  "acl_latex.aux" 1779796738.92787 27339 af4a1eb23cb5f4db6c10c3f1f7078365 "pdflatex"
+  "acl_latex.aux" 1779798112.17587 28700 508a44cdabe895eb1564286f09025c08 "pdflatex"
   (generated)
   "acl_latex.bbl"
   "acl_latex.blg"
   (rewritten before read)
-["pdflatex"] 1779796736.63906 "acl_latex.tex" "acl_latex.pdf" "acl_latex" 1779796739.54911 0
+["pdflatex"] 1779798110.15212 "acl_latex.tex" "acl_latex.pdf" "acl_latex" 1779798112.78556 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc" 1558214095 7631 5169ff1acd97ff1c4ab83563c99f96f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -177,9 +177,9 @@
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1763095341 3345727 d3c1eab1e48185ecd5f9904d3f5d4ace ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "acl.sty" 1779332885.63034 11615 e2c027f483aa40e577ed34264c8b0655 ""
-  "acl_latex.aux" 1779796738.92787 27339 af4a1eb23cb5f4db6c10c3f1f7078365 "pdflatex"
-  "acl_latex.bbl" 1779796736.63634 10538 d85e48e706fca382eb4e5d4910dcbf8b "bibtex acl_latex"
-  "acl_latex.out" 1779796738.93045 2548 3db81e6aada619cdfe9f76b9cea81167 "pdflatex"
+  "acl_latex.aux" 1779798112.17587 28700 508a44cdabe895eb1564286f09025c08 "pdflatex"
+  "acl_latex.bbl" 1779798110.14509 10538 d85e48e706fca382eb4e5d4910dcbf8b "bibtex acl_latex"
+  "acl_latex.out" 1779798112.17835 2548 3db81e6aada619cdfe9f76b9cea81167 "pdflatex"
   "acl_latex.tex" 1779796314.39609 4316 c2d73abf15496dca34a80e4d1069455b ""
   "imgs/reranker_file_recall.png" 1779694558.31046 117121 9655aea10bfd5fa529a11ea2c883d9df ""
   "imgs/reranker_func_recall.png" 1779694558.27906 111527 f36ecc44c89fbed8697367a34f882609 ""
@@ -189,7 +189,7 @@
   "sections/3_Method.tex" 1779794581.8224 8823 5a0f09c727a1fe1eaadaea32dfb1d1dd ""
   "sections/4_Experiments.tex" 1779796731.90909 10806 bd35b890703c37ddc45d0b03809bf32a ""
   "sections/5_Conclusion.tex" 1779796688.99043 2309 9dfffb4b494d7d001892ae63021c8c09 ""
-  "sections/6_Limitations.tex" 1779401892.29316 1154 ac9834e99248a178fcf68ac150942d5e ""
+  "sections/6_Limitations.tex" 1779798101.26319 2540 bb57bfa50b14e1873294e04d35addb59 ""
   "sections/7_Appendix.tex" 1779794649.40364 9266 ef85a5f23329b5828624bee1c488fbf1 ""
   "sections/8_Related_Work.tex" 1779794581.84913 4144 06684ad99e1dc7ffc36113944d257da8 ""
   "sections/9_Notation.tex" 1779783474.16656 2754 82c0112ebb87706b16844f1896a7db98 ""

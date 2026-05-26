@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.13)  26 MAY 2026 07:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.13)  26 MAY 2026 08:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -720,8 +720,7 @@ Package pdftex.def Info: imgs/reranker_func_recall.png  used on input line 129.
 
 ) (./sections/5_Conclusion.tex
 
-[4 <./imgs/reranker_func_recall.png>]) (./sections/6_Limitations.tex)
-(./acl_latex.bbl
+[4 <./imgs/reranker_func_recall.png>]) (./sections/6_Limitations.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -729,13 +728,26 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [5]
+Underfull \hbox (badness 1320) in paragraph at lines 41--46
+ []\T1/ptm/b/n/10.95 (+20) Single scorer back-bone.[] \T1/ptm/m/n/10.95 (+20) W
+e in-stan-ti-ate the
+ []
+
+)
+Underfull \hbox (badness 4886) in paragraph at lines 48--56
+ []\T1/ptm/b/n/10.95 (+20) Stop-timing and cross-round co-or-di-na-tion.[]
+ []
+
+(./acl_latex.bbl
+
+
 Underfull \hbox (badness 1107) in paragraph at lines 81--87
 []\T1/ptm/m/n/10 (+20) Carlos E Jimenez, John Yang, Alexan-der Wet-tig,
  []
 
 
 
-
+[6]
 Underfull \hbox (badness 3612) in paragraph at lines 159--164
 \T1/ptm/m/n/10 (+20) Car-bon-neaux, Ling-ming Zhang, Daniel Fried,
  []
@@ -747,9 +759,7 @@ Underfull \hbox (badness 2913) in paragraph at lines 172--176
 
 
 
-[6]) (./sections/9_Notation.tex) (./sections/8_Related_Work.tex
-
-
+) (./sections/9_Notation.tex) (./sections/8_Related_Work.tex
 Underfull \hbox (badness 1454) in paragraph at lines 23--39
  []\T1/ptm/b/n/10.95 (+20) Agentic scaf-fold-ing.[] \T1/ptm/m/n/10.95 (+20) SWE
 -Agent and Open-
@@ -757,8 +767,11 @@ Underfull \hbox (badness 1454) in paragraph at lines 23--39
 
 
 
-[7]) (./sections/7_Appendix.tex
+[7]
 
+) (./sections/7_Appendix.tex
+
+[8]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 10.95pt on input line 40.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
@@ -771,17 +784,16 @@ each is-sue, ev-ery
 
 
 
-[8]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<imgs/reranker_file_recall.png, id=390, 597.9138pt x 353.6412pt>
+<imgs/reranker_file_recall.png, id=394, 597.9138pt x 353.6412pt>
 File: imgs/reranker_file_recall.png Graphic file (type png)
 <use imgs/reranker_file_recall.png>
 Package pdftex.def Info: imgs/reranker_file_recall.png  used on input line 171.
 
 (pdftex.def)             Requested size: 386.96027pt x 228.87115pt.
-<imgs/reranker_score_separation.png, id=393, 888.921pt x 379.4175pt>
+<imgs/reranker_score_separation.png, id=397, 888.921pt x 379.4175pt>
 File: imgs/reranker_score_separation.png Graphic file (type png)
 <use imgs/reranker_score_separation.png>
 Package pdftex.def Info: imgs/reranker_score_separation.png  used on input line
@@ -789,10 +801,14 @@ Package pdftex.def Info: imgs/reranker_score_separation.png  used on input line
 (pdftex.def)             Requested size: 386.96027pt x 165.16685pt.
 )
 
+[9]
 
 
-[9] [10 <./imgs/reranker_file_recall.png> <./imgs/reranker_score_separation.png
->] (./acl_latex.aux)
+
+[10
+
+ <./imgs/reranker_file_recall.png>] [11 <./imgs/reranker_score_separation.png>]
+ (./acl_latex.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -801,11 +817,11 @@ Package rerunfilecheck Info: File `acl_latex.out' has not changed.
 (rerunfilecheck)             Checksum: 3DB81E6AADA619CDFE9F76B9CEA81167;2548.
  ) 
 Here is how much of TeX's memory you used:
- 17273 strings out of 473190
- 274024 string characters out of 5715799
- 729524 words of memory out of 5000000
- 39715 multiletter control sequences out of 15000+600000
- 644101 words of font info for 392 fonts, out of 8000000 for 9000
+ 17287 strings out of 473190
+ 274155 string characters out of 5715799
+ 734843 words of memory out of 5000000
+ 39716 multiletter control sequences out of 15000+600000
+ 644355 words of font info for 396 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,15n,93p,1450b,675s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/inconsolata/Inconsolat
@@ -830,10 +846,10 @@ ve/2025/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2025
 /texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025/texmf-dis
 t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (10 pages, 707624 bytes).
+Output written on acl_latex.pdf (11 pages, 711420 bytes).
 PDF statistics:
- 525 PDF objects out of 1000 (max. 8388607)
- 456 compressed objects within 5 object streams
- 90 named destinations out of 1000 (max. 500000)
+ 541 PDF objects out of 1000 (max. 8388607)
+ 471 compressed objects within 5 object streams
+ 97 named destinations out of 1000 (max. 500000)
  74917 words of extra memory for PDF output out of 89155 (max. 10000000)
 

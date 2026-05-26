@@ -1,23 +1,54 @@
 \section*{Limitations}
 \label{sec:limitations}
 
-% ============================================================
-% OUTLINE -- Limitations    ACL-required, unnumbered; does NOT
-% count toward the 4-page limit.   target: ~0.3-0.4 page.
-% Be specific and honest -- reviewers reward candor.
-% Points to cover:
-%   - Results are partial / in progress at submission time;
-%     state exactly which runs are complete.
-%   - The recall@L co-optimality holds exactly only at equal
-%     weights (w+ = w- = 1); the asymmetric-weight setting used
-%     in practice is a heuristic, outside the theorem.
-%   - Evaluation is limited to SWE-Bench-family benchmarks;
-%     generalization to other issue distributions is untested.
-%   - The method requires a pre-built code graph; its
-%     construction cost and the sensitivity of results to graph
-%     quality are not studied here.
-%   - The coverage term is a differentiable surrogate, not the
-%     exact (non-differentiable) set-coverage objective.
-%   - Stop-timing and cross-round coordination are left to RL
-%     and are not evaluated in this paper.
-% ============================================================
+\paragraph{Partial multilingual coverage.}
+Our end-to-end scaffolding results on SWE-PolyBench
+(Table~\ref{tab:swepoly-java-python}) cover only the Java and
+Python splits at submission time; the JavaScript and TypeScript
+end-to-end runs are not yet complete. The standalone scorer
+evaluation (Figure~\ref{fig:scorer-func-recall}) does span all
+four languages, so the trained scorer itself has been measured
+broadly, but the full Step-A/B/C pipeline numbers for
+JavaScript and TypeScript are pending.
+
+\paragraph{Benchmark scope.}
+All evaluations are on SWE-Bench-family benchmarks
+(SWE-Bench Verified and SWE-PolyBench). These cover
+human-curated GitHub issues drawn mostly from popular
+open-source libraries; generalization to private-codebase
+distributions, proprietary languages, or non-bug-fix
+maintenance tasks (refactors, feature additions) is untested.
+
+\paragraph{Graph construction is assumed away.}
+The scaffolding requires a pre-built code graph $\mathcal{G}$.
+We reuse the graphs released with prior work and construct new
+ones with the same pipeline (Appendix~\ref{app:graph}), but the
+construction cost, the failure modes for languages with weaker
+Tree-sitter coverage, and the sensitivity of recall to graph
+quality are not studied here. A noisy or incomplete graph is a
+silent failure mode that this paper does not characterise.
+
+\paragraph{Surrogate coverage term.}
+The listwise term $\mathcal{L}_{\text{cov}}$ in~\eqref{eq:cov}
+is a differentiable softmax surrogate, not the exact
+(non-differentiable) set-coverage objective. Our argument
+guarantees that the dense per-round target shares the same
+optimum as end-to-end Recall@$K$; whether $\mathcal{L}_{\text{cov}}$
+attains that optimum exactly, rather than only approximating it,
+is not proven.
+
+\paragraph{Single scorer backbone.}
+We instantiate the scorer only on Qwen2.5-Coder-3B-Instruct
+(with a 0.5B variant reported as an ablation). How the recipe
+scales to other base families (Llama-Coder, DeepSeek-Coder,
+non-Coder instruction models) or to substantially larger
+adapters is not evaluated.
+
+\paragraph{Stop-timing and cross-round coordination.}
+The scaffolding always runs to the round budget or pool
+exhaustion; an early-stop hook is left for an RL stage that we
+do not train or evaluate in this paper. Likewise, cross-round
+coordination between the scorer and the agent uses a fixed
+protocol and is not learned. Both are natural targets for a
+follow-up that adds a thin RL layer on top of the supervised
+scorer.
