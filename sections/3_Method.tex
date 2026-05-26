@@ -84,8 +84,8 @@ entries of $W_t$.
 \paragraph{Step B: neighborhood expansion.}
 For each of the $S$ seeds the scaffolding runs a depth-$d$
 BFS along structural edges of the code graph
-(\textit{contains} by default; ablations in
-Section~\ref{sec:ablation} cover the four edge types). We
+(\textit{contains} by default; edge-type ablations covering
+the four relations are left to future work). We
 keep only neighbors that also appear in the top-$N$ of $\pi$
 (with $N{=}500$ throughout), a cheap rank pre-filter that
 removes graph noise without invoking the scorer. The scorer
@@ -97,15 +97,21 @@ A single agent call sees the issue $q$, the current returned
 list $\hat{L}_{t-1}$ (initialised to the top-$K$ of $\pi$ at
 $t{=}0$), the window $W_t$, and the scorer-selected neighbors
 $\mathcal{N}_t$, and writes back the updated length-$K$ list
-$\hat{L}_t$.
+$\hat{L}_t$. The agent additionally returns an \emph{early-stop}
+flag: if it judges $\hat{L}_t$ to already cover every function
+the issue requires, the loop terminates before the round budget
+is exhausted and $\hat{L}_t$ becomes the final prediction.
+Early stopping is therefore an agent-side decision, traded off
+against the token cost of additional rounds.
 
 No call sees more than $r + Sn$ candidates plus $\hat{L}_{t-1}$, so
 per-call token cost is roughly constant across rounds and a
 32K context comfortably absorbs it. Removing Steps~A and~B
 collapses the procedure to a pure window-update loop, giving a
 clean ablation that isolates the contribution of graph
-exploration (Section~\ref{sec:ablation}). The final prediction
-is $\hat{L} \equiv \hat{L}_R$.
+exploration, reported as the \emph{w/o graph} block of
+Table~\ref{tab:verified}. The final prediction is
+$\hat{L} \equiv \hat{L}_R$.
 
 \subsection{Training the Scorer}
 \label{sec:training}
@@ -185,7 +191,7 @@ selection and the next epoch's hard-negative mining read off the
 score. $\mathcal{L}_{\text{cov}}$ is permutation-invariant across
 $\mathcal{G}$ and concentrates softmax mass on ground-truth members
 relative to in-group negatives, without penalising gold-vs-gold
-order. Setting $\lambda{=}0$ recovers a pure-BCE scorer, which
-we report as an ablation alongside the combined loss
-(Section~\ref{sec:ablation}). Top-$K$ selection itself is performed
-only at inference and is never differentiated.
+order. Setting $\lambda{=}0$ recovers a pure-BCE scorer; we
+treat this $\lambda$ sweep as a planned ablation and defer the
+numbers to a future revision. Top-$K$ selection itself is
+performed only at inference and is never differentiated.

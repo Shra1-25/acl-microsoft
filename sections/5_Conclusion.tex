@@ -13,9 +13,11 @@ ranker. Second, graph exploration (Step~B) is the largest single
 lever, lifting recall and accuracy on every model and language
 while keeping per-call context short. Third, a small fine-tuned
 scorer is enough to drive the full scaffolding: a
-Qwen2.5-Coder-3B scorer matches or beats Qwen3-Coder-30B-A3B
-under the same scaffolding on Verified, and pairs with a 30B
-Step-C agent to set the best Python numbers on SWE-PolyBench.
+Qwen2.5-Coder-3B scorer matches Qwen3-Coder-30B-A3B under the
+same scaffolding on Verified at roughly an order of magnitude
+lower token cost ($35.6$k vs $\geq 198$k tokens per issue), and
+pairs with a 30B Step-C agent to set the best Python numbers on
+SWE-PolyBench.
 Token consumption tracks the call count rather than the model
 size, so larger Step-C agents do not pay a context tax for using
 our scorer.

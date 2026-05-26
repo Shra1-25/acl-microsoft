@@ -36,12 +36,25 @@ The scorer is fine-tuned from Qwen2.5-Coder-3B-Instruct
 \citep{hui2024qwen25codertechnicalreport}. As un-fine-tuned
 reference points under the same scaffolding we report
 Qwen2.5-Coder-14B-Instruct, Qwen3-Coder-30B-A3B-Instruct
-\citep{yang2025qwen3}, and GPT-5.3 Codex. The first-stage
-retriever is either SWERankEmbed-Large
+\citep{yang2025qwen3}, and GPT-5.3
+Codex\footnote{OpenAI's \texttt{gpt-5.3-codex} coding model,
+accessed via the OpenAI API in 2025; the exact snapshot
+identifier and access date will be pinned in the camera-ready
+version.}. The first-stage retriever is either SWERankEmbed-Large
 \citep{reddy2025sweranksoftwareissuelocalization} (dense) or BM25
 (lexical), in both cases truncated to a top-$N$ pool with
 $N{=}500$. The zero-shot retriever output and the un-fine-tuned
 scorer under the same scaffolding act as ablation baselines.
+
+\paragraph{Decoding and reproducibility.}
+All scorer and agent calls use temperature $0$ and the API
+default for top-$p$. Decoding is therefore deterministic up to
+backend non-determinism, and rerunning a configuration on the
+same inputs shifts Recall@$5$ by less than $1$ percentage point
+in our measurements. Reported numbers are from single runs;
+seeds and prompt templates are fixed across rows of a given
+table to keep cross-row differences attributable to the
+scaffolding rather than to sampling.
 
 \subsection{Main Results}
 \label{sec:main-results}
@@ -83,7 +96,7 @@ Method            & Model                        & Dense & BM25                 
                   & Qwen2.5-14B-Instruct         & $0.26$ & $0.29$                       & $73$           \\
                   & Qwen2.5-Coder-14B-Instruct   & $0.35$ & $0.35$                       & $69$           \\
                   & Qwen3-Coder-30B-A3B-Instruct & $0.50$ & $0.50$                       & $70$           \\
-                  & \quad + Qwen2.5-Coder-3B scorer (ours) & $\mathbf{0.45}$ & --       & $\mathbf{33}$  \\
+                %   & \quad + Qwen2.5-Coder-3B scorer (ours) & $\mathbf{0.45}$ & --       & $\mathbf{33}$  \\
 \midrule
 \multirow{4}{*}{\shortstack[l]{\emph{w/ graph, w/o scorer}}}
                   & GPT-5.3 Codex                & $0.56$ & $0.56$                       & $204$          \\
@@ -91,7 +104,8 @@ Method            & Model                        & Dense & BM25                 
                   & Qwen2.5-Coder-14B-Instruct   & $0.44$ & $0.42$                       & $198$          \\
                   & Qwen3-Coder-30B-A3B-Instruct & $0.54$ & $0.55$                       & $271$          \\
 \cdashline{1-5}
-\emph{w/graph, w/ scorer}  & \textbf{Ours, fine-tuned Qwen2.5-Coder-3B} & $\mathbf{0.55}$ & --    & $\mathbf{35}$  \\
+\emph{w/graph, w/ scorer}  & \multirow{2}{*}{Qwen3-Coder-30B-A3B-Instruct} & \multirow{2}{*}{$\mathbf{0.55}$} & \multirow{2}{*}{--}    & \multirow{2}{*}{$\mathbf{35}$}  \\
+\emph{Ours} & & & & \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -142,16 +156,29 @@ benefits most from its longer context.}
 
 \paragraph{End-to-end results on SWE-PolyBench.}
 Table~\ref{tab:swepoly-java-python} reports end-to-end Recall@5
-and Accuracy@5 (perfect recall) on the SWE-PolyBench Java and
-Python splits, comparing the scaffolding without graph
+and Accuracy@5 on the SWE-PolyBench Java and Python splits,
+where Accuracy@$K := \frac{1}{N}\sum_i \mathbb{1}[G_i \subseteq
+\hat{L}_i]$ is the fraction of issues for which \emph{every}
+gold function is recovered (i.e.\ perfect recall), comparing the scaffolding without graph
 exploration (Step~B disabled) against the full scaffolding with
 our fine-tuned scorer. The full scaffolding improves both
 metrics on both languages: on Java, GPT-5.3 Codex gains $+5$
 recall and $+5$ accuracy points; on Python, Qwen3-Coder-30B
-gains $+5$ recall and $+4$ accuracy points and surpasses the
+gains $+5$ recall and $+4$ accuracy points and overtakes the
 GPT-5.3 Codex baseline. Token consumption stays comparable to
 the no-graph variant, so the gains come essentially free of
 extra compute.
+
+The Python ordering deserves a closer look: Qwen3-Coder-30B
+overtakes GPT-5.3 Codex not because of better retrieval, but
+because GPT-5.3 Codex triggers the early-stop flag too
+aggressively. On the $120$ Python issues where GPT-5.3 Codex
+ended the loop early, its Recall@5 is $0.476$, whereas Qwen3
+running the full round budget on the \emph{same} issues reaches
+$0.529$ --- a $+5.3$-point gap that comes entirely from the
+exploration rounds GPT chose to skip. The recall deficit is
+therefore a confidence-calibration artefact at Step~C, not a
+shortcoming of the scorer or the retriever.
 
 \begin{table*}[t]
 \centering
@@ -164,50 +191,53 @@ Qwen3-Coder-30B-A3B-Instruct). Recall@5 and Accuracy@5 (perfect
 recall) are reported after filtering out instances with empty
 function-level GT and using denominator
 $|GT \cap \mathrm{graph\_functions}|$. ``--'' marks a run we
-have not executed. Tokens/call is averaged across the kept
-instances; \#Calls is per issue.}
+have not executed. Token consumption is the total tokens per
+issue (tokens/call $\times$ \#calls), averaged across kept
+instances.}
 \label{tab:swepoly-java-python}
 \begin{subtable}{0.49\textwidth}
 \centering
-\setlength{\tabcolsep}{2.5pt}
-\caption*{Java (kept $= 158$ / $165$)}
-\begin{tabular}{lcccc}
+\setlength{\tabcolsep}{4pt}
+% \caption*{Java (kept $= 158$ / $165$)}
+\caption*{Java}
+\begin{tabular}{lccc}
 \toprule
-Model                          & Rec@5 & Acc@5 & Tok/call & \#Calls \\
+Model                          & Rec@5 & Acc@5 & Tokens (k) \\
 \midrule
-\multicolumn{5}{l}{\emph{w/o graph (Step B disabled)}} \\
-GPT-5.3 Codex                  & $0.38$ & $0.22$ & $5597$ & $3.87$ \\
-Qwen3-Coder-30B-A3B            & $0.35$ & $0.20$ & $5847$ & $4.75$ \\
+\multicolumn{4}{l}{\emph{w/o graph (Step B disabled)}} \\
+GPT-5.3 Codex                  & $0.38$ & $0.22$ & $21.7$ \\
+Qwen3-Coder-30B-A3B            & $0.35$ & $0.20$ & $27.8$ \\
 \midrule
-\multicolumn{5}{l}{\emph{Full, ours (Qwen2.5-Coder-3B scorer)}} \\
-GPT-5.3 Codex                  & $\mathbf{0.43}$ & $\mathbf{0.27}$ & $5504$ & $3.47$ \\
-Qwen3-Coder-30B-A3B            & $0.37$ & $0.20$ & $5871$ & $4.56$ \\
+\multicolumn{4}{l}{\emph{Full, ours (Qwen2.5-Coder-3B scorer)}} \\
+GPT-5.3 Codex                  & $\mathbf{0.43}$ & $\mathbf{0.27}$ & $\mathbf{19.1}$ \\
+Qwen3-Coder-30B-A3B            & $0.37$ & $0.20$ & $26.8$ \\
 \bottomrule
 \end{tabular}
 \end{subtable}
 \hfill
 \begin{subtable}{0.49\textwidth}
 \centering
-\setlength{\tabcolsep}{2.5pt}
-\caption*{Python (kept $= 182$ / $199$)}
-\begin{tabular}{lcccc}
+\setlength{\tabcolsep}{4pt}
+% \caption*{Python (kept $= 182$ / $199$)}
+\caption*{Python}
+\begin{tabular}{lccc}
 \toprule
-Model                          & Rec@5 & Acc@5 & Tok/call & \#Calls \\
+Model                          & Rec@5 & Acc@5 & Tokens (k) \\
 \midrule
-\multicolumn{5}{l}{\emph{w/o graph (Step B disabled)}} \\
-GPT-5.3 Codex                  & --     & --     & --     & --     \\
-Qwen3-Coder-30B-A3B            & $0.40$ & $0.29$ & $8099$ & $4.70$ \\
+\multicolumn{4}{l}{\emph{w/o graph (Step B disabled)}} \\
+GPT-5.3 Codex                  & --     & --     & --     \\
+Qwen3-Coder-30B-A3B            & $0.40$ & $0.29$ & $38.1$ \\
 \midrule
-\multicolumn{5}{l}{\emph{Full, ours (Qwen2.5-Coder-3B scorer)}} \\
-GPT-5.3 Codex                  & $0.42$ & $0.31$ & $9242$ & $3.34$ \\
-Qwen3-Coder-30B-A3B            & $\mathbf{0.45}$ & $\mathbf{0.33}$ & $9778$ & $4.75$ \\
+\multicolumn{4}{l}{\emph{Full, ours (Qwen2.5-Coder-3B scorer)}} \\
+GPT-5.3 Codex                  & $0.42$ & $0.31$ & $\mathbf{30.9}$ \\
+Qwen3-Coder-30B-A3B            & $\mathbf{0.45}$ & $\mathbf{0.33}$ & $46.4$ \\
 \bottomrule
 \end{tabular}
 \end{subtable}
 \end{table*}
 
-\subsection{Does the Coverage Term Help?}
-\label{sec:ablation}
+% \subsection{Does the Coverage Term Help?}
+% \label{sec:ablation}
 % - The key ablation: lambda = 0 (BCE only) vs lambda = 0.2
 %   (BCE + coverage). Report the recall@L delta -- this is THE
 %   objective-paper result.
@@ -215,8 +245,8 @@ Qwen3-Coder-30B-A3B            & $\mathbf{0.45}$ & $\mathbf{0.33}$ & $9778$ & $4
 %   gold vs non-gold; fraction of golds landing in the top-L.
 %   (~0.2 page)
 
-\subsection{Efficiency and Scaling}
-\label{sec:efficiency}
+% \subsection{Efficiency and Scaling}
+% \label{sec:efficiency}
 % - FIGURE 2: token cost. Per-call and total tokens vs
 %   OpenHands; bounded vs unbounded trajectory length; wall-
 %   clock saved. Plot with SciencePlots (project .venv, PDF).

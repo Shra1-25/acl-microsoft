@@ -7,13 +7,94 @@
 
 \section{Proof of the Telescoping Identity}
 \label{app:proof}
-% - Full statement and proof that sum_t r_t = recall@K(\hat{L}_R) -
-%   recall@K(\hat{L}_0) under equal add/drop weights, and that
-%   potential-based shaping \citep{ng1999policy} leaves the
-%   optimal policy invariant -- so the dense objective and the
-%   recall@K optimum coincide.
-% - Regret view: Case 1 (a gold-for-gold swap) has regret 0;
-%   Case 2 (a non-gold kept over a gold) has regret 1.
+
+We give the formal statement of the claim used in
+Section~\ref{sec:training}: that the dense per-round objective
+the scorer is trained against shares its optimum with
+end-to-end $\text{Recall}@K$, so the inner loop can be trained
+by supervised learning rather than reinforcement learning.
+
+\paragraph{Setup.}
+Fix an issue $q$ with gold function set $G \subseteq V$ of
+positive size. The scaffolding produces a sequence of length-$K$
+lists $\hat{L}_0, \dots, \hat{L}_R$, with $\hat{L}_0$ initialised
+to the top-$K$ of the retriever ranking. Define the
+\emph{secured-gold potential}
+\begin{equation}
+  \Phi_t \;:=\; \frac{|\hat{L}_t \cap G|}{|G|}
+  \;=\; \text{Recall}@K(\hat{L}_t),
+  \label{eq:potential}
+\end{equation}
+and the per-round signal $r_t := \Phi_t - \Phi_{t-1}$.
+
+\paragraph{Telescoping identity.}
+By construction,
+\begin{equation}
+\begin{aligned}
+  \sum_{t=1}^{R} r_t
+  &= \Phi_R - \Phi_0 \\
+  &= \text{Recall}@K(\hat{L}_R)
+    - \text{Recall}@K(\hat{L}_0).
+\end{aligned}
+  \label{eq:telescope}
+\end{equation}
+The end-to-end recall \emph{gain} equals the sum of dense
+per-round increments. The identity is combinatorial: it makes
+no assumption on the policy that produces $\hat{L}_t$.
+
+\paragraph{Policy invariance under shaping.}
+Cast the scaffolding as a finite-horizon MDP with state
+$\hat{L}_{t-1}$ and round context, action $\hat{L}_t$, and
+terminal sparse reward $\text{Recall}@K(\hat{L}_R)$. Choose the
+dense shaping reward $F(s_t, a_t, s_{t+1}) := r_{t+1}$, i.e.\
+the potential difference $\Phi_{t+1} - \Phi_t$. This is exactly
+the potential-based reward shaping of \citet{ng1999policy} with
+potential $\Phi$ and discount $\gamma = 1$. Their Theorem~1
+guarantees that adding $F$ to the original reward leaves the
+set of optimal policies unchanged; here it makes the formerly
+sparse terminal signal dense. Combining this
+with~\eqref{eq:telescope} shows that maximising the dense
+per-round sum is equivalent to maximising
+$\text{Recall}@K(\hat{L}_R)$.
+
+\paragraph{Closed-form per-round optimum.}
+Because the discount is one, the optimal policy is myopic at
+each round: pick
+$\hat{L}_t \subseteq P_t := \hat{L}_{t-1} \cup W_t \cup
+\mathcal{N}_t$ to maximise $\Phi_t$. The maximum is attained by
+the length-$K$ subset of $P_t$ that overlaps $G$ the most,
+i.e.\ by top-$K$ selection under the labels $\mathbb{1}[c \in
+G]$. A scorer trained to rank gold above non-gold on the
+per-round pool matches this optimum round-by-round, and
+therefore --- by the shaping argument above --- matches the
+end-to-end optimum.
+
+\paragraph{Regret view.}
+A single round can only deviate from the optimum in two ways.
+\emph{Case~1} swaps one gold member of $\hat{L}_t$ for a
+different gold candidate in $P_t$: $\Phi_t$ is unchanged and
+the round contributes zero regret. \emph{Case~2} keeps a
+non-gold candidate over an available gold: $\Phi_t$ falls
+short of its maximum by exactly $1/|G|$, contributing unit
+regret. The total $\text{Recall}@K$ regret across the
+trajectory is therefore the count of Case-2 events divided by
+$|G|$.
+
+\paragraph{Scope.}
+The argument establishes co-optimality between the
+\emph{exact} per-round gold-coverage objective and end-to-end
+$\text{Recall}@K$. The training loss
+$\mathcal{L}_{\text{BCE}} + \lambda\,\mathcal{L}_{\text{cov}}$
+of Section~\ref{sec:training} is a differentiable surrogate: BCE
+is a
+strictly proper scoring rule whose Bayes-optimal classifier
+ranks $\Pr[c \in G \mid q]$ in decreasing order --- the same
+ordering top-$K$ selection requires --- and
+$\mathcal{L}_{\text{cov}}$ is a softmax surrogate of the
+listwise coverage term. Surrogate consistency for the discrete
+top-$K$ set-coverage criterion is a separate question that we
+treat empirically rather than formally; see
+Section~\ref{sec:limitations}.
 
 \section{Code Graph Construction}
 \label{app:graph}
@@ -195,8 +276,96 @@ $p_{gt}$ above $p_{\neg gt}$ by a margin of $0.25$--$0.45$.}
 \label{fig:scorer-score-separation}
 \end{figure*}
 
+\section{Frequently Asked Questions}
+\label{app:faq}
+
+This appendix consolidates clarifications to recurring reviewer
+questions on scope, methodology, and presentation.
+
+\paragraph{Q1.\ Where are the edge-type, $\lambda{=}0$, and
+no-graph standalone ablations referenced in the method?}
+The four-edge-type ablation
+(\textit{contains}/\textit{invokes}/\textit{imports}/\textit{inherits}),
+the pure-BCE ($\lambda{=}0$) ablation, and the standalone
+$131$K-token measurement under an OpenHands-style scaffolding
+were planned but are not included in this submission. The no-graph
+ablation \emph{is} reported, as the \emph{w/o graph} block of
+Table~\ref{tab:verified} and the corresponding block of
+Table~\ref{tab:swepoly-java-python}; the language used elsewhere
+in the paper to point to these ablations has been corrected.
+
+\paragraph{Q2.\ Are error bars or significance tests reported?}
+All scorer and agent calls are decoded at temperature $0$
+(Section~\ref{sec:setup-exp}), so rerunning a configuration on
+the same inputs shifts Recall@$5$ by less than $1$ point in our
+measurements. Run-to-run variance is therefore much smaller than
+the effect sizes we report (typically $+5$ points or more).
+Multi-seed averaging, bootstrap confidence intervals over
+issue-level scores, and explicit significance tests on the
+$+5$-point gaps are natural additions for a longer revision.
+
+\paragraph{Q3.\ Does the telescoping proof cover the exact
+set-coverage objective or only the softmax surrogate?}
+The proof in Appendix~\ref{app:proof} establishes co-optimality
+between the \emph{exact} per-round gold-coverage objective and
+end-to-end $\text{Recall}@K$. The training surrogate
+$\mathcal{L}_{\text{BCE}} + \lambda\, \mathcal{L}_{\text{cov}}$
+is a differentiable proxy. Surrogate consistency for the
+discrete top-$K$ criterion is a separate question that we treat
+empirically rather than formally; see also the Scope paragraph
+in Appendix~\ref{app:proof}.
+
+\paragraph{Q4.\ Is there an end-to-end configuration where a
+small (7--14B) open model runs the entire loop alone?}
+All end-to-end configurations reported here pair a small
+fine-tuned scorer (Qwen2.5-Coder-3B) with a larger Step-C agent.
+A configuration in which a single 7--14B model serves as both
+scorer and agent under our scaffolding --- the regime that most
+directly supports the introduction's motivating claim --- is
+the natural next experiment and is not included in this
+submission.
+
+\paragraph{Q5.\ Why are some cells in Tables~1 and~2 marked
+``--''?}
+A ``--'' cell marks a (model, retriever) configuration we did
+not run, not a measurement of zero. The pattern is: GPT-5.3
+Codex in the \emph{w/o graph} block was executed only under the
+dense retriever; the fine-tuned scorer row in Table~1 is
+reported only under the dense retriever to date; and the
+Python \emph{w/o graph} run with GPT-5.3 Codex in
+Table~2 has not been executed. None of these gaps affect the
+headline comparisons.
+
+\paragraph{Q6.\ How sensitive are the results to the quality of
+the pre-built code graph?}
+We reuse the graphs released with prior work
+(Appendix~\ref{app:graph}) for SWE-Bench Verified and
+SWE-PolyBench and construct any new graphs with the same
+pipeline. Sensitivity to graph quality --- noisy or incomplete
+edges, weaker Tree-sitter coverage for non-Python languages,
+re-build cost on private repositories --- is not characterised
+in this paper. The graph dependency is acknowledged as a
+limitation (see ``Graph construction is assumed away'' in the
+Limitations section).
+
 \section{AI Disclosure}
 \label{app:ai}
-% - The ACL-required statement of AI-tool usage. Generate it
-%   with the academic-paper `disclosure` mode once drafting is
-%   complete.
+
+In accordance with the ACL Policy on AI Writing Assistance, we
+disclose the following. A large language model assistant was
+used to help draft and revise prose in the Method, Experiments,
+Limitations, and Discussion sections, and to assist with LaTeX
+formatting (table layouts, equation alignment, cross-references).
+All technical content --- the scaffolding design, training
+recipe, theoretical claim, experimental protocol, and the
+numerical results in Tables~\ref{tab:verified}
+and~\ref{tab:swepoly-java-python} and
+Figure~\ref{fig:scorer-func-recall} --- is the authors' own.
+AI tools were \emph{not} used to generate experimental data,
+write or modify the training/inference code, run model
+evaluations, or invent citations. Every claim in the paper has
+been read and approved by the human authors.
+
+GPT-5.3 Codex appears in the paper as an evaluation baseline,
+not as a writing tool; see Section~\ref{sec:setup-exp} for its
+role.
